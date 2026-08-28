@@ -1,7 +1,9 @@
 % !TEX program = xelatex
 % c5p-s-2026.tex
 % 2026 €€£ 非专业级别软件能力认证第一轮（C5P-S1）提高级 C++语言试题（模拟卷）
-% 自制模拟卷，非官方试题；编译：xelatex c5p-s-2026.tex（建议编译两次）
+% 版式：a4paper、等线题头、宋体中文 + Consolas 西文、页脚两行（PDF 格式）、选项每行一个、大题强制换页
+% 代码：带边框、左侧行号 0 补齐、无横向线条；阅读程序不写概要，完善程序写概要后挖空
+% 编译方式：xelatex c5p-s-2026.tex（建议编译两次）
 \documentclass[a4paper]{ctexart}
 
 \usepackage{fontspec}
@@ -9,24 +11,7 @@
 \usepackage{tikz}
 \usetikzlibrary{arrows.meta}
 \usepackage{eso-pic}
-\usepackage{geometry}
-\usepackage{fancyhdr}
-\usepackage{lastpage}
-\usepackage[most]{tcolorbox}
-\usepackage{listings}
-\usepackage{enumitem}
-\usepackage{amsmath}
-\usepackage{xcolor}
-\geometry{top=2.7cm, left=2.7cm, right=2.7cm, bottom=4cm}
-\setmainfont{Consolas}
-\setmonofont{Consolas}
-\setCJKmainfont{SimSun}
-\newCJKfontfamily{\dengxian}{DengXian}
-\newfontfamily\trm{Times New Roman}
-\DeclareMathSizes{10.53937}{10.95}{7.5}{5.5}
-\xeCJKDeclareCharClass{CJK}{"2460 -> "2464}
-
-\newcommand{\waterword}{\rotatebox{-35}{\makebox[0pt][c]{\color{black!9}\fontsize{54}{70}\selectfont 折工}}}
+\newcommand{\waterword}{\rotatebox{-35}{\makebox[0pt][c]{\color{black!9}\fontsize{54}{70}\selectfont 浙江}}}
 \AddToShipoutPictureBG{%
   \put(\LenToUnit{-0.3cm},\LenToUnit{1.2cm}){\waterword}%
   \put(\LenToUnit{5.0cm},\LenToUnit{0.0cm}){\waterword}%
@@ -53,7 +38,28 @@
   \put(\LenToUnit{12.8cm},\LenToUnit{27.4cm}){\waterword}%
   \put(\LenToUnit{18.1cm},\LenToUnit{26.0cm}){\waterword}%
 }
+\usepackage{geometry}
+\geometry{top=2.7cm, left=2.7cm, right=2.7cm, bottom=4cm}
+\setmainfont{Consolas}
+\setmonofont{Consolas}
+\setCJKmainfont{SimSun}
+\newCJKfontfamily{\dengxian}{DengXian}
 
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage[most]{tcolorbox}
+\usepackage{listings}
+\usepackage{enumitem}
+\usepackage{amsmath}
+\usepackage{xcolor}
+\DeclareMathSizes{10.53937}{10.95}{7.5}{5.5}
+
+% 将带圈数字 ①-⑤ 划入 CJK 字符类，确保题干“①处应填”用中文字体正常渲染
+\xeCJKDeclareCharClass{CJK}{"2460 -> "2464}
+
+% ---------------- 页脚：中文宋体 + 数字英文 Times New Roman（参考 cspjs2024hs.pdf 样式） ----------------
+\newfontfamily\trm{Times New Roman}
+% 普通 Unicode 黑圆点，避免依赖 Wingdings 私有字形映射
 \newcommand{\wdot}{{\fontsize{12}{12}\selectfont\textbullet}}
 \pagestyle{fancy}
 \fancyhf{}
@@ -62,28 +68,54 @@
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
 
+% ---------------- 代码样式：框宽 14cm、Consolas 12pt、行号 8.5pt(约0.3cm高)、关键字不加粗 ----------------
 \renewcommand{\thelstnumber}{\ifnum\value{lstnumber}<10 0\fi\arabic{lstnumber}}
 \lstset{
-  language=C++, basicstyle=\ttfamily\fontsize{12}{14.4}\selectfont,
+  language=C++,
+  basicstyle=\ttfamily\fontsize{12}{14.4}\selectfont,
   numberstyle=\ttfamily\fontsize{12}{14.4}\selectfont\makebox[0.92cm][r],
-  numbers=left, numbersep=0.08cm, frame=none, framesep=6pt,
-  rulecolor=\color{black!70}, columns=fullflexible, keepspaces=true,
-  aboveskip=0pt, belowskip=0pt, xleftmargin=0.88cm, linewidth=13cm,
-  showstringspaces=false, breaklines=true, breakatwhitespace=false,
-  keywordstyle=\ttfamily, commentstyle=\ttfamily, stringstyle=\ttfamily,
-  escapeinside={|@}{@|}
+  numbers=left,
+  numbersep=0.08cm,
+  frame=none,
+  framesep=6pt,
+  rulecolor=\color{black!70},
+  columns=fullflexible,
+  keepspaces=true,
+  aboveskip=0pt,
+  belowskip=0pt,
+  xleftmargin=0.88cm,
+  linewidth=13cm,
+  showstringspaces=false,
+  breaklines=true,
+  breakatwhitespace=false,
+  keywordstyle=\ttfamily,
+  commentstyle=\ttfamily,
+  stringstyle=\ttfamily,
+  escapeinside={|@}{@|},
 }
-\newtcolorbox{codebox}{enhanced, breakable, sharp corners, boxrule=0.5pt,
-  colframe=black, colback=white, width=13.45cm, left skip=-0.65cm,
-  before skip=6pt, after skip=8pt, top=2pt, bottom=2pt, left=0pt, right=0pt,
+
+% 代码框：线1（左框线）距页左 2.05cm；行号列线1→线2 严格 1cm；代码列线2→线3 严格 13cm；
+% 线3（右框线）距页右约 4.95cm（A4 宽 21cm 自动吻合）；挖空下划线 2.10cm + 居中序号
+\newtcolorbox{codebox}{enhanced, breakable, sharp corners, boxrule=0.5pt, colframe=black, colback=white,
+  width=13.45cm, left skip=-0.65cm, before skip=6pt, after skip=8pt,
+  top=2pt, bottom=2pt, left=0pt, right=0pt,
   overlay={\draw[black,line width=0.5pt] ([xshift=1.0cm]frame.north west)--([xshift=1.0cm]frame.south west);}}
+% 完善程序挖空：2.10cm 下划线 + 居中序号（字体同代码 12pt）
 \newcommand{\blank}[1]{\underline{\makebox[2.1cm][c]{#1}}}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{2pt}
 \linespread{1.25}
+
+% 大题标题（左对齐黑体）
 \newcommand{\bigtitle}[1]{\noindent\heiti #1\par\vspace{2pt}}
+% 小题题干（序号数字不加粗，Consolas）
 \newcommand{\q}[1]{\noindent #1}
+% 阅读程序小题：题号前加 Unicode 黑点（整体左对齐）
+\newcommand{\qdot}[1]{\noindent\wdot\hspace{0.6em}#1}
+% 单个选项（每个选项独立一行）
 \newcommand{\opt}[1]{\hspace*{2em} #1\par}
+% 完善程序选项：两个选项一行（A B 一行、C D 一行）
 \newcommand{\optw}[2]{\hspace*{2em} #1\hspace*{2em}#2\par}
 
 \begin{document}
@@ -292,17 +324,17 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 \q{28.} 从树上任意点第一次 BFS 找到的最远点，一定是直径端点。（\qquad）\\
-\optw{A. 正确}{B. 错误}
+\opt{A. 正确}\opt{B. 错误}
 \q{29.} 第二次 BFS 从第一次找到的结点出发，得到的最大距离就是树的直径长度。（\qquad）\\
-\optw{A. 正确}{B. 错误}
+\opt{A. 正确}\opt{B. 错误}
 \q{30.} 由于树有 \texttt{n-1} 条边，邻接表中共存储 \texttt{2(n-1)} 个有向邻接项。（\qquad）\\
-\optw{A. 正确}{B. 错误}
+\opt{A. 正确}\opt{B. 错误}
 \q{31.} 函数 \texttt{bfs} 中，队列尾指针入队一个新结点时应执行（\qquad）\\
-\optw{A. \texttt{que[r] = v;}}{B. \texttt{que[r++] = v;}}\optw{C. \texttt{que[++l] = v;}}{D. \texttt{que[l++] = v;}}
+\opt{A. \texttt{que[r] = v;}}\opt{B. \texttt{que[r++] = v;}}\opt{C. \texttt{que[++l] = v;}}\opt{D. \texttt{que[l++] = v;}}
 \q{32.} 每次 BFS 开始时，\texttt{dista} 中所有结点的初始值应设为（\qquad）\\
-\optw{A. 0}{B. 1}\optw{C. \texttt{-1}}{D. \texttt{n}}
+\opt{A. 0}\opt{B. 1}\opt{C. \texttt{-1}}\opt{D. \texttt{n}}
 \q{33.}（本题 4 分）若输入的树有边 \texttt{1-2, 2-3, 2-4, 4-5, 5-6}，程序输出为（\qquad）\\
-\optw{A. 3}{B. 4}\optw{C. 5}{D. 6}
+\opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
 
 \clearpage
 \bigtitle{三、完善程序（单选题，每小题 3 分，共计 30 分）}

@@ -1,32 +1,38 @@
 % !TEX program = xelatex
 % c5p-s-2026-answer.tex
 % 2026 €€£ 非专业级别软件能力认证第一轮（C5P-S1）提高级 C++语言试题·参考答案与解析
-% 自制模拟卷，非官方试题；编译：xelatex c5p-s-2026-answer.tex（建议编译两次）
+% 标准解析文档：每题给出答案、解析、考察知识点（NOI 大纲 2025）、难度系数、类别
+% 编译方式：xelatex c5p-s-2026-answer.tex（建议编译两次）
 \documentclass[a4paper]{ctexart}
+
 \usepackage{fontspec}
 \usepackage{geometry}
+\geometry{top=2.7cm, left=1.9cm, right=1.9cm, bottom=2.9cm}
+\setmainfont{Consolas}
+\setCJKmainfont[BoldFont=SimHei]{SimSun}
+\newCJKfontfamily{\dengxian}{DengXian}
+
 \usepackage{amsmath}
-\usepackage{amssymb}
+\usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage{booktabs}
 \usepackage{longtable}
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{fancyhdr}
 \usepackage{lastpage}
-\usepackage{tikz}
-\usetikzlibrary{arrows.meta,positioning}
-\geometry{top=2.4cm, left=1.9cm, right=1.9cm, bottom=2.9cm}
-\setmainfont{Consolas}
-\setCJKmainfont[BoldFont=SimHei]{SimSun}
-\newCJKfontfamily{\dengxian}{DengXian}
 \DeclareMathSizes{10.53937}{10.95}{7.5}{5.5}
+
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{3pt}
 \linespread{1.25}
+
+% 每题解答：题号+答案行，然后解析
 \newcommand{\ans}[2]{\noindent\textbf{#1} \quad 答案：#2\par}
-\newcommand{\expn}[1]{\hspace*{1.5em}解析：#1\par}
+\newcommand{\expn}[1]{\hspace*{1.5em} 解析：#1\par}
+
 \newcommand{\bigtitle}[1]{\begin{center}\dengxian\large #1\end{center}}
-\newcommand{\overview}[1]{\par\smallskip\noindent\textbf{题目在做什么：}#1\par\smallskip}
+\newcommand{\overview}[1]{\par\smallskip\noindent\textbf{程序总析：}#1\par\smallskip}
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[C]{€€£ C5P-S 2026 参考答案与解析\\第\thepage 页，共\pageref{LastPage}页}
