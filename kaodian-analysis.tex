@@ -1,0 +1,242 @@
+% !TEX program = xelatex
+% kaodian-analysis.tex
+% 2024 年 CSP-S 第一轮（提高级）试题考点与 NOI 大纲（2025 修订版）对照分析
+% 编译方式：xelatex kaodian-analysis.tex（建议编译两次以稳定图表）
+\documentclass[11pt]{ctexart}
+
+\usepackage[margin=2.2cm]{geometry}
+\usepackage{pgfplots}
+\usepackage{pgfplotstable}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{array}
+\usepackage{amsmath}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\pgfplotsset{compat=1.18}
+
+% 柱状图通用样式
+\pgfplotsset{
+    mybar/.style={
+        ybar,
+        bar width=3.5pt,
+        width=15.2cm,
+        height=6.2cm,
+        ymin=0, ymax=10.5,
+        ytick={0,2,4,6,8,10},
+        ylabel={难度系数（大纲原文【X】）},
+        xlabel={考试题号（1--42）},
+        xtick={1,3,5,7,9,11,13,15,17,19,21,23,25,27,29,31,33,35,37,39,41},
+        nodes near coords style={font=\tiny, rotate=90, anchor=west, /pgf/number format/.cd, fixed, precision=0},
+        legend style={font=\scriptsize, draw=black!60},
+        tick label style={font=\scriptsize},
+    }
+}
+
+\definecolor{colJi}{HTML}{7F7F7F}   % 基础知识与编程环境（灰）
+\definecolor{colCpp}{HTML}{4472C4}  % C++ 程序设计（蓝）
+\definecolor{colDS}{HTML}{70AD47}   % 数据结构（绿）
+\definecolor{colAlg}{HTML}{ED7D31}  % 算法（橙）
+\definecolor{colGraph}{HTML}{C00000}% 图论（红）
+\definecolor{colMath}{HTML}{7030A0} % 数学与其他（紫）
+
+\title{\textbf{2024 年 CSP-S 第一轮（提高级）试题考点\\与 NOI 大纲（2025 修订版）对照分析}}
+\author{依据：2024 年 CSP-S 第一轮试题、NOI 大纲 2025 年修订版}
+\date{}
+
+\begin{document}
+\maketitle
+\thispagestyle{plain}
+
+\section{数据来源与统计口径}
+\begin{itemize}[leftmargin=2em, itemsep=1pt]
+    \item 试题来源：2024 年 CSP-S1（提高级）C++ 语言试题（含香港卷），共 42 个计分小题（单项选择 15 题 + 阅读程序 17 小题 + 完善程序 10 空）。
+    \item 大纲来源：《全国青少年信息学奥林匹克系列竞赛大纲（2025 年修订版）》，各知识点标注难度系数【X】（1--10），并分为入门级（难度 1--5）、提高级（5--8）、NOI 级（7--10）三个组别。
+    \item 类别划分：基础知识与编程环境、C++ 程序设计、数据结构、算法、图论、数学与其他六大类（图论在大纲中分属“常见图”与“图论算法”两类，此处合并统计）。
+    \item 映射规则：每一小题取其最主要考查的知识点，映射到大纲对应条目；柱高为该知识点在大纲中的难度系数。
+\end{itemize}
+
+\section{按题号的考点难度分布（主图）}
+下图中每一根柱子对应考试的一个小题（题号 1--42），柱高为该小题主要考查知识点在 NOI 大纲中的难度系数；柱子按知识点类别着色，图例同时标注了该类别涉及的组别与难度系数范围。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    mybar,
+    legend pos=north east,
+    legend style={font=\scriptsize, draw=black!60, at={(0.5,-0.22)}, anchor=north, /tikz/every even column/.append style={column sep=4pt}},
+    ybar legend,
+    enlarge x limits=0.02,
+]
+% 基础知识与编程环境（提高级，难度5）
+\addplot[fill=colJi] coordinates {(1,5)};
+% C++ 程序设计（入门级，难度2-4）
+\addplot[fill=colCpp] coordinates {(3,2) (17,2) (19,2) (20,2) (35,4)};
+% 数据结构（入门级3-4 / 提高级6）
+\addplot[fill=colDS] coordinates {(5,3) (10,6) (11,4) (27,6) (29,6) (30,4) (31,6) (32,6) (39,6)};
+% 算法（入门级3-4 / 提高级5-7）
+\addplot[fill=colAlg] coordinates {(2,6) (6,3) (8,4) (16,5) (18,6) (21,7) (22,7) (23,7) (24,7) (25,7) (26,7) (33,4) (34,4) (36,4) (37,6)};
+% 图论（提高级，难度6-7）
+\addplot[fill=colGraph] coordinates {(7,6) (15,7) (38,7) (40,6) (41,7) (42,7)};
+% 数学与其他（入门级1-4 / 提高级7）
+\addplot[fill=colMath] coordinates {(4,4) (9,7) (12,4) (13,1) (14,4) (28,4)};
+
+\legend{基础知识与编程环境（提高级，难度5）, C++程序设计（入门级，难度2--4）, 数据结构（入门级3--4 / 提高级6）, 算法（入门级3--4 / 提高级5--7）, 图论（提高级，难度6--7）, 数学与其他（入门级1--4 / 提高级7）}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{组别与类别构成}
+\begin{itemize}[leftmargin=2em, itemsep=1pt]
+    \item 组别：入门级知识点 18 小题，提高级知识点 24 小题，NOI 级知识点 0 小题。试题整体难度落在大纲中段（难度 4 与 6--7 最为集中）。
+    \item 类别（按 42 小题计）：算法 15 题、数据结构 9 题、数学与其他 6 题、图论 6 题、C++ 程序设计 5 题、基础知识 1 题。算法与数据结构合计占 $\frac{24}{42}\approx 57\%$，是考查的绝对主体。
+    \item 难点分布：难度系数 7 的知识点共 11 小题（状态压缩动态规划 6 小题、单源次短路 3 小题、扩展欧几里得 1 小题、割点与割边 1 小题），其中阅读程序 6 小题、完善程序 3 小题，另有 2 小题（第 9、15 题）在单选部分。
+\end{itemize}
+
+\section{2024 卷 42 小题难度系数分布}
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar,
+    bar width=10pt,
+    width=10cm, height=6cm,
+    ymin=0, ymax=12,
+    ylabel={小题数量},
+    xlabel={难度系数（大纲原文）},
+    symbolic x coords={1,2,3,4,5,6,7},
+    xtick=data,
+    nodes near coords,
+    every node near coord/.append style={font=\small},
+    tick label style={font=\scriptsize},
+]
+\addplot[fill=colAlg] coordinates {(1,1) (2,4) (3,2) (4,11) (5,2) (6,11) (7,11)};
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\clearpage
+\appendix
+\section{附录 A：2021--2025 五年真题考察频次（按知识点类别）}
+统计口径：每套卷 20 个题单元（单选 15 + 阅读程序 3 + 完善程序 2），按主知识点归入六大类别，共 5 套 100 个题单元。图中各色层分别对应一个年份。
+
+\begin{center}
+\begin{tikzpicture}
+\begin{axis}[
+    ybar stacked,
+    bar width=26pt,
+    width=14.5cm, height=7.5cm,
+    ymin=0, ymax=40,
+    ylabel={题单元数量},
+    xlabel={知识点类别},
+    symbolic x coords={基础知识, C++程序设计, 数据结构, 算法, 图论, 数学与其他},
+    xtick=data,
+    legend style={font=\scriptsize, draw=black!60, at={(0.5,-0.16)}, anchor=north},
+    ybar legend,
+    tick label style={font=\scriptsize},
+]
+\addplot[fill=colJi] coordinates {(基础知识,2) (C++程序设计,3) (数据结构,1) (算法,7) (图论,3) (数学与其他,4)};
+\addplot[fill=colCpp] coordinates {(基础知识,3) (C++程序设计,1) (数据结构,3) (算法,6) (图论,3) (数学与其他,4)};
+\addplot[fill=colDS] coordinates {(基础知识,2) (C++程序设计,2) (数据结构,3) (算法,8) (图论,2) (数学与其他,3)};
+\addplot[fill=colAlg] coordinates {(基础知识,1) (C++程序设计,1) (数据结构,4) (算法,6) (图论,3) (数学与其他,5)};
+\addplot[fill=colMath] coordinates {(基础知识,0) (C++程序设计,0) (数据结构,5) (算法,8) (图论,4) (数学与其他,3)};
+\legend{2021, 2022, 2023, 2024, 2025}
+\end{axis}
+\end{tikzpicture}
+\end{center}
+
+\subsection{五年频次汇总表}
+\begin{center}
+\begin{tabular}{lcccccc}
+\toprule
+类别 & 2021 & 2022 & 2023 & 2024 & 2025 & 合计 \\
+\midrule
+基础知识与编程环境 & 2 & 3 & 2 & 1 & 0 & 8 \\
+C++ 程序设计 & 3 & 1 & 2 & 1 & 0 & 7 \\
+数据结构 & 1 & 3 & 3 & 4 & 5 & 16 \\
+算法 & 7 & 6 & 8 & 6 & 8 & 35 \\
+图论 & 3 & 3 & 2 & 3 & 4 & 15 \\
+数学与其他 & 4 & 4 & 3 & 5 & 3 & 19 \\
+\bottomrule
+合计 & 20 & 20 & 20 & 20 & 20 & 100 \\
+\end{tabular}
+\end{center}
+
+\subsection{分析要点}
+\begin{itemize}[leftmargin=2em, itemsep=1pt]
+    \item 算法是绝对高频类别（五年 35/100），其中排序、二分、动态规划（含状态压缩、树形 DP）、搜索与图论算法轮番出现，阅读程序与完善程序几乎必考。
+    \item 数据结构（16/100）呈逐年上升趋势（2021 年仅 1 题，2025 年 5 题），并查集、哈希、堆、线段树、Trie、树与图结构均有涉及，对应大纲提高级 2.2.3。
+    \item 数学与其他（19/100）稳定在每年 3--5 题，集中于排列组合、容斥原理、进制与模运算；图论（15/100）在 2025 年明显加强（KMP 类字符串匹配归入算法，图相关题达 4 题）。
+    \item 基础知识（Linux 命令、编译、多媒体）近两年占比走低，2025 年为零，但属于容易得分的送分题，不宜放弃。
+    \item 难度系数 5--7 的知识点（提高级主体）构成区分度核心：状态压缩 DP、次短路、字符串哈希、二分答案等是近年反复出现的高价值考点。
+\end{itemize}
+
+\clearpage
+\section{附录 B：2024 卷 42 小题考点映射详表}
+表中“难度”为该知识点在 NOI 大纲 2025 修订版中的难度系数【X】，“组别”为大纲分组（入=入门级，提=提高级）。
+
+\begingroup
+\small
+\begin{longtable}{cllccp{5.9cm}}
+\toprule
+题号 & 考查知识点 & 类别 & 组别 & 难度 & 对应大纲条目 \\
+\midrule
+\endfirsthead
+\multicolumn{6}{l}{\footnotesize 续表}\\
+\toprule
+题号 & 考查知识点 & 类别 & 组别 & 难度 & 对应大纲条目 \\
+\midrule
+\endhead
+1 & Linux 终端常用命令（pwd） & 基础知识 & 提 & 5 & 提高级 2.2.1-1 Linux 文件与目录操作命令 \\
+2 & 时间复杂度分析 & 算法 & 提 & 6 & 提高级 2.2.4-1 时间复杂度分析 \\
+3 & 递归函数与栈溢出 & C++ 程序设计 & 入 & 2 & 入门级 2.1.2-9 递归函数 \\
+4 & 排列（10 选 3 有序） & 数学与其他 & 入 & 4 & 入门级 2.1.5-4 排列 \\
+5 & 队列（FIFO） & 数据结构 & 入 & 3 & 入门级 2.1.3-1 队列 \\
+6 & 递推法 & 算法 & 入 & 3 & 入门级 2.1.4-3 递推法 \\
+7 & 欧拉图 & 图论 & 提 & 6 & 提高级 2.2.3-4 欧拉图 \\
+8 & 二分法 & 算法 & 入 & 4 & 入门级 2.1.4-3 二分法 \\
+9 & 模逆元 / 扩展欧几里得 & 数学与其他 & 提 & 7 & 提高级 2.2.5-2 模逆元、扩展欧几里得 \\
+10 & 哈希冲突处理 & 数据结构 & 提 & 6 & 提高级 2.2.3-5 哈希冲突处理方法 \\
+11 & 完全二叉树性质 & 数据结构 & 入 & 4 & 入门级 2.1.3-3 完全二叉树 \\
+12 & 组合计数（完全图 4-环） & 数学与其他 & 入 & 4 & 入门级 2.1.5-4 组合 \\
+13 & 数及其运算（数字和迭代） & 数学与其他 & 入 & 1 & 入门级 2.1.5-1 数及其运算 \\
+14 & 组合计数（相邻交换次数） & 数学与其他 & 入 & 4 & 入门级 2.1.5-4 组合 \\
+15 & 图的连通性与割 & 图论 & 提 & 7 & 提高级 2.2.4-7 割点、割边 \\
+16 & 快速排序 / 分治 & 算法 & 提 & 5 & 提高级 2.2.4-4 快速排序 \\
+17 & 位运算 & C++ 程序设计 & 入 & 2 & 入门级 2.1.2-4 位运算 \\
+18 & 分治复杂度分析 & 算法 & 提 & 6 & 提高级 2.2.4-3 分治、2.2.4-1 复杂度 \\
+19 & 位运算（logic 化简） & C++ 程序设计 & 入 & 2 & 入门级 2.1.2-4 位运算 \\
+20 & 位运算 + 排序模拟 & C++ 程序设计 & 入 & 2 & 入门级 2.1.2-4 位运算、2.1.4-6 排序 \\
+21 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+22 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+23 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+24 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+25 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+26 & 状态压缩动态规划 & 算法 & 提 & 7 & 提高级 2.2.4-8 状态压缩动态规划 \\
+27 & 字符串哈希 & 数据结构 & 提 & 6 & 提高级 2.2.3-5 字符串哈希函数构造 \\
+28 & 素数筛法（埃氏筛） & 数学与其他 & 入 & 4 & 入门级 2.1.5-3 素数筛法 \\
+29 & 字符串哈希 & 数据结构 & 提 & 6 & 提高级 2.2.3-5 字符串哈希函数构造 \\
+30 & 二叉树后序遍历 & 数据结构 & 入 & 4 & 入门级 2.1.3-2 二叉树遍历 \\
+31 & 字符串哈希 + 二叉树合并 & 数据结构 & 提 & 6 & 提高级 2.2.3-5 字符串哈希函数构造 \\
+32 & 字符串哈希 + 去重计数 & 数据结构 & 提 & 6 & 提高级 2.2.3-5 字符串哈希函数构造 \\
+33 & 二分查找（upper\_bound） & 算法 & 入 & 4 & 入门级 2.1.4-3 二分法 \\
+34 & 二分查找（upper\_bound） & 算法 & 入 & 4 & 入门级 2.1.4-3 二分法 \\
+35 & 指针与数组访问 & C++ 程序设计 & 入 & 4 & 入门级 2.1.2-11 指针 \\
+36 & 二分答案 & 算法 & 入 & 4 & 入门级 2.1.4-3 二分法 \\
+37 & 二分答案（第 K 小） & 算法 & 提 & 6 & 提高级 2.2.4-1 复杂度、二分法 \\
+38 & 单源次短路（分层图） & 图论 & 提 & 7 & 提高级 2.2.4-7 单源次短路 \\
+39 & 优先队列 & 数据结构 & 提 & 6 & 提高级 2.2.3-1 优先队列 \\
+40 & 单源最短路（Dijkstra） & 图论 & 提 & 6 & 提高级 2.2.4-7 单源最短路 \\
+41 & 单源次短路 & 图论 & 提 & 7 & 提高级 2.2.4-7 单源次短路 \\
+42 & 单源次短路（方案输出） & 图论 & 提 & 7 & 提高级 2.2.4-7 单源次短路 \\
+\bottomrule
+\end{longtable}
+\endgroup
+
+\section{附录 C：小结}
+\begin{enumerate}[leftmargin=2em, itemsep=1pt]
+    \item 2024 卷知识点全部落在大纲入门级与提高级范围（难度 1--7），未涉及 NOI 级内容，符合 CSP-S 命题范围不超过大纲对应级别的规定。
+    \item 高频高价值考点：状态压缩动态规划（7）、单源次短路（7）、字符串哈希（6）、二分答案（6）、哈希冲突处理（6）、优先队列（6），是备考投入产出比最高的知识点。
+    \item 阅读程序与完善程序合计 27 小题、占 40+30 分，其命题风格（位运算化简、DP 状态转移、哈希、最短路分层图、二分）与大纲提高级算法高度吻合，复习时应以“读懂程序 + 复杂度分析 + 边界特判”为主线。
+\end{enumerate}
+
+\end{document}

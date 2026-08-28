@@ -1,0 +1,12 @@
+https://hkoi.org/zh/cspjs-past-problems/
+https://ftp.cvut.cz/tex-archive/macros/xetex/latex/exam-zh/doc/exam-zh-doc.pdf
+https://github.com/winterant/oi/
+https://gitee.com/mulab/oi_tools
+https://github.com/Mulab11/tuack
+https://gitee.com/mulab/oi_tools/wikis/%E9%A2%98%E9%9D%A2%E7%9A%84%E4%B9%A6%E5%86%99#statementmd
+
+
+https://www.luogu.com.cn/problem/P11717
+https://codeforces.com/problemset/problem/848/C
+https://codeforces.com/problemset/problem/855/G
+https://atcoder.jp/contests/abc366/tasks/abc366_e

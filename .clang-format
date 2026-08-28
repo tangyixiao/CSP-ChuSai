@@ -1,0 +1,14 @@
+# 基于 LLVM 风格，这是 LLVM 项目本身的编码规范，适合大多数 C++ 项目。
+BasedOnStyle: LLVM
+
+# 指定语言为 C++，只对 C++ 文件生效。
+Language: Cpp
+
+# 缩进宽度：使用 4 个空格（LLVM 默认）。
+IndentWidth: 4
+
+# 续行缩进宽度：函数调用或表达式换行时的额外缩进（LLVM 默认 4）。
+ContinuationIndentWidth: 4
+
+# 列限制：每行字符数限制（LLVM 默认 80）。
+ColumnLimit: 0

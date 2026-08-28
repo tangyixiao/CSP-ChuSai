@@ -1,0 +1,14 @@
+# LaTeX build artifacts
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# Local editor / contest helper state
+.cph-ng/
+
+# Local PDF rendering scratch space
+tmp/

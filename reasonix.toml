@@ -1,0 +1,2 @@
+[permissions]
+allow = ["Bash=$pkg = \"$env:APPDATA\\npm\\node_modules\\reasonix\"; Get-ChildItem \"$pkg\\node_modules\\@reasonix\" -ErrorAction SilentlyContinue | Select-Object Name; (Get-Content \"$pkg\\package.json\" -Raw) | ConvertFrom-Json | Select-Object name, version, main | Format-List | Out-String"]
