@@ -119,12 +119,12 @@
 \draw[->] (a)--(b); \draw[->] (a)--(c); \draw[->] (b)--(d); \draw[->] (c)--(e); \draw[->] (d)--(f); \draw[->] (e)--(f);
 \end{tikzpicture}
 \end{center}
-\ans{16.}{A（√）}\expn{递归继续划分，单元素区间天然有序；合并两个有序区间后仍有序，因此最终整个数组非降序。}
-\ans{17.}{A（√）}\expn{两个子区间的当前元素分别是各自剩余部分的最小值，选择较小者写入 \texttt{tmp}，正是归并的核心。相等时取左边元素还保持稳定性。}
-\ans{18.}{B（×）}\expn{每次只保证当前区间的 \texttt{tmp[l..r]} 被写满；区间外的数组位置可能没有本轮意义上的结果，所以不能说整个 \texttt{tmp[1..n]} 一定有序。}
+\ans{16.}{A}\expn{递归范围是闭区间 $[1,4]$，因此前四个元素被排为 $1,2,3,4$；下标 5 不在本次调用范围内，原本的 5 保持不变。}
+\ans{17.}{A（√）}\expn{判断条件是 \texttt{a[i] <= a[j]}，相等时执行 \texttt{tmp[k++] = a[i++]}，所以左区间元素先写入。}
+\ans{18.}{B（×）}\expn{当 $l=r$ 时函数直接返回，并没有给 \texttt{tmp[l]} 赋值；所以不能对“任意一次”返回的调用都断言 \texttt{tmp[l..r]} 有序。}
 \ans{19.}{A（√）}\expn{每层把区间长度约减半，递归树高度为 $O(\log n)$。}
-\ans{20.}{B}\expn{$(1+8)>>1=4$，因此左区间为 $[1,4]$，右区间为 $[5,8]$。}
-\ans{21.}{B}\expn{每一层所有合并操作总共处理 $O(n)$ 个元素，共有 $O(\log n)$ 层，时间复杂度为 $O(n\log n)$；临时数组占 $O(n)$ 额外空间，递归栈为 $O(\log n)$。}
+\ans{20.}{B}\expn{$(3+10)>>1=6$，递归调用的两个闭区间分别为 $[3,6]$ 与 $[7,10]$。}
+\ans{21.}{C}\expn{最坏情况下 $T(1)=0$，且 $T(n)=2T(n/2)+(n-1)$。因此 $T(8)=2T(4)+7=2(2T(2)+3)+7=17$。}
 
 \subsection*{（2）字典序最小子序列}
 \overview{程序维护一个单调栈。扫描新字符时，如果栈顶字符更大且还允许删除，就删除栈顶，让更小的当前字符尽量靠前；扫描结束仍有删除次数时，从末尾删除，因为前缀已经不能再通过前大后小的逆序得到改善。}
@@ -136,11 +136,11 @@
 \bottomrule
 \end{tabular}
 \end{center}
-\ans{22.}{A（√）}\expn{每次删除都优先消除更靠前位置的逆序，得到的结果在字典序上更小，且总共恰好删除 \texttt{k} 个字符。}
+\ans{22.}{A（√）}\expn{当 \texttt{k=0} 时，扫描过程中的弹栈条件第一项始终为假；扫描结束后的删除循环也不会执行。}
 \ans{23.}{B（×）}\expn{应在 \texttt{st.back() > ch} 时弹栈。若栈顶更小，保留更小字符在前面反而更优。}
 \ans{24.}{A（√）}\expn{若扫描结束仍有删除次数，说明栈中已经没有可改善的前大后小位置；继续删除末尾不会改变已确定的更优前缀。}
-\ans{25.}{A}\expn{在最坏情况下字符始终非降序，几乎不会弹栈，所有 $n$ 个字符都可能同时留在 \texttt{st} 中。}
-\ans{26.}{A}\expn{处理 \texttt{cbacdca} 并删除 3 个字符时，依次弹出前面的 \texttt{c}、\texttt{b} 和后面的 \texttt{d}，栈中剩下 \texttt{acca}。}
+\ans{25.}{B}\expn{处理 \texttt{d,c,a} 后还剩一次删除机会；随后栈依次为 \texttt{ab}、\texttt{abc}、\texttt{abcc}，遇到下一个 \texttt{b} 时弹出一个 \texttt{c} 再压入 \texttt{b}，最后压入 \texttt{a}，最大长度为 5。}
+\ans{26.}{A}\expn{依次处理后栈状态为 \texttt{c}、\texttt{a}、\texttt{ab}、\texttt{abc}、\texttt{abcc}、\texttt{abcb}、\texttt{abcba}；三次删除机会已用完，最终输出 \texttt{abcba}。}
 \ans{27.}{A}\expn{每个字符最多入栈一次、出栈一次，虽然有 while 循环，但总弹栈次数不超过 $n$，因此总时间为 $O(n)$，空间为 $O(n)$。}
 
 \subsection*{（3）树的直径}
@@ -153,12 +153,12 @@
 \end{tikzpicture}
 \quad\text{直径端点可以是 3 和 6，长度为 4}
 \end{center}
-\ans{28.}{A（√）}\expn{树中从任意点出发到最远点的路径会延伸到某条直径的端点；因此第一次 BFS 得到的 \texttt{s} 可作为第二次 BFS 的起点。}
-\ans{29.}{A（√）}\expn{第二次 BFS 计算了从 \texttt{s} 到所有点的距离，最大值 \texttt{dista[t]} 就是两端点之间的最长距离，即树的直径。}
-\ans{30.}{A（√）}\expn{每条无向边输入一次，但调用 \texttt{add} 两次分别存储两个方向，所以邻接项数为 $2(n-1)$。}
+\ans{28.}{D}\expn{邻接表采用头插法，结点 1 的访问顺序为 3、2；随后按队列顺序访问 6、5、4、7，距离依次达到 1、2、3，最终 \texttt{far} 为 7。}
+\ans{29.}{A（√）}\expn{更新条件是 \texttt{dista[u] > dista[far]}，而不是大于等于；距离相同时不会覆盖原来的 \texttt{far}，因此保留先出队的结点。}
+\ans{30.}{A（√）}\expn{区间 \texttt{dista+1} 到 \texttt{dista+n} 被初始化，\texttt{dista[0]} 虽未处理，但程序只访问编号 1 到 \texttt{n} 的结点。}
 \ans{31.}{B}\expn{当前队列尾位置为 \texttt{r}，先把 \texttt{v} 写到 \texttt{que[r]}，再令 \texttt{r} 加一，合写为 \texttt{que[r++] = v;}。}
-\ans{32.}{C}\expn{BFS 中 $-1$ 同时表示“未访问”。访问邻居时判断 \texttt{dista[v] == -1}，可避免重复入队。}
-\ans{33.}{B（4 分）}\expn{第二次 BFS 计算的树上最长路径为 $1\to2\to4\to5\to6$，包含 4 条边，因此输出 4。}
+\ans{32.}{A（√）}\expn{最多有 $n-1$ 条无向边，每条边调用两次 \texttt{add}，所以最多产生 $2(n-1)$ 个邻接项；而 $N=2\times10^5+5$，数组容量足够。}
+\ans{33.}{C（4 分）}\expn{该树的一条最长路径为 $7\to6\to3\to1\to2\to4$，包含 5 条边，因此第二次 BFS 输出 5。}
 
 \section*{三、完善程序（34--43）}
 \subsection*{（1）有序序列的第 K 小和}

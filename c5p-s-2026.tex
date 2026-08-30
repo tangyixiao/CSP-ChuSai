@@ -184,7 +184,6 @@
 
 \clearpage
 \bigtitle{二、阅读程序（判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
-\noindent（1）（归并排序）给定长度为 \texttt{n} 的整数序列，程序使用分治方法将其按非降序排列。输入满足 \texttt{1 <= n <= 2 * 10\^{}5}，元素绝对值不超过 \texttt{10\^{}9}。程序输出排序后的序列。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -222,23 +221,22 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{16.} 调用 \texttt{merge\_sort(1,n)} 后，数组 \texttt{a[1..n]} 一定按非降序排列。（\qquad）\\
+\q{16.} 若初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}，调用返回后 \texttt{a[1..5]} 为（\qquad）\\
+\opt{A. \texttt{[1,2,3,4,5]}}\opt{B. \texttt{[1,2,4,3,5]}}
+\opt{C. \texttt{[1,3,2,4,5]}}\opt{D. \texttt{[4,1,3,2,5]}}
+\q{17.} 合并时若两个区间当前元素相等，程序会先把左区间的元素写入 \texttt{tmp}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 合并时，程序每次比较两个有序区间当前未处理的最小元素，并把较小者写入 \texttt{tmp}。（\qquad）\\
+\q{18.} 对任意一次已经返回的调用 \texttt{merge\_sort(l,r)}，\texttt{a[l..r]} 与 \texttt{tmp[l..r]} 均为非降序。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{18.} 函数返回后，数组 \texttt{tmp[1..n]} 一定已经是完整的有序序列。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{19.} 该程序的递归深度为 \texttt{O(log n)}。（\qquad）\\
+\q{19.} 在执行 \texttt{merge\_sort(1,n)} 的过程中，同时处于调用栈中的该函数调用数量为 \texttt{O(log n)}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{20.} 当 \texttt{l=1,r=8} 时，\texttt{mid=(l+r)>>1} 后，递归处理的两个区间是（\qquad）\\
-\opt{A. \texttt{[1,3]} 和 \texttt{[4,8]}}\opt{B. \texttt{[1,4]} 和 \texttt{[5,8]}}
-\opt{C. \texttt{[1,5]} 和 \texttt{[6,8]}}\opt{D. \texttt{[1,8]} 和空区间}
-\q{21.} 该归并排序程序的时间复杂度和额外空间复杂度分别为（\qquad）\\
-\opt{A. \texttt{O(n)}，\texttt{O(1)}}\opt{B. \texttt{O(n log n)}，\texttt{O(n)}}
-\opt{C. \texttt{O(n\^{}2)}，\texttt{O(log n)}}\opt{D. \texttt{O(log n)}，\texttt{O(n)}}
+\q{20.} 当 \texttt{l=3,r=10} 时，\texttt{mid=(l+r)>>1} 后，递归处理的两个区间是（\qquad）\\
+\opt{A. \texttt{[3,5]} 和 \texttt{[6,10]}}\opt{B. \texttt{[3,6]} 和 \texttt{[7,10]}}
+\opt{C. \texttt{[3,7]} 和 \texttt{[8,10]}}\opt{D. \texttt{[3,10]} 和空区间}
+\q{21.} 当 \texttt{n=8} 且每次合并都达到比较次数的最大值时，所有合并过程的元素比较总次数为（\qquad）\\
+\opt{A. 12}\opt{B. 14}\opt{C. 17}\opt{D. 24}
 
-\noindent（2）（字典序最小子序列）给定一个长度为 \texttt{n}、仅包含小写英文字母的字符串 \texttt{s}，删除其中恰好 \texttt{k} 个字符，使剩余字符保持原相对顺序且字典序最小。输入满足 \texttt{1 <= n <= 2 * 10\^{}5}，\texttt{0 <= k < n}，且 \texttt{|s| = n}。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -265,20 +263,19 @@ int main() {
         cout << ch;
 }
 \end{lstlisting}\end{codebox}
-\q{22.} 程序使用贪心方法，输出删除恰好 \texttt{k} 个字符后能得到的字典序最小字符串。（\qquad）\\
+\q{22.} 当 \texttt{k=0} 时，程序扫描字符串的过程中不会执行 \texttt{pop\_back}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{23.} 扫描字符 \texttt{ch} 时，只要栈顶字符小于 \texttt{ch} 且仍可删除，就应弹出栈顶字符。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{24.} 扫描结束后若 \texttt{k > 0}，从当前序列末尾继续删除字符可以得到最优结果。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{25.} 在整个程序运行过程中，\texttt{st} 中保存的字符数最多为（\qquad）\\
-\opt{A. \texttt{n}}\opt{B. \texttt{k}}\opt{C. \texttt{n-k-1}}\opt{D. \texttt{2n}}
-\q{26.} 当输入为 \texttt{7 3 cbacdca} 时，程序的输出为（\qquad）\\
-\opt{A. \texttt{acca}}\opt{B. \texttt{acda}}\opt{C. \texttt{bacd}}\opt{D. \texttt{bcaa}}
+\q{25.} 当输入为 \texttt{8 3 dcabccba} 时，扫描过程中 \texttt{st} 的最大长度为（\qquad）\\
+\opt{A. 3}\opt{B. 5}\opt{C. 6}\opt{D. 8}
+\q{26.} 当输入为 \texttt{8 3 dcabccba} 时，程序的输出为（\qquad）\\
+\opt{A. \texttt{abcba}}\opt{B. \texttt{abccb}}\opt{C. \texttt{acbba}}\opt{D. \texttt{bccba}}
 \q{27.} 若每个字符最多入栈一次、出栈一次，则该程序的时间复杂度为（\qquad）\\
 \opt{A. \texttt{O(n)}}\opt{B. \texttt{O(n log n)}}\opt{C. \texttt{O(n\^{}2)}}\opt{D. \texttt{O(k log n)}}
 
-\noindent（3）（树的直径）给定一棵有 \texttt{n} 个结点的无权树，程序求树中任意两点间最远距离，也就是树的直径长度。输入满足 \texttt{1 <= n <= 2 * 10\^{}5}。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -323,17 +320,17 @@ int main() {
     cout << dista[t];
 }
 \end{lstlisting}\end{codebox}
-\q{28.} 从树上任意点第一次 BFS 找到的最远点，一定是直径端点。（\qquad）\\
+\q{28.} 对输入边依次为 \texttt{1-2,1-3,2-4,2-5,3-6,6-7} 的树，调用 \texttt{bfs(1)} 返回的结点是（\qquad）\\
+\opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
+\q{29.} 若 BFS 过程中存在多个结点与当前最远距离相同，程序保留最先从队列中取出的那个结点。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{29.} 第二次 BFS 从第一次找到的结点出发，得到的最大距离就是树的直径长度。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{30.} 由于树有 \texttt{n-1} 条边，邻接表中共存储 \texttt{2(n-1)} 个有向邻接项。（\qquad）\\
+\q{30.} \texttt{fill(dista+1,dista+n+1,-1)} 不会初始化 \texttt{dista[0]}，但不影响程序对输入结点的处理。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{31.} 函数 \texttt{bfs} 中，队列尾指针入队一个新结点时应执行（\qquad）\\
 \opt{A. \texttt{que[r] = v;}}\opt{B. \texttt{que[r++] = v;}}\opt{C. \texttt{que[++l] = v;}}\opt{D. \texttt{que[l++] = v;}}
-\q{32.} 每次 BFS 开始时，\texttt{dista} 中所有结点的初始值应设为（\qquad）\\
-\opt{A. 0}\opt{B. 1}\opt{C. \texttt{-1}}\opt{D. \texttt{n}}
-\q{33.}（本题 4 分）若输入的树有边 \texttt{1-2, 2-3, 2-4, 4-5, 5-6}，程序输出为（\qquad）\\
+\q{32.} 数组 \texttt{to[N*2]} 至少可以容纳任意一棵满足上界的树所产生的全部邻接项。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{33.}（本题 4 分）若输入的树有边 \texttt{1-2,1-3,2-4,2-5,3-6,6-7}，程序输出为（\qquad）\\
 \opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
 
 \clearpage
