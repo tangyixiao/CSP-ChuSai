@@ -1,0 +1,78 @@
+name: Build XeLaTeX PDFs
+
+on:
+  push:
+    paths:
+      - "**.tex"
+      - "**.sty"
+      - "**.cls"
+      - "**.bib"
+      - "**.png"
+      - "**.jpg"
+      - ".github/workflows/xelatex.yml"
+  pull_request:
+    paths:
+      - "**.tex"
+      - "**.sty"
+      - "**.cls"
+      - "**.bib"
+      - "**.png"
+      - "**.jpg"
+      - ".github/workflows/xelatex.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  build-pdf:
+    name: Compile all LaTeX documents
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v6
+
+      - name: Compile with XeLaTeX
+        uses: xu-cheng/latex-action@v4
+        with:
+          root_file: |
+            c5p-s-2026.tex
+            c5p-s-2026-answer.tex
+            csp-s-2026.tex
+            csp-s-2026-answer.tex
+            kaodian-analysis.tex
+          os: debian
+          texlive_version: 2025
+          latexmk_use_xelatex: true
+          extra_system_packages: "fonts-noto-cjk fonts-dejavu fonts-liberation2"
+          pre_compile: |
+            for file in \
+              c5p-s-2026.tex \
+              c5p-s-2026-answer.tex \
+              csp-s-2026.tex \
+              csp-s-2026-answer.tex \
+              kaodian-analysis.tex
+            do
+              sed -i \
+                -e 's/Consolas/DejaVu Sans Mono/g' \
+                -e 's/SimSun/Noto Serif CJK SC/g' \
+                -e 's/SimHei/Noto Sans CJK SC/g' \
+                -e 's/DengXian/Noto Sans CJK SC/g' \
+                -e 's/Times New Roman/Liberation Serif/g' \
+                -e 's/Wingdings/DejaVu Sans/g' \
+                "$file"
+            done
+
+      - name: Upload generated PDFs
+        if: success()
+        uses: actions/upload-artifact@v6
+        with:
+          name: csp-chusai-pdfs
+          path: |
+            c5p-s-2026.pdf
+            c5p-s-2026-answer.pdf
+            csp-s-2026.pdf
+            csp-s-2026-answer.pdf
+            kaodian-analysis.pdf
+          if-no-files-found: error
+          retention-days: 14
