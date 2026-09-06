@@ -132,6 +132,7 @@
 
 \begin{document}
 
+
 \begin{center}
 {\dengxian
     {\xeCJKsetup{CJKecglue={\hskip 0.419em}}\fontsize{15.95}{1}\selectfont 2026 €€£非专业级别软件能力认证第一轮} \\[1.5em]
@@ -144,71 +145,96 @@
 \noindent{\heiti 考生注意事项：}
 \begin{itemize}[leftmargin=2.6em, itemsep=1pt, label={}]
     \item \wdot\hspace{0.5em}试题纸共有 \pageref{LastPage} 页，答题纸共有 1 页，满分 100 分。本卷为自制模拟卷，不代表任何官方机构。
-    \item \wdot\hspace{0.5em}本卷按《全国青少年信息学奥林匹克系列竞赛大纲（2025 年修订版）》提高级及其自动包含的入门级知识范围命制。
     \item \wdot\hspace{0.5em}不得使用任何电子设备（如计算器、手机、电子词典等）或查阅任何书籍资料。
 \end{itemize}
 
 \bigtitle{一、单项选择题（共 15 题，每题 2 分，共计 30 分；每题有且仅有一个正确选项）}
-\q{1.} 在 Linux 终端中，将源文件 \texttt{main.cpp} 编译为名为 \texttt{main} 的可执行文件，应使用的命令是（\qquad）\\
-\opt{A. \texttt{g++ main.cpp -o main}}\opt{B. \texttt{g++ main -o main.cpp}}
-\opt{C. \texttt{./main.cpp -o main}}\opt{D. \texttt{g++ -o main.cpp main}}
 
-\q{2.} 一棵哈夫曼树用二叉链表存储，共有 254 个非空孩子指针。该树有（\qquad）个叶子结点\\
-\opt{A. 127}\opt{B. 128}\opt{C. 129}\opt{D. 255}
+\q{1.} 在 Linux 终端中，当前目录下没有任何文件或子目录。依次执行
+\begin{codebox}\begin{lstlisting}
+mkdir d
+touch a
+cp a d/b
+mv a d/c
+rm d/b
+\end{lstlisting}\end{codebox}
+执行结束后，下列说法正确的是（\qquad）\\
+\opt{A. 当前目录下存在文件 \texttt{a}}
+\opt{B. 目录 \texttt{d} 中只有文件 \texttt{c}}
+\opt{C. 目录 \texttt{d} 中有文件 \texttt{b} 和 \texttt{c}}
+\opt{D. 当前目录为空}
 
-\q{3.} 已知 \(T(1)=\Theta(1)\)，且当 \(n>1\) 时
+\q{2.} 某文件中只出现 6 种字符，它们出现的次数分别为 \texttt{2,3,7,9,18,25}。按哈夫曼算法构造编码树，该树的带权路径长度为（\qquad）\\
+\opt{A. 132}\opt{B. 139}\opt{C. 141}\opt{D. 146}
+
+\q{3.} 将 \texttt{1,2,...,2026} 分别写成二进制数。这些二进制数中数字 \texttt{1} 一共出现（\qquad）次\\
+\opt{A. 10987}\opt{B. 11011}\opt{C. 11075}\opt{D. 11139}
+
+\q{4.} 从 \((0,0)\) 出发，每步只能向右或向上，走到 \((8,6)\)。途中始终满足 \(x\ge y\)，且不经过 \((4,2)\)。满足条件的走法共有（\qquad）种\\
+\opt{A. 419}\opt{B. 443}\opt{C. 467}\opt{D. 491}
+
+\q{5.} 元素 \texttt{1,2,...,7} 按此顺序依次入栈，入栈过程中可以随时出栈。下列序列中，不可能成为出栈序列的是（\qquad）\\
+\opt{A. \texttt{3,4,2,1,7,6,5}}
+\opt{B. \texttt{3,4,2,6,5,1,7}}
+\opt{C. \texttt{3,4,6,2,5,1,7}}
+\opt{D. \texttt{3,2,5,4,1,7,6}}
+
+\q{6.} 将 \texttt{1,2,...,20} 依次写在一个圆环上。从中选出 5 个数，任意两个被选的数在圆环上均不相邻。不同的选法共有（\qquad）种\\
+\opt{A. 3003}\opt{B. 3432}\opt{C. 4004}\opt{D. 4368}
+
+\q{7.} 执行下面的 C++ 代码后，输出为（\qquad）\\
+\begin{codebox}\begin{lstlisting}
+vector<int> a = {7, 2, 5, 2, 9, 5, 1};
+sort(a.begin(), a.end());
+a.erase(unique(a.begin(), a.end()), a.end());
+auto it = lower_bound(a.begin(), a.end(), 6);
+cout << a.size() << ' ' << it - a.begin() << ' ' << *it;
+\end{lstlisting}\end{codebox}
+\opt{A. \texttt{5 2 5}}\opt{B. \texttt{5 3 7}}\opt{C. \texttt{6 3 7}}\opt{D. \texttt{6 4 9}}
+
+\q{8.} 有 6 个任务，必须满足
 \[
-T(n)=2T(n/2)+\Theta(n\log n),
+1\to3,\quad 2\to3,\quad 2\to4,\quad 3\to5,\quad 4\to5,\quad 5\to6.
 \]
-其中 \(n\) 为 2 的幂。由主定理，\(T(n)\) 为（\qquad）\\
-\opt{A. \(\Theta(n\log n)\)}\opt{B. \(\Theta(n\log^2 n)\)}\opt{C. \(\Theta(n^2)\)}\opt{D. \(\Theta(\log^2 n)\)}
+满足这些先后关系的任务执行顺序共有（\qquad）种\\
+\opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
 
-\q{4.} 从 \texttt{(0,0)} 出发，每步向右或向上，到达 \texttt{(8,6)}。要求途中始终满足 \texttt{x >= y}，且不经过 \texttt{(4,2)}。这样的路径共有（\qquad）条\\
-\opt{A. 443}\opt{B. 558}\opt{C. 630}\opt{D. 1001}
-
-\q{5.} 用两个栈 A、B 模拟队列。入队时压入 A；出队时，若 B 为空，则先把 A 中的元素全部移入 B。初始两栈均为空，依次执行\\
-\texttt{push(1), push(2), pop(), push(3), push(4),}\\
-\texttt{pop(), push(5), pop(), pop()}。\\
-元素从 A 移入 B 的次数为（\qquad）\\
+\q{9.} 若正整数 \(p\) 满足：对字符串 \(s\) 的任意 \(i>p\)，均有 \(s_i=s_{i-p}\)，则称 \(p\) 为 \(s\) 的一个周期。字符串 \texttt{abacababacabab} 的最小周期为（\qquad）\\
 \opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
 
-\q{6.} 将整数 \texttt{1,2,...,12} 依次排在一个圆环上。从中选 4 个数，且任意两个被选的数都不相邻，共有（\qquad）种选法\\
-\opt{A. 84}\opt{B. 96}\opt{C. 105}\opt{D. 126}
+\q{10.} 下图中所有边均从左向右，边旁数字为边权。从 1 到 6 的最短路长度、最短路条数和严格次短路长度分别为（\qquad）
+\begin{center}
+\begin{tikzpicture}[>=Stealth, every node/.style={circle,draw,fill=white,minimum size=6mm,inner sep=0.5pt,font=\small},
+ every edge/.style={draw,->,font=\scriptsize}]
+\node (a) at (0,0) {1};
+\node (b) at (1.7,0.8) {2}; \node (c) at (1.7,-0.8) {3};
+\node (d) at (3.5,0.8) {4}; \node (e) at (3.5,-0.8) {5};
+\node (f) at (5.3,0) {6};
+\draw[->] (a)--node[above left,draw=none,fill=white]{2}(b);
+\draw[->] (a)--node[below left,draw=none,fill=white]{3}(c);
+\draw[->] (b)--node[left,draw=none,fill=white]{1}(c);
+\draw[->] (b)--node[above,draw=none,fill=white]{4}(d);
+\draw[->] (b)--node[below,draw=none,fill=white]{7}(e);
+\draw[->] (c)--node[above,draw=none,fill=white]{2}(d);
+\draw[->] (c)--node[below,draw=none,fill=white]{4}(e);
+\draw[->] (d)--node[left,draw=none,fill=white]{1}(e);
+\draw[->] (d)--node[above right,draw=none,fill=white]{5}(f);
+\draw[->] (e)--node[below right,draw=none,fill=white]{2}(f);
+\end{tikzpicture}
+\end{center}
+\opt{A. \texttt{8,2,9}}\opt{B. \texttt{8,3,9}}\opt{C. \texttt{8,2,10}}\opt{D. \texttt{9,2,10}}
 
-\q{7.} 执行下列 C++ 代码后，输出为（\qquad）\\
-\begin{codebox}\begin{lstlisting}
-map<int, int> mp;
-mp[2] = 1;
-mp[1] = mp[2] + 2;
-int x = mp[3];
-mp[2] += mp[1];
-cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
-\end{lstlisting}\end{codebox}
-\opt{A. \texttt{2 4}}\opt{B. \texttt{2 7}}\opt{C. \texttt{3 4}}\opt{D. \texttt{3 7}}
-
-\q{8.} 用 Kahn 算法对一个有向无环图进行拓扑排序。该图的拓扑序唯一，当且仅当（\qquad）\\
-\opt{A. 每个结点的出度都不超过 1}
-\opt{B. 算法的每一步中，当前入度为 0 且尚未删除的结点恰好有 1 个}
-\opt{C. 图中恰好有 \texttt{n-1} 条边}
-\opt{D. 从任意结点开始 DFS 得到的完成时间序列都相同}
-
-\q{9.} 模式串 \texttt{ababaabab} 的 KMP 前缀函数最后一项为（\qquad）\\
-\opt{A. 2}\opt{B. 3}\opt{C. 4}\opt{D. 5}
-
-\q{10.} 用邻接矩阵实现朴素 Dijkstra 算法，求一个 \texttt{n} 个顶点的非负权图的单源最短路，其最坏时间复杂度为（\qquad）\\
-\opt{A. \texttt{Theta(n)}}\opt{B. \texttt{Theta(m log n)}}\opt{C. \texttt{Theta(n\^{}2)}}\opt{D. \texttt{Theta(nm)}}
-
-\q{11.} 已知 \texttt{p=20260913} 为质数，则
+\q{11.} 设 \(p=20260913\) 为质数。在模 \(p\) 意义下，
 \[
-\sum_{i=1}^{p-2}\frac{1}{i(i+1)}\pmod p
+\sum_{i=1}^{p-2}\frac{1}{i(i+1)}
 \]
-的值为（\qquad）\\
-\opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. \texttt{p-2}}
+等于（\qquad）\\
+\opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. \(p-2\)}
 
-\q{12.} 在 \texttt{1,2,...,1000} 中，恰好能被 \texttt{2,3,5} 中一个数整除的整数有（\qquad）个\\
-\opt{A. 434}\opt{B. 468}\opt{C. 500}\opt{D. 534}
+\q{12.} 将 8 个互不相同的小球放入 5 个互不相同的盒子，每个盒子至少放 1 个球。不同的放法共有（\qquad）种\\
+\opt{A. 120000}\opt{B. 125000}\opt{C. 126000}\opt{D. 130000}
 
-\q{13.} 对下图恰好删去两条不同的边，使得仍存在从 1 到 8 的有向路径。删边方案共有（\qquad）种\\
+\q{13.} 对下图恰好删去两条不同的边，使得仍存在从 1 到 8 的有向路径。删边方案共有（\qquad）种
 \begin{center}
 \begin{tikzpicture}[>=Stealth, every node/.style={circle, draw, fill=white, minimum size=6mm, inner sep=0.5pt, font=\small}]
   \node (n1) at (0,0) {1}; \node (n2) at (1.5,0.65) {2}; \node (n3) at (1.5,-0.65) {3};
@@ -220,309 +246,363 @@ cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
 \end{center}
 \opt{A. 12}\opt{B. 15}\opt{C. 18}\opt{D. 21}
 
-\q{14.} 已知整数 \texttt{x} 满足
+\q{14.} 设
 \[
-x\equiv 2\pmod 7,\qquad x\equiv 3\pmod 8,\qquad x\equiv 4\pmod 9.
+S=\sum_{k=0}^{10} k\binom{10}{k}^{2}.
 \]
-且 \texttt{0 <= x < 504}，则 \texttt{x}=（\qquad）\\
-\opt{A. 247}\opt{B. 355}\opt{C. 499}\opt{D. 503}
+则 \(S\) 的值为（\qquad）\\
+\opt{A. 839800}\opt{B. 879760}\opt{C. 923780}\opt{D. 1847560}
 
-\q{15.} 对任意连通无向带权图，下列说法一定正确的是（\qquad）\\
-\opt{A. 图中权值最小的每一条边都属于所有最小生成树}
-\opt{B. 若一条边是某个环上权值严格最大的边，则它不属于任何最小生成树}
-\opt{C. 若一条边属于某一棵最小生成树，则它属于所有最小生成树}
-\opt{D. 任意两棵最小生成树包含的边集合一定完全相同}
+\q{15.} 一个无向带权图有 6 个顶点。权值为 1 的边为 \texttt{1-2,2-3,1-3,4-5}；权值为 2 的边包括集合 \(\{1,2,3\}\) 与 \(\{4,5\}\) 之间的全部边、集合 \(\{1,2,3\}\) 与顶点 6 之间的全部边，以及集合 \(\{4,5\}\) 与顶点 6 之间的全部边。没有其他边。该图共有（\qquad）棵不同的最小生成树\\
+\opt{A. 72}\opt{B. 90}\opt{C. 108}\opt{D. 126}
 
 \clearpage
-\bigtitle{二、阅读程序（判断题正确填√，错误填×；判断题每题 1.5 分，普通单选题每题 3 分，第 33 题 4 分，共计 40 分）}
+\bigtitle{二、阅读程序（程序输入不超过数组或字符串定义的范围；判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
 
+\noindent（1）
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 2e5 + 5;
-int n, a[N], tmp[N];
-long long ans;
-void merge_sort(int l, int r) {
-    if (l >= r)
-        return;
-    int mid = (l + r) >> 1;
-    merge_sort(l, mid);
-    merge_sort(mid + 1, r);
-    int i = l, j = mid + 1, k = l;
-    while (i <= mid && j <= r) {
-        if (a[i] <= a[j])
-            tmp[k++] = a[i++];
-        else {
-            tmp[k++] = a[j++];
-            ans += mid - i + 1;
-        }
-    }
-    while (i <= mid)
-        tmp[k++] = a[i++];
-    while (j <= r)
-        tmp[k++] = a[j++];
-    for (int p = l; p <= r; ++p)
-        a[p] = tmp[p];
-}
+int n, pi[N], occ[N], dep[N];
+string s;
+
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> n;
-    for (int i = 1; i <= n; ++i)
-        cin >> a[i];
-    merge_sort(1, n);
-    cout << ans;
+    cin >> s;
+    n = s.size();
+    for (int i = 1; i < n; ++i) {
+        int j = pi[i - 1];
+        while (j && s[i] != s[j]) j = pi[j - 1];
+        if (s[i] == s[j]) ++j;
+        pi[i] = j;
+    }
+    for (int i = 0; i < n; ++i) ++occ[pi[i]];
+    for (int i = n - 1; i > 0; --i)
+        occ[pi[i - 1]] += occ[i];
+    for (int i = 0; i <= n; ++i) ++occ[i];
+    long long A = 0, B = 0;
+    for (int i = 1; i <= n; ++i) {
+        dep[i] = dep[pi[i - 1]] + 1;
+        A += occ[i];
+        B += dep[i];
+    }
+    cout << occ[n / 2] << ' ' << dep[n] << ' ' << A << '\n';
 }
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{16.} 程序执行结束后，\texttt{ans} 等于原数组的逆序对数。（\qquad）\\
+\q{16.} 对 \(0\le i<n\)，\texttt{pi[i]} 等于 \texttt{s[0..i]} 的最长真前缀与后缀的公共长度。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 若 \texttt{i<j} 且 \texttt{a[i]=a[j]}，则这一对元素会使 \texttt{ans} 增加 1。（\qquad）\\
+\q{17.} 第 18 行循环结束后，\texttt{occ[k]} 等于长度为 \texttt{k} 的前缀在 \texttt{s} 中出现的次数。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{18.} 若把 \texttt{ans} 改为 32 位有符号 \texttt{int}，当 \texttt{n=2e5} 时可能发生溢出。（\qquad）\\
+\q{18.} 对任意非空输入字符串，程序中的 \texttt{A} 与 \texttt{B} 始终相等。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{19.} 初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}。调用结束后 \texttt{a[1..5]} 为（\qquad）\\
-\opt{A. \texttt{[1,2,3,4,5]}}\opt{B. \texttt{[1,2,4,3,5]}}
-\opt{C. \texttt{[1,3,2,4,5]}}\opt{D. \texttt{[4,1,3,2,5]}}
-\q{20.} 输入数组为 \texttt{[3,1,2,2,1,3]} 时，程序输出为（\qquad）\\
-\opt{A. 5}\opt{B. 6}\opt{C. 7}\opt{D. 8}
-\q{21.} 当 \texttt{n=8}，且每次合并的比较次数均达到最大值时，语句 \texttt{a[i] <= a[j]} 共执行（\qquad）次\\
-\opt{A. 12}\opt{B. 14}\opt{C. 17}\opt{D. 24}
+\q{19.} 输入 \texttt{aaaaaa} 时，程序输出为（\qquad）\\
+\opt{A. \texttt{3 6 21}}\opt{B. \texttt{4 5 21}}\opt{C. \texttt{4 6 21}}\opt{D. \texttt{4 6 15}}
+\q{20.}（4 分）输入 \texttt{abacababacabab} 时，程序输出为（\qquad）\\
+\opt{A. \texttt{1 3 30}}\opt{B. \texttt{2 3 32}}\opt{C. \texttt{2 4 32}}\opt{D. \texttt{3 3 34}}
 
+\noindent（2）
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
+const int P = 998244353, M = 10;
+int n, m, ban[105], f[2][1 << M];
+vector<int> st;
+
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    int n, k;
-    string s;
-    cin >> n >> k >> s;
-    vector<char> st;
-    st.reserve(n);
-    for (char ch : s) {
-        while (k > 0 && !st.empty() && st.back() > ch) {
-            st.pop_back();
-            --k;
-        }
-        st.push_back(ch);
+    cin >> n >> m;
+    for (int i = 1; i <= n; ++i) {
+        string s; cin >> s;
+        for (int j = 0; j < m; ++j)
+            if (s[j] == '#') ban[i] |= 1 << j;
     }
-    while (k > 0) {
-        st.pop_back();
-        --k;
-    }
-    for (char ch : st)
-        cout << ch;
-}
-\end{lstlisting}\end{codebox}
-
-\noindent\wdot\hspace{0.5em}判断题\\
-\q{22.} 若 \texttt{k} 的初值为 0，程序不会执行 \texttt{pop\_back()}。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{23.} 扫描结束后若仍有 \texttt{k>0}，从当前序列末尾继续删除字符是最优的。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{24.} 该程序的时间复杂度为 \texttt{O(n)}。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-
-\noindent\wdot\hspace{0.5em}单选题\\
-\q{25.} 输入 \texttt{9 4 cbacdcbca}，扫描完前 6 个字符后，\texttt{st} 从底到顶的内容和 \texttt{k} 的值分别为（\qquad）\\
-\opt{A. \texttt{acd, 2}}\opt{B. \texttt{acc, 1}}\opt{C. \texttt{acb, 0}}\opt{D. \texttt{abc, 1}}
-\q{26.} 输入 \texttt{8 3 dcabccba} 时，扫描过程中 \texttt{st} 的最大长度为（\qquad）\\
-\opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
-\q{27.} 输入 \texttt{8 3 dcabccba} 时，程序输出为（\qquad）\\
-\opt{A. \texttt{abcba}}\opt{B. \texttt{abccb}}\opt{C. \texttt{acbba}}\opt{D. \texttt{bccba}}
-
-\begin{codebox}\begin{lstlisting}
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 2e5 + 5;
-int n, head[N], to[N * 2], nxt[N * 2], ec;
-int dista[N], que[N];
-void add(int u, int v) {
-    to[++ec] = v;
-    nxt[ec] = head[u];
-    head[u] = ec;
-}
-int bfs(int start) {
-    fill(dista + 1, dista + n + 1, -1);
-    int l = 0, r = 0, far = start;
-    que[r++] = start;
-    dista[start] = 0;
-    while (l < r) {
-        int u = que[l++];
-        if (dista[u] > dista[far])
-            far = u;
-        for (int e = head[u]; e; e = nxt[e]) {
-            int v = to[e];
-            if (dista[v] == -1) {
-                dista[v] = dista[u] + 1;
-                que[r++] = v;
+    for (int s = 0; s < (1 << m); ++s)
+        if ((s & (s << 1)) == 0) st.push_back(s);
+    f[0][0] = 1;
+    for (int i = 1; i <= n; ++i) {
+        int cur = i & 1, pre = cur ^ 1;
+        memset(f[cur], 0, sizeof(f[cur]));
+        for (int s : st) {
+            if (s & ban[i]) continue;
+            for (int t : st) {
+                if (s & t) continue;
+                f[cur][s] += f[pre][t];
+                if (f[cur][s] >= P) f[cur][s] -= P;
             }
         }
     }
-    return far;
-}
-int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> n;
-    for (int i = 1, u, v; i < n; ++i) {
-        cin >> u >> v;
-        add(u, v);
-        add(v, u);
+    int ans = 0;
+    for (int s : st) {
+        ans += f[n & 1][s];
+        if (ans >= P) ans -= P;
     }
-    int s = bfs(1);
-    int t = bfs(s);
-    cout << dista[t];
+    cout << ans << '\n';
 }
 \end{lstlisting}\end{codebox}
 
+假设字符 \texttt{'.'} 表示可选位置，字符 \texttt{'\#'} 表示不可选位置。
+
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{28.} 若有多个最远点，\texttt{bfs} 返回其中最先出队的结点。（\qquad）\\
+\q{21.} 程序输出从所有可选位置中选取若干位置，使任意两个被选位置不共边的方案数对 \texttt{P} 取模后的结果。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{29.} 对同一棵树，仅改变边的输入顺序，\texttt{bfs(1)} 的返回值可能改变。（\qquad）\\
+\q{22.} 两个只在对角线上相邻的位置可以同时被选取。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{30.} 对一棵树按程序中的方法进行两次 BFS，最终得到的 \texttt{dista[t]} 等于树的直径。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{31.} 若输入改为任意连通无权图，两次 BFS 仍一定能求出图的直径。（\qquad）\\
+\q{23.}（2 分）当 \texttt{m=10} 时，\texttt{st.size()} 等于 144。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{32.} 边按 \texttt{1-2,1-3,2-4,2-5,3-6,3-7} 的顺序输入，\texttt{bfs(1)} 返回（\qquad）\\
-\opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
-\q{33.}（本题 4 分）树的边为 \texttt{1-2,1-3,2-4,2-5,3-6,3-7} 时，程序输出为（\qquad）\\
-\opt{A. 2}\opt{B. 3}\opt{C. 4}\opt{D. 5}
+\q{24.} 记 \(V=\texttt{st.size()}\)，则程序的时间复杂度为（\qquad）\\
+\opt{A. \(O(nV)\)}\opt{B. \(O(nV^2+2^m)\)}\opt{C. \(O(n2^{2m})\)}\opt{D. \(O(n^2V)\)}
+\q{25.} 输入为 \texttt{n=2,m=3}，两行均为 \texttt{...} 时，程序输出为（\qquad）\\
+\opt{A. 15}\opt{B. 16}\opt{C. 17}\opt{D. 18}
+\q{26.} 输入为 \texttt{n=4,m=4}，四行均为 \texttt{....} 时，程序输出为（\qquad）\\
+\opt{A. 1134}\opt{B. 1198}\opt{C. 1234}\opt{D. 1296}
+
+\noindent（3）
+\begin{codebox}\begin{lstlisting}
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const ll P = 1000000007;
+const int N = 2e5 + 5;
+int n, q;
+ll a[N];
+struct Node { ll sum, mul, add; } tr[N << 2];
+
+void build(int p, int l, int r) {
+    tr[p].mul = 1;
+    if (l == r) { tr[p].sum = a[l] % P; return; }
+    int m = (l + r) >> 1;
+    build(p << 1, l, m); build(p << 1 | 1, m + 1, r);
+    tr[p].sum = (tr[p << 1].sum + tr[p << 1 | 1].sum) % P;
+}
+void apply(int p, int l, int r, ll k, ll b) {
+    tr[p].sum = (tr[p].sum * k + (r - l + 1) * b) % P;
+    tr[p].mul = tr[p].mul * k % P;
+    tr[p].add = (tr[p].add * k + b) % P;
+}
+void push(int p, int l, int r) {
+    if (l == r) return;
+    int m = (l + r) >> 1;
+    apply(p << 1, l, m, tr[p].mul, tr[p].add);
+    apply(p << 1 | 1, m + 1, r, tr[p].mul, tr[p].add);
+    tr[p].mul = 1; tr[p].add = 0;
+}
+void upd(int p, int l, int r, int ql, int qr, ll k, ll b) {
+    if (ql <= l && r <= qr) { apply(p, l, r, k, b); return; }
+    push(p, l, r);
+    int m = (l + r) >> 1;
+    if (ql <= m) upd(p << 1, l, m, ql, qr, k, b);
+    if (qr > m) upd(p << 1 | 1, m + 1, r, ql, qr, k, b);
+    tr[p].sum = (tr[p << 1].sum + tr[p << 1 | 1].sum) % P;
+}
+ll qry(int p, int l, int r, int ql, int qr) {
+    if (ql <= l && r <= qr) return tr[p].sum;
+    push(p, l, r);
+    int m = (l + r) >> 1;
+    ll s = 0;
+    if (ql <= m) s = (s + qry(p << 1, l, m, ql, qr)) % P;
+    if (qr > m) s = (s + qry(p << 1 | 1, m + 1, r, ql, qr)) % P;
+    return s;
+}
+int main() {
+    cin >> n >> q;
+    for (int i = 1; i <= n; ++i) cin >> a[i];
+    build(1, 1, n);
+    while (q--) {
+        int op, l, r; cin >> op >> l >> r;
+        if (op == 1) {
+            ll k, b; cin >> k >> b;
+            upd(1, 1, n, l, r, k, b);
+        } else cout << qry(1, 1, n, l, r) << '\n';
+    }
+}
+\end{lstlisting}\end{codebox}
+
+操作 \texttt{1 l r k b} 将区间 \([l,r]\) 内的每个数 \(x\) 变为 \(kx+b\)；操作 \texttt{2 l r} 输出区间和对 \texttt{P} 取模后的结果。
+
+\noindent\wdot\hspace{0.5em}判断题\\
+\q{27.} 对同一结点先执行变换 \(x\mapsto k_1x+b_1\)，再执行 \(x\mapsto k_2x+b_2\)，其懒标记表示的合成变换为 \(x\mapsto k_1k_2x+b_1k_2+b_2\)。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{28.} 两次操作区间完全相同时，交换这两次操作的先后顺序一定不会改变最终数组。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{29.} 程序的时间复杂度为 \(O((n+q)\log n)\)。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+
+\noindent\wdot\hspace{0.5em}单选题\\
+\q{30.} 初始数组为 \texttt{1 2 3 4}，执行 \texttt{1 2 4 2 1} 后再询问 \texttt{2 1 4}，输出为（\qquad）\\
+\opt{A. 20}\opt{B. 21}\opt{C. 22}\opt{D. 23}
+\q{31.} 初始数组为 \texttt{1 2 3 4 5}，依次执行 \texttt{1 1 4 2 1}、\texttt{1 3 5 1 3}、\texttt{2 2 5}，最后一次操作输出为（\qquad）\\
+\opt{A. 32}\opt{B. 33}\opt{C. 35}\opt{D. 37}
+\q{32.}（4 分）初始数组为 \texttt{2 1 3 5 4 6}，依次执行 \texttt{1 2 6 2 1}、\texttt{1 1 4 3 2}、\texttt{1 3 5 1 4}、\texttt{2 2 6}，最后一次操作输出为（\qquad）\\
+\opt{A. 97}\opt{B. 101}\opt{C. 103}\opt{D. 107}
 
 \clearpage
 \bigtitle{三、完善程序（单选题，每小题 3 分，共计 30 分）}
 
-\noindent（1）（有序序列的第 K 小和）给定两个长度均为 \texttt{n} 的单调不降序列 \texttt{a}、\texttt{b}。对所有 \texttt{1 <= i,j <= n}，共有 \texttt{n\string^2} 个数 \texttt{a[i]+b[j]}，求其中第 \texttt{k} 小的数。\texttt{1 <= n <= 10\string^5}，\texttt{1 <= k <= n\string^2}，序列元素均为非负整数，答案不超过 \texttt{10\string^9}。
+\noindent（1）（三色序列）给定一个长度为 \texttt{n}、只含字符 \texttt{R,G,Y} 的字符串。每次可以交换两个相邻字符。求使相邻字符均不同所需的最少交换次数；若无法做到，输出 \texttt{-1}。\texttt{1 <= n <= 400}。
+
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
-int n, a[N], b[N];
-long long k;
-long long count_le(long long x) {
-    long long cnt = 0;
-    int j = |@\blank{①}@|;
-    for (int i = 1; i <= n; ++i) {
-        while (|@\blank{②}@|)
-            --j;
-        cnt += |@\blank{③}@|;
-    }
-    return cnt;
-}
-long long solve() {
-    long long l = |@\blank{④}@|;
-    long long r = 1LL * a[n] + b[n];
-    while (l + 1 < r) {
-        long long mid = (l + r) >> 1;
-        if (count_le(mid) >= k)
-            r = mid;
-        else
-            l = mid;
-    }
-    return |@\blank{⑤}@|;
-}
+const int N = 405, INF = 1e9;
+int n, cnt[3], pos[3][N], pre[3][N];
+int f[2][N][N][4];
+string s;
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> n >> k;
-    for (int i = 1; i <= n; ++i)
-        cin >> a[i];
-    for (int i = 1; i <= n; ++i)
-        cin >> b[i];
-    cout << solve();
-}
-\end{lstlisting}\end{codebox}
-
-\q{34.} ①处应填（\qquad）\\
-\optw{A. \texttt{n}}{B. \texttt{n-1}}\optw{C. \texttt{1}}{D. \texttt{0}}
-\q{35.} ②处应填（\qquad）\\
-\opt{A. \texttt{j > 0 \&\& 1LL * a[i] + b[j] > x}}
-\opt{B. \texttt{j > 0 \&\& 1LL * a[i] + b[j] >= x}}
-\opt{C. \texttt{j < n \&\& 1LL * a[i] + b[j] > x}}
-\opt{D. \texttt{j > 0 \&\& 1LL * a[i] + b[j] <= x}}
-\q{36.} ③处应填（\qquad）\\
-\optw{A. \texttt{j}}{B. \texttt{n-j}}\optw{C. \texttt{j+1}}{D. \texttt{n}}
-\q{37.} ④处应填（\qquad）\\
-\opt{A. \texttt{1LL * a[1] + b[1]}}
-\opt{B. \texttt{0}}
-\opt{C. \texttt{1LL * a[1] + b[1] - 1}}
-\opt{D. \texttt{1LL * a[n] + b[n]}}
-\q{38.} ⑤处应填（\qquad）\\
-\optw{A. \texttt{l}}{B. \texttt{r}}\optw{C. \texttt{l+1}}{D. \texttt{count\_le(r)}}
-
-\noindent（2）（最近公共祖先）给定一棵以 1 为根的 \texttt{n} 个结点的树。有 \texttt{q} 次询问，每次给出 \texttt{u,v}，求它们的最近公共祖先。\texttt{1 <= n,q <= 2 * 10\string^5}。
-\begin{codebox}\begin{lstlisting}
-#include <bits/stdc++.h>
-using namespace std;
-const int N = 2e5 + 5, K = 19;
-int n, q, head[N], to[N * 2], nxt[N * 2], ec;
-int dep[N], up[N][K];
-void add(int u, int v) {
-    to[++ec] = v;
-    nxt[ec] = head[u];
-    head[u] = ec;
-}
-void dfs(int u, int p) {
-    dep[u] = dep[p] + 1;
-    up[u][0] = p;
-    for (int j = 1; j < K; ++j)
-        up[u][j] = up[|@\blank{①}@|][j - 1];
-    for (int e = head[u]; e; e = nxt[e]) {
-        int v = to[e];
-        if (v != p)
-            dfs(v, u);
+    cin >> n >> s;
+    for (int i = 1; i <= n; ++i) {
+        int c;
+        if (s[i-1] == 'R') c = 0;
+        else if (s[i-1] == 'G') c = 1;
+        else c = 2;
+        for (int t = 0; t < 3; ++t)
+            pre[t][i] = pre[t][i-1];
+        pos[c][++cnt[c]] = i;
+        ++pre[c][i];
     }
-}
-int lca(int u, int v) {
-    if (dep[u] < dep[v])
-        |@\blank{②}@|;
-    int d = dep[u] - dep[v];
-    for (int j = 0; j < K; ++j)
-        if ((d >> j) & 1)
-            u = |@\blank{③}@|;
-    if (u == v)
-        return u;
-    for (int j = K - 1; j >= 0; --j) {
-        if (up[u][j] != up[v][j]) {
-            u = up[u][j];
-            v = |@\blank{④}@|;
+    memset(f, 0x3f, sizeof(f));
+    f[0][0][0][3] = 0;
+    for (int len = 0; len < n; ++len) {
+        int cur = len & 1, nxt = cur ^ 1;
+        memset(f[nxt], 0x3f, sizeof(f[nxt]));
+        for (int r = 0; r <= cnt[0]; ++r)
+        for (int g = 0; g <= cnt[1]; ++g) {
+            int y = len - r - g;
+            if (y < 0 || y > cnt[2]) continue;
+            int used[3] = {r, g, y};
+            for (int last = 0; last < 4; ++last) {
+                int val = f[cur][r][g][last];
+                if (val >= INF) continue;
+                for (int c = 0; c < 3; ++c) {
+                    if (|@\blank{①}@|) continue;
+                    int x = |@\blank{②}@|;
+                    int w = |@\blank{③}@|;
+                    for (int t = 0; t < 3; ++t)
+                        w += |@\blank{④}@|;
+                    int nr = r, ng = g;
+                    if (c == 0) ++nr;
+                    if (c == 1) ++ng;
+                    int nv = |@\blank{⑤}@|;
+                    f[nxt][nr][ng][c] =
+                        min(f[nxt][nr][ng][c], nv);
+                }
+            }
         }
     }
-    return |@\blank{⑤}@|;
+    int ans = INF, z = n & 1;
+    for (int c = 0; c < 3; ++c) {
+        int v = f[z][cnt[0]][cnt[1]][c];
+        ans = min(ans, v);
+    }
+    cout << (ans >= INF ? -1 : ans) << '\n';
+}
+\end{lstlisting}\end{codebox}
+
+\q{33.} ①处应填（\qquad）\\
+\opt{A. \texttt{c==last \&\& used[c]==cnt[c]}}
+\opt{B. \texttt{c==last || used[c]==cnt[c]}}
+\opt{C. \texttt{c!=last || used[c]==cnt[c]}}
+\opt{D. \texttt{c!=last \&\& used[c]<cnt[c]}}
+\q{34.} ②处应填（\qquad）\\
+\opt{A. \texttt{pos[c][used[c]]}}
+\opt{B. \texttt{pos[c][used[c]+1]}}
+\opt{C. \texttt{pos[c][cnt[c]-used[c]]}}
+\opt{D. \texttt{pre[c][used[c]+1]}}
+\q{35.} ③处应填（\qquad）\\
+\opt{A. \texttt{x-len-1}}\opt{B. \texttt{x-len}}\opt{C. \texttt{len+1-x}}\opt{D. \texttt{x-1}}
+\q{36.} ④处应填（\qquad）\\
+\opt{A. \texttt{max(0,pre[t][x]-used[t])}}
+\opt{B. \texttt{max(0,used[t]-pre[t][x])}}
+\opt{C. \texttt{min(used[t],pre[t][x])}}
+\opt{D. \texttt{used[t]-pre[t][x-1]}}
+\q{37.} ⑤处应填（\qquad）\\
+\opt{A. \texttt{w}}\opt{B. \texttt{val+x}}\opt{C. \texttt{val+w}}\opt{D. \texttt{val+len-w}}
+
+\noindent（2）（盒子）有 \texttt{n} 个体积互不相同的盒子和 \texttt{k} 个物品。每个盒子中恰放一个物品或一个体积更小的盒子；把体积为 \(x\) 的盒子放入体积为 \(y\) 的盒子需要 \(y-x\) 单位缓冲材料。所有盒子均须使用。先求所需缓冲材料的最小总量；随后有 \texttt{q} 次删除，每次永久删除一个指定盒子并再次求答案。保证始终至少剩下 \texttt{k} 个盒子。\texttt{1 <= n <= 2*10\string^5}。
+
+\begin{codebox}\begin{lstlisting}
+#include <bits/stdc++.h>
+using namespace std;
+using ll = long long;
+const int N = 2e5 + 5;
+int n, k, q, need;
+ll c[N], ans;
+set<ll> box;
+multiset<ll> lo, hi;
+
+void fix() {
+    while ((int)lo.size() > need) {
+        auto it = |@\blank{②}@|;
+        ans -= *it; hi.insert(*it); lo.erase(it);
+    }
+    while ((int)lo.size() < need) {
+        auto it = hi.begin();
+        ans += *it; lo.insert(*it); hi.erase(it);
+    }
+    while (!lo.empty() && !hi.empty()) {
+        auto x = prev(lo.end()), y = hi.begin();
+        if (|@\blank{③}@|) break;
+        ll vx = *x, vy = *y;
+        ans += |@\blank{④}@|;
+        lo.erase(x); hi.erase(y);
+        lo.insert(vy); hi.insert(vx);
+    }
+}
+void add_gap(ll x) { lo.insert(x); ans += x; }
+void del_gap(ll x) {
+    auto it = lo.find(x);
+    if (it != lo.end()) { ans -= x; lo.erase(it); }
+    else hi.erase(hi.find(x));
 }
 int main() {
-    ios::sync_with_stdio(0);
-    cin.tie(0);
-    cin >> n >> q;
-    for (int i = 1, u, v; i < n; ++i) {
-        cin >> u >> v;
-        add(u, v);
-        add(v, u);
+    cin >> n >> k;
+    for (int i = 1; i <= n; ++i) {
+        cin >> c[i];
+        box.insert(c[i]);
     }
-    dfs(1, 0);
-    for (int i = 1, u, v; i <= q; ++i) {
-        cin >> u >> v;
-        cout << lca(u, v) << '\\n';
+    if (box.size() > 1) {
+        auto x = box.begin(), y = next(x);
+        for (; y != box.end(); ++x, ++y)
+            add_gap(*y - *x);
+    }
+    need = |@\blank{①}@|;
+    fix(); cout << ans << '\n';
+    cin >> q;
+    while (q--) {
+        int d; cin >> d;
+        ll v = c[d], l = 0, r = 0;
+        auto it = box.find(v);
+        auto rt = next(it);
+        bool hl = it != box.begin();
+        bool hr = rt != box.end();
+        if(hl){ l=*prev(it); del_gap(v-l); }
+        if(hr){ r=*rt; del_gap(r-v); }
+        box.erase(it);
+        --need;
+        if (hl && hr) add_gap(|@\blank{⑤}@|);
+        fix(); cout << ans << '\n';
     }
 }
 \end{lstlisting}\end{codebox}
 
-\q{39.} ①处应填（\qquad）\\
-\opt{A. \texttt{up[u][j-1]}}\opt{B. \texttt{up[u][j]}}\opt{C. \texttt{u}}\opt{D. \texttt{p}}
-\q{40.} ②处应填（\qquad）\\
-\opt{A. \texttt{swap(u,v)}}\opt{B. \texttt{swap(dep[u],dep[v])}}\opt{C. \texttt{u=v}}\opt{D. \texttt{v=up[v][0]}}
-\q{41.} ③处应填（\qquad）\\
-\opt{A. \texttt{up[u][j]}}\opt{B. \texttt{up[v][j]}}\opt{C. \texttt{up[u][j-1]}}\opt{D. \texttt{u-j}}
-\q{42.} ④处应填（\qquad）\\
-\opt{A. \texttt{up[u][j]}}\opt{B. \texttt{up[v][j]}}\opt{C. \texttt{up[v][j-1]}}\opt{D. \texttt{v}}
-\q{43.} ⑤处应填（\qquad）\\
-\opt{A. \texttt{u}}\opt{B. \texttt{v}}\opt{C. \texttt{up[u][0]}}\opt{D. \texttt{up[u][1]}}
+\q{38.} ①处应填（\qquad）\\
+\optw{A. \texttt{n-k}}{B. \texttt{k-1}}
+\optw{C. \texttt{n-k+1}}{D. \texttt{n-1}}
+\q{39.} ②处应填（\qquad）\\
+\optw{A. \texttt{lo.begin()}}{B. \texttt{prev(lo.end())}}
+\optw{C. \texttt{hi.begin()}}{D. \texttt{prev(hi.end())}}
+\q{40.} ③处应填（\qquad）\\
+\optw{A. \texttt{*x<*y}}{B. \texttt{*x<=*y}}
+\optw{C. \texttt{*x>*y}}{D. \texttt{*x>=*y}}
+\q{41.} ④处应填（\qquad）\\
+\optw{A. \texttt{vx-vy}}{B. \texttt{vy-vx}}
+\optw{C. \texttt{vx+vy}}{D. \texttt{-vx}}
+\q{42.} ⑤处应填（\qquad）\\
+\optw{A. \texttt{v-l}}{B. \texttt{r-v}}
+\optw{C. \texttt{r-l}}{D. \texttt{r+l-v}}
 
 \end{document}
