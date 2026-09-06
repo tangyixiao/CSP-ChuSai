@@ -149,25 +149,30 @@
 \end{itemize}
 
 \bigtitle{一、单项选择题（共 15 题，每题 2 分，共计 30 分；每题有且仅有一个正确选项）}
-\q{1.} 在 Linux 中，某文件执行 \texttt{chmod 640 f} 后，再执行 \texttt{chmod g+x,o+r f}。若仅考虑传统的用户/组/其他三组权限，则文件最终的八进制权限为（\qquad）\\
-\opt{A. \texttt{650}}\opt{B. \texttt{654}}\opt{C. \texttt{644}}\opt{D. \texttt{754}}
+\q{1.} 在 Linux 终端中，将源文件 \texttt{main.cpp} 编译为名为 \texttt{main} 的可执行文件，应使用的命令是（\qquad）\\
+\opt{A. \texttt{g++ main.cpp -o main}}\opt{B. \texttt{g++ main -o main.cpp}}
+\opt{C. \texttt{./main.cpp -o main}}\opt{D. \texttt{g++ -o main.cpp main}}
 
-\q{2.} 一棵哈夫曼树采用二叉链表存储。若整棵树中共有 254 个非空孩子指针，则该哈夫曼树的叶子结点数为（\qquad）\\
+\q{2.} 一棵哈夫曼树用二叉链表存储，共有 254 个非空孩子指针。该树有（\qquad）个叶子结点\\
 \opt{A. 127}\opt{B. 128}\opt{C. 129}\opt{D. 255}
 
-\q{3.} 某递归算法处理规模为 \texttt{n} 的问题时，会递归处理两个规模均为 \texttt{n/2} 的子问题；除两次递归调用外，本次调用还需要 \(\Theta(n\log n)\) 次基本操作。设 \texttt{n} 为 2 的幂且 \(T(1)=\Theta(1)\)，则由主定理可知该算法的时间复杂度为（\qquad）\\
+\q{3.} 已知 \(T(1)=\Theta(1)\)，且当 \(n>1\) 时
+\[
+T(n)=2T(n/2)+\Theta(n\log n),
+\]
+其中 \(n\) 为 2 的幂。由主定理，\(T(n)\) 为（\qquad）\\
 \opt{A. \(\Theta(n\log n)\)}\opt{B. \(\Theta(n\log^2 n)\)}\opt{C. \(\Theta(n^2)\)}\opt{D. \(\Theta(\log^2 n)\)}
 
-\q{4.} 小 h 从 \texttt{(0,0)} 出发，每一步只能向右或向上走，到达 \texttt{(8,6)}，整个过程中始终满足 \texttt{x >= y}，且不能经过点 \texttt{(4,2)}。满足条件的路径共有（\qquad）条\\
-\opt{A. 441}\opt{B. 442}\opt{C. 443}\opt{D. 444}
+\q{4.} 从 \texttt{(0,0)} 出发，每步向右或向上，到达 \texttt{(8,6)}。要求途中始终满足 \texttt{x >= y}，且不经过 \texttt{(4,2)}。这样的路径共有（\qquad）条\\
+\opt{A. 443}\opt{B. 558}\opt{C. 630}\opt{D. 1001}
 
-\q{5.} 用两个栈 A、B 模拟一个队列：入队时总是压入 A；出队时若 B 为空，则把 A 中全部元素依次弹出并压入 B，再从 B 弹出一个元素；若 B 非空则直接从 B 弹出。初始两栈均为空，依次执行\\
+\q{5.} 用两个栈 A、B 模拟队列。入队时压入 A；出队时，若 B 为空，则先把 A 中的元素全部移入 B。初始两栈均为空，依次执行\\
 \texttt{push(1), push(2), pop(), push(3), push(4),}\\
 \texttt{pop(), push(5), pop(), pop()}。\\
-整个过程中，元素从 A 转移到 B 的次数为（\qquad）\\
+元素从 A 移入 B 的次数为（\qquad）\\
 \opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
 
-\q{6.} 将整数 \texttt{1,2,...,12} 按顺序排成一个圆环（因此 1 与 12 也相邻）。从中选出 4 个不同的数，要求任意两个被选数在圆环上都不相邻。不同的选法共有（\qquad）\\
+\q{6.} 将整数 \texttt{1,2,...,12} 依次排在一个圆环上。从中选 4 个数，且任意两个被选的数都不相邻，共有（\qquad）种选法\\
 \opt{A. 84}\opt{B. 96}\opt{C. 105}\opt{D. 126}
 
 \q{7.} 执行下列 C++ 代码后，输出为（\qquad）\\
@@ -181,25 +186,29 @@ cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
 \end{lstlisting}\end{codebox}
 \opt{A. \texttt{2 4}}\opt{B. \texttt{2 7}}\opt{C. \texttt{3 4}}\opt{D. \texttt{3 7}}
 
-\q{8.} 对一个有向无环图进行 Kahn 拓扑排序。下列条件与“该图的拓扑序唯一”等价的是（\qquad）\\
+\q{8.} 用 Kahn 算法对一个有向无环图进行拓扑排序。该图的拓扑序唯一，当且仅当（\qquad）\\
 \opt{A. 每个结点的出度都不超过 1}
 \opt{B. 算法的每一步中，当前入度为 0 且尚未删除的结点恰好有 1 个}
 \opt{C. 图中恰好有 \texttt{n-1} 条边}
 \opt{D. 从任意结点开始 DFS 得到的完成时间序列都相同}
 
-\q{9.} 对模式串 \texttt{ababaabab} 计算 KMP 的前缀函数（即 \texttt{pi[i]} 为前缀 \texttt{s[0..i]} 的最长真前后缀长度），则最后一个位置的前缀函数值为（\qquad）\\
+\q{9.} 模式串 \texttt{ababaabab} 的 KMP 前缀函数最后一项为（\qquad）\\
 \opt{A. 2}\opt{B. 3}\opt{C. 4}\opt{D. 5}
 
-\q{10.} 对一个 \texttt{n} 个顶点、\texttt{m} 条非负权有向边的图，使用邻接矩阵实现、不使用堆优化的 Dijkstra 算法求单源最短路。无论 \texttt{m} 的大小如何，其最坏时间复杂度为（\qquad）\\
+\q{10.} 用邻接矩阵实现朴素 Dijkstra 算法，求一个 \texttt{n} 个顶点的非负权图的单源最短路，其最坏时间复杂度为（\qquad）\\
 \opt{A. \texttt{Theta(n)}}\opt{B. \texttt{Theta(m log n)}}\opt{C. \texttt{Theta(n\^{}2)}}\opt{D. \texttt{Theta(nm)}}
 
-\q{11.} 已知 \texttt{p=20260913} 为质数。在模 \texttt{p} 意义下，记除法为乘以逆元，则 \(\displaystyle \sum_{i=1}^{p-2}\frac{1}{i(i+1)}\pmod p\) 的值为（\qquad）\\
+\q{11.} 已知 \texttt{p=20260913} 为质数，则
+\[
+\sum_{i=1}^{p-2}\frac{1}{i(i+1)}\pmod p
+\]
+的值为（\qquad）\\
 \opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. \texttt{p-2}}
 
-\q{12.} 在整数 \texttt{1,2,...,1000} 中，恰好能被 \texttt{2,3,5} 中的一个数整除的整数共有（\qquad）个\\
+\q{12.} 在 \texttt{1,2,...,1000} 中，恰好能被 \texttt{2,3,5} 中一个数整除的整数有（\qquad）个\\
 \opt{A. 434}\opt{B. 468}\opt{C. 500}\opt{D. 534}
 
-\q{13.} 下图为一个有向图。恰好删除两条不同的边后，仍要求存在从 1 到 8 的有向路径，则不同的删边方案共有（\qquad）种\\
+\q{13.} 对下图恰好删去两条不同的边，使得仍存在从 1 到 8 的有向路径。删边方案共有（\qquad）种\\
 \begin{center}
 \begin{tikzpicture}[>=Stealth, every node/.style={circle, draw, fill=white, minimum size=6mm, inner sep=0.5pt, font=\small}]
   \node (n1) at (0,0) {1}; \node (n2) at (1.5,0.65) {2}; \node (n3) at (1.5,-0.65) {3};
@@ -211,14 +220,14 @@ cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
 \end{center}
 \opt{A. 12}\opt{B. 15}\opt{C. 18}\opt{D. 21}
 
-\q{14.} 设整数 \texttt{x} 满足
+\q{14.} 已知整数 \texttt{x} 满足
 \[
 x\equiv 2\pmod 7,\qquad x\equiv 3\pmod 8,\qquad x\equiv 4\pmod 9.
 \]
-若 \texttt{0 <= x < 504}，则 \texttt{x} 的值为（\qquad）\\
+且 \texttt{0 <= x < 504}，则 \texttt{x}=（\qquad）\\
 \opt{A. 247}\opt{B. 355}\opt{C. 499}\opt{D. 503}
 
-\q{15.} 对任意一个连通无向带权图，下列说法中一定正确的是（\qquad）\\
+\q{15.} 对任意连通无向带权图，下列说法一定正确的是（\qquad）\\
 \opt{A. 图中权值最小的每一条边都属于所有最小生成树}
 \opt{B. 若一条边是某个环上权值严格最大的边，则它不属于任何最小生成树}
 \opt{C. 若一条边属于某一棵最小生成树，则它属于所有最小生成树}
@@ -267,20 +276,20 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{16.} 若调用前 \texttt{ans=0}，调用 \texttt{merge\_sort(1,n)} 后，\texttt{ans} 等于原数组的逆序对数量。（\qquad）\\
+\q{16.} 程序执行结束后，\texttt{ans} 等于原数组的逆序对数。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 对于下标满足 \texttt{i<j} 且 \texttt{a[i]=a[j]} 的两个元素，这一对元素会对 \texttt{ans} 贡献 1。（\qquad）\\
+\q{17.} 若 \texttt{i<j} 且 \texttt{a[i]=a[j]}，则这一对元素会使 \texttt{ans} 增加 1。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{18.} 若把 \texttt{ans} 的类型改成 32 位有符号 \texttt{int}，则在题目给定的数组上界 \texttt{n=2e5} 下可能发生溢出。（\qquad）\\
+\q{18.} 若把 \texttt{ans} 改为 32 位有符号 \texttt{int}，当 \texttt{n=2e5} 时可能发生溢出。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{19.} 若初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}，调用返回后 \texttt{a[1..5]} 为（\qquad）\\
+\q{19.} 初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}。调用结束后 \texttt{a[1..5]} 为（\qquad）\\
 \opt{A. \texttt{[1,2,3,4,5]}}\opt{B. \texttt{[1,2,4,3,5]}}
 \opt{C. \texttt{[1,3,2,4,5]}}\opt{D. \texttt{[4,1,3,2,5]}}
-\q{20.} 当输入数组为 \texttt{[3,1,2,2,1,3]} 时，程序最终输出为（\qquad）\\
+\q{20.} 输入数组为 \texttt{[3,1,2,2,1,3]} 时，程序输出为（\qquad）\\
 \opt{A. 5}\opt{B. 6}\opt{C. 7}\opt{D. 8}
-\q{21.} 当 \texttt{n=8}，且每次合并时两个有序区间的元素比较次数都达到可能的最大值，则所有合并阶段执行 \texttt{a[i] <= a[j]} 的总次数为（\qquad）\\
+\q{21.} 当 \texttt{n=8}，且每次合并的比较次数均达到最大值时，语句 \texttt{a[i] <= a[j]} 共执行（\qquad）次\\
 \opt{A. 12}\opt{B. 14}\opt{C. 17}\opt{D. 24}
 
 \begin{codebox}\begin{lstlisting}
@@ -311,19 +320,19 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{22.} 当初始 \texttt{k=0} 时，程序扫描字符串的过程中不会执行任何一次 \texttt{pop\_back()}。（\qquad）\\
+\q{22.} 若 \texttt{k} 的初值为 0，程序不会执行 \texttt{pop\_back()}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{23.} 扫描完整个字符串后，如果仍有 \texttt{k>0}，继续从当前序列末尾删除字符可以得到字典序最小的结果。（\qquad）\\
+\q{23.} 扫描结束后若仍有 \texttt{k>0}，从当前序列末尾继续删除字符是最优的。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{24.} 虽然程序中存在嵌套的 \texttt{while}，但每个字符最多入栈一次、出栈一次，因此程序的总时间复杂度为 \texttt{O(n)}。（\qquad）\\
+\q{24.} 该程序的时间复杂度为 \texttt{O(n)}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{25.} 输入为 \texttt{9 4 cbacdcbca}。扫描完前 6 个字符后，\texttt{st} 从底到顶的内容以及此时 \texttt{k} 的值分别为（\qquad）\\
+\q{25.} 输入 \texttt{9 4 cbacdcbca}，扫描完前 6 个字符后，\texttt{st} 从底到顶的内容和 \texttt{k} 的值分别为（\qquad）\\
 \opt{A. \texttt{acd, 2}}\opt{B. \texttt{acc, 1}}\opt{C. \texttt{acb, 0}}\opt{D. \texttt{abc, 1}}
-\q{26.} 当输入为 \texttt{8 3 dcabccba} 时，扫描字符串的过程中 \texttt{st} 的最大长度为（\qquad）\\
+\q{26.} 输入 \texttt{8 3 dcabccba} 时，扫描过程中 \texttt{st} 的最大长度为（\qquad）\\
 \opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
-\q{27.} 当输入为 \texttt{8 3 dcabccba} 时，程序的最终输出为（\qquad）\\
+\q{27.} 输入 \texttt{8 3 dcabccba} 时，程序输出为（\qquad）\\
 \opt{A. \texttt{abcba}}\opt{B. \texttt{abccb}}\opt{C. \texttt{acbba}}\opt{D. \texttt{bccba}}
 
 \begin{codebox}\begin{lstlisting}
@@ -372,25 +381,25 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{28.} 若 BFS 中有多个结点与起点距离同为最大值，则函数会保留这些结点中最先从队列里取出的那个作为 \texttt{far}。（\qquad）\\
+\q{28.} 若有多个最远点，\texttt{bfs} 返回其中最先出队的结点。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{29.} 对同一棵树，仅改变输入边的先后顺序，第一次调用 \texttt{bfs(1)} 的返回值可能发生改变。（\qquad）\\
+\q{29.} 对同一棵树，仅改变边的输入顺序，\texttt{bfs(1)} 的返回值可能改变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{30.} 对任意一棵树，从任意结点进行一次 BFS 得到某个最远点 \texttt{s}，再从 \texttt{s} BFS 得到最远点 \texttt{t}，则 \texttt{dista[t]} 等于该树的直径长度。（\qquad）\\
+\q{30.} 对一棵树按程序中的方法进行两次 BFS，最终得到的 \texttt{dista[t]} 等于树的直径。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{31.} 若把输入从“树”放宽为任意连通无权图，则仍可保证上述“两次 BFS”方法得到图的直径。（\qquad）\\
+\q{31.} 若输入改为任意连通无权图，两次 BFS 仍一定能求出图的直径。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{32.} 若输入边依次为 \texttt{1-2,1-3,2-4,2-5,3-6,3-7}，则调用 \texttt{bfs(1)} 返回的结点为（\qquad）\\
+\q{32.} 边按 \texttt{1-2,1-3,2-4,2-5,3-6,3-7} 的顺序输入，\texttt{bfs(1)} 返回（\qquad）\\
 \opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
-\q{33.}（本题 4 分）若输入的树有边 \texttt{1-2,1-3,2-4,2-5,3-6,3-7}，程序最终输出为（\qquad）\\
+\q{33.}（本题 4 分）树的边为 \texttt{1-2,1-3,2-4,2-5,3-6,3-7} 时，程序输出为（\qquad）\\
 \opt{A. 2}\opt{B. 3}\opt{C. 4}\opt{D. 5}
 
 \clearpage
 \bigtitle{三、完善程序（单选题，每小题 3 分，共计 30 分）}
 
-\noindent（1）（有序序列的第 K 小和）有两个长度均为 \texttt{n} 的单调不降序列 \texttt{a} 和 \texttt{b}。从两个序列中各取一个数相加，共得到 \texttt{n\string^2} 个和，求这些和中第 \texttt{k} 小的值。输入满足 \texttt{1 <= n <= 10\string^5}，\texttt{1 <= k <= n\string^2}，元素为非负整数且答案不超过 \texttt{10\string^9}。程序用双指针在线性时间内计算“不超过某个值的数对数量”。
+\noindent（1）（有序序列的第 K 小和）给定两个长度均为 \texttt{n} 的单调不降序列 \texttt{a}、\texttt{b}。对所有 \texttt{1 <= i,j <= n}，共有 \texttt{n\string^2} 个数 \texttt{a[i]+b[j]}，求其中第 \texttt{k} 小的数。\texttt{1 <= n <= 10\string^5}，\texttt{1 <= k <= n\string^2}，序列元素均为非负整数，答案不超过 \texttt{10\string^9}。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -448,7 +457,7 @@ int main() {
 \q{38.} ⑤处应填（\qquad）\\
 \optw{A. \texttt{l}}{B. \texttt{r}}\optw{C. \texttt{l+1}}{D. \texttt{count\_le(r)}}
 
-\noindent（2）（最近公共祖先）给定一棵以 1 为根、包含 \texttt{n} 个结点的树，并回答 \texttt{q} 次询问，每次给出两个结点 \texttt{u,v}，求它们的最近公共祖先。输入满足 \texttt{1 <= n,q <= 2 * 10\string^5}。下面程序使用倍增法预处理祖先信息。
+\noindent（2）（最近公共祖先）给定一棵以 1 为根的 \texttt{n} 个结点的树。有 \texttt{q} 次询问，每次给出 \texttt{u,v}，求它们的最近公共祖先。\texttt{1 <= n,q <= 2 * 10\string^5}。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
