@@ -144,6 +144,7 @@
 \noindent{\heiti 考生注意事项：}
 \begin{itemize}[leftmargin=2.6em, itemsep=1pt, label={}]
     \item \wdot\hspace{0.5em}试题纸共有 \pageref{LastPage} 页，答题纸共有 1 页，满分 100 分。本卷为自制模拟卷，不代表任何官方机构。
+    \item \wdot\hspace{0.5em}本卷按《全国青少年信息学奥林匹克系列竞赛大纲（2025 年修订版）》提高级及其自动包含的入门级知识范围命制。
     \item \wdot\hspace{0.5em}不得使用任何电子设备（如计算器、手机、电子词典等）或查阅任何书籍资料。
 \end{itemize}
 
@@ -154,8 +155,8 @@
 \q{2.} 一棵哈夫曼树采用二叉链表存储。若整棵树中共有 254 个非空孩子指针，则该哈夫曼树的叶子结点数为（\qquad）\\
 \opt{A. 127}\opt{B. 128}\opt{C. 129}\opt{D. 255}
 
-\q{3.} 对一棵包含 \texttt{n} 个结点的完全二叉树，对每个叶子结点都从该结点开始不断访问父结点，直到根结点为止。若访问一个结点记为一次基本操作，则全部操作次数的渐近复杂度为（\qquad）\\
-\opt{A. \texttt{Theta(n)}}\opt{B. \texttt{Theta(n log n)}}\opt{C. \texttt{Theta(n\^{}2)}}\opt{D. \texttt{Theta(log n)}}
+\q{3.} 某递归算法处理规模为 \texttt{n} 的问题时，会递归处理两个规模均为 \texttt{n/2} 的子问题；除两次递归调用外，本次调用还需要 \(\Theta(n\log n)\) 次基本操作。设 \texttt{n} 为 2 的幂且 \(T(1)=\Theta(1)\)，则由主定理可知该算法的时间复杂度为（\qquad）\\
+\opt{A. \(\Theta(n\log n)\)}\opt{B. \(\Theta(n\log^2 n)\)}\opt{C. \(\Theta(n^2)\)}\opt{D. \(\Theta(\log^2 n)\)}
 
 \q{4.} 小 h 从 \texttt{(0,0)} 出发，每一步只能向右或向上走，到达 \texttt{(8,6)}，整个过程中始终满足 \texttt{x >= y}，且不能经过点 \texttt{(4,2)}。满足条件的路径共有（\qquad）条\\
 \opt{A. 441}\opt{B. 442}\opt{C. 443}\opt{D. 444}
@@ -195,8 +196,8 @@ cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
 \q{11.} 已知 \texttt{p=20260913} 为质数。在模 \texttt{p} 意义下，记除法为乘以逆元，则 \(\displaystyle \sum_{i=1}^{p-2}\frac{1}{i(i+1)}\pmod p\) 的值为（\qquad）\\
 \opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. \texttt{p-2}}
 
-\q{12.} 在线段 \texttt{[0,2]} 上独立、均匀随机取 3 个点。包含这 3 个点的最短线段长度（即最大坐标减最小坐标）的期望为（\qquad）\\
-\opt{A. \texttt{2/3}}\opt{B. 1}\opt{C. \texttt{4/3}}\opt{D. \texttt{3/2}}
+\q{12.} 在整数 \texttt{1,2,...,1000} 中，恰好能被 \texttt{2,3,5} 中的一个数整除的整数共有（\qquad）个\\
+\opt{A. 434}\opt{B. 468}\opt{C. 500}\opt{D. 534}
 
 \q{13.} 下图为一个有向图。恰好删除两条不同的边后，仍要求存在从 1 到 8 的有向路径，则不同的删边方案共有（\qquad）种\\
 \begin{center}
@@ -210,12 +211,18 @@ cout << mp.size() << ' ' << mp[1] + mp[2] + mp[3];
 \end{center}
 \opt{A. 12}\opt{B. 15}\opt{C. 18}\opt{D. 21}
 
-\q{14.} 有一堆 2026 颗石子，两人轮流操作，每次必须从中取走恰好 1、3 或 4 颗石子中的一种；无法操作的人判负。双方都采用最优策略，则先手第一步有多少种取法可以使后手面对一个必败态（\qquad）\\
-\opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. 3}
+\q{14.} 设整数 \texttt{x} 满足
+\[
+x\equiv 2\pmod 7,\qquad x\equiv 3\pmod 8,\qquad x\equiv 4\pmod 9.
+\]
+若 \texttt{0 <= x < 504}，则 \texttt{x} 的值为（\qquad）\\
+\opt{A. 247}\opt{B. 355}\opt{C. 499}\opt{D. 503}
 
-\q{15.} 普通 Nim 游戏中有四堆石子，数量依次为 \texttt{3,4,5,8}。两人轮流选择一堆并取走至少 1 颗石子，可以一次取完；无法操作的人判负。双方采用最优策略，则下列哪一步可以使先手立即把局面变为必败态（\qquad）\\
-\opt{A. 从第 1 堆取走 2 颗}\opt{B. 从第 2 堆取走 3 颗}
-\opt{C. 从第 3 堆取走 3 颗}\opt{D. 从第 4 堆取走 6 颗}
+\q{15.} 对任意一个连通无向带权图，下列说法中一定正确的是（\qquad）\\
+\opt{A. 图中权值最小的每一条边都属于所有最小生成树}
+\opt{B. 若一条边是某个环上权值严格最大的边，则它不属于任何最小生成树}
+\opt{C. 若一条边属于某一棵最小生成树，则它属于所有最小生成树}
+\opt{D. 任意两棵最小生成树包含的边集合一定完全相同}
 
 \clearpage
 \bigtitle{二、阅读程序（判断题正确填√，错误填×；判断题每题 1.5 分，普通单选题每题 3 分，第 33 题 4 分，共计 40 分）}
@@ -259,20 +266,18 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 
+\noindent\wdot\hspace{0.5em}判断题\\
+\q{16.} 若调用前 \texttt{ans=0}，调用 \texttt{merge\_sort(1,n)} 后，\texttt{ans} 等于原数组的逆序对数量。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{17.} 对于下标满足 \texttt{i<j} 且 \texttt{a[i]=a[j]} 的两个元素，这一对元素会对 \texttt{ans} 贡献 1。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{18.} 若把 \texttt{ans} 的类型改成 32 位有符号 \texttt{int}，则在题目给定的数组上界 \texttt{n=2e5} 下可能发生溢出。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{16.} 若初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}，调用返回后 \texttt{a[1..5]} 为（\qquad）\\
+\q{19.} 若初始数组为 \texttt{[4,1,3,2,5]}，只调用 \texttt{merge\_sort(1,4)}，调用返回后 \texttt{a[1..5]} 为（\qquad）\\
 \opt{A. \texttt{[1,2,3,4,5]}}\opt{B. \texttt{[1,2,4,3,5]}}
 \opt{C. \texttt{[1,3,2,4,5]}}\opt{D. \texttt{[4,1,3,2,5]}}
-
-\noindent\wdot\hspace{0.5em}判断题\\
-\q{17.} 若调用前 \texttt{ans=0}，调用 \texttt{merge\_sort(1,n)} 后，\texttt{ans} 等于原数组的逆序对数量。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{18.} 对于下标满足 \texttt{i<j} 且 \texttt{a[i]=a[j]} 的两个元素，这一对元素会对 \texttt{ans} 贡献 1。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{19.} 若把 \texttt{ans} 的类型改成 32 位有符号 \texttt{int}，则在题目给定的数组上界 \texttt{n=2e5} 下可能发生溢出。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-
-\noindent\wdot\hspace{0.5em}单选题\\
 \q{20.} 当输入数组为 \texttt{[3,1,2,2,1,3]} 时，程序最终输出为（\qquad）\\
 \opt{A. 5}\opt{B. 6}\opt{C. 7}\opt{D. 8}
 \q{21.} 当 \texttt{n=8}，且每次合并时两个有序区间的元素比较次数都达到可能的最大值，则所有合并阶段执行 \texttt{a[i] <= a[j]} 的总次数为（\qquad）\\
@@ -308,24 +313,18 @@ int main() {
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{22.} 当初始 \texttt{k=0} 时，程序扫描字符串的过程中不会执行任何一次 \texttt{pop\_back()}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
+\q{23.} 扫描完整个字符串后，如果仍有 \texttt{k>0}，继续从当前序列末尾删除字符可以得到字典序最小的结果。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
+\q{24.} 虽然程序中存在嵌套的 \texttt{while}，但每个字符最多入栈一次、出栈一次，因此程序的总时间复杂度为 \texttt{O(n)}。（\qquad）\\
+\opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{23.} 输入为 \texttt{9 4 cbacdcbca}。扫描完前 6 个字符后，\texttt{st} 从底到顶的内容以及此时 \texttt{k} 的值分别为（\qquad）\\
+\q{25.} 输入为 \texttt{9 4 cbacdcbca}。扫描完前 6 个字符后，\texttt{st} 从底到顶的内容以及此时 \texttt{k} 的值分别为（\qquad）\\
 \opt{A. \texttt{acd, 2}}\opt{B. \texttt{acc, 1}}\opt{C. \texttt{acb, 0}}\opt{D. \texttt{abc, 1}}
-
-\noindent\wdot\hspace{0.5em}判断题\\
-\q{24.} 扫描完整个字符串后，如果仍有 \texttt{k>0}，继续从当前序列末尾删除字符可以得到字典序最小的结果。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-
-\noindent\wdot\hspace{0.5em}单选题\\
-\q{25.} 当输入为 \texttt{8 3 dcabccba} 时，扫描字符串的过程中 \texttt{st} 的最大长度为（\qquad）\\
+\q{26.} 当输入为 \texttt{8 3 dcabccba} 时，扫描字符串的过程中 \texttt{st} 的最大长度为（\qquad）\\
 \opt{A. 3}\opt{B. 4}\opt{C. 5}\opt{D. 6}
-\q{26.} 当输入为 \texttt{8 3 dcabccba} 时，程序的最终输出为（\qquad）\\
+\q{27.} 当输入为 \texttt{8 3 dcabccba} 时，程序的最终输出为（\qquad）\\
 \opt{A. \texttt{abcba}}\opt{B. \texttt{abccb}}\opt{C. \texttt{acbba}}\opt{D. \texttt{bccba}}
-
-\noindent\wdot\hspace{0.5em}判断题\\
-\q{27.} 虽然程序中存在嵌套的 \texttt{while}，但每个字符最多入栈一次、出栈一次，因此程序的总时间复杂度为 \texttt{O(n)}。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
 
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
@@ -372,21 +371,19 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 
-\noindent\wdot\hspace{0.5em}单选题\\
-\q{28.} 若输入边依次为 \texttt{1-2,1-3,2-4,2-5,3-6,3-7}，则调用 \texttt{bfs(1)} 返回的结点为（\qquad）\\
-\opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
-
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{29.} 若 BFS 中有多个结点与起点距离同为最大值，则函数会保留这些结点中最先从队列里取出的那个作为 \texttt{far}。（\qquad）\\
+\q{28.} 若 BFS 中有多个结点与起点距离同为最大值，则函数会保留这些结点中最先从队列里取出的那个作为 \texttt{far}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{30.} 对同一棵树，仅改变输入边的先后顺序，第一次调用 \texttt{bfs(1)} 的返回值可能发生改变。（\qquad）\\
+\q{29.} 对同一棵树，仅改变输入边的先后顺序，第一次调用 \texttt{bfs(1)} 的返回值可能发生改变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{31.} 对任意一棵树，从任意结点进行一次 BFS 得到某个最远点 \texttt{s}，再从 \texttt{s} BFS 得到最远点 \texttt{t}，则 \texttt{dista[t]} 等于该树的直径长度。（\qquad）\\
+\q{30.} 对任意一棵树，从任意结点进行一次 BFS 得到某个最远点 \texttt{s}，再从 \texttt{s} BFS 得到最远点 \texttt{t}，则 \texttt{dista[t]} 等于该树的直径长度。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{32.} 若把输入从“树”放宽为任意连通无权图，则仍可保证上述“两次 BFS”方法得到图的直径。（\qquad）\\
+\q{31.} 若把输入从“树”放宽为任意连通无权图，则仍可保证上述“两次 BFS”方法得到图的直径。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
+\q{32.} 若输入边依次为 \texttt{1-2,1-3,2-4,2-5,3-6,3-7}，则调用 \texttt{bfs(1)} 返回的结点为（\qquad）\\
+\opt{A. 4}\opt{B. 5}\opt{C. 6}\opt{D. 7}
 \q{33.}（本题 4 分）若输入的树有边 \texttt{1-2,1-3,2-4,2-5,3-6,3-7}，程序最终输出为（\qquad）\\
 \opt{A. 2}\opt{B. 3}\opt{C. 4}\opt{D. 5}
 
@@ -451,51 +448,72 @@ int main() {
 \q{38.} ⑤处应填（\qquad）\\
 \optw{A. \texttt{l}}{B. \texttt{r}}\optw{C. \texttt{l+1}}{D. \texttt{count\_le(r)}}
 
-\noindent（2）（减法游戏与 SG 函数）有 \texttt{n} 堆石子和 \texttt{m} 种允许的取石数量 \texttt{d[1..m]}。每次操作选择一堆，并从中恰好取走某个 \texttt{d[j]} 颗石子（该堆石子数必须不少于 \texttt{d[j]}）；无法操作的人判负。各堆互不影响，双方均采用最优策略。输入满足 \texttt{1 <= n <= 10\string^5}，\texttt{1 <= m <= 20}，\texttt{0 <= a[i] <= 10\string^5}。下面程序计算每个石子数的 SG 函数，并判断先手是否必胜。
+\noindent（2）（最近公共祖先）给定一棵以 1 为根、包含 \texttt{n} 个结点的树，并回答 \texttt{q} 次询问，每次给出两个结点 \texttt{u,v}，求它们的最近公共祖先。输入满足 \texttt{1 <= n,q <= 2 * 10\string^5}。下面程序使用倍增法预处理祖先信息。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
-const int N = 1e5 + 5;
-int n, m, d[25], a[N], sg[N];
-int vis[25], tim;
+const int N = 2e5 + 5, K = 19;
+int n, q, head[N], to[N * 2], nxt[N * 2], ec;
+int dep[N], up[N][K];
+void add(int u, int v) {
+    to[++ec] = v;
+    nxt[ec] = head[u];
+    head[u] = ec;
+}
+void dfs(int u, int p) {
+    dep[u] = dep[p] + 1;
+    up[u][0] = p;
+    for (int j = 1; j < K; ++j)
+        up[u][j] = up[|@\blank{①}@|][j - 1];
+    for (int e = head[u]; e; e = nxt[e]) {
+        int v = to[e];
+        if (v != p)
+            dfs(v, u);
+    }
+}
+int lca(int u, int v) {
+    if (dep[u] < dep[v])
+        |@\blank{②}@|;
+    int d = dep[u] - dep[v];
+    for (int j = 0; j < K; ++j)
+        if ((d >> j) & 1)
+            u = |@\blank{③}@|;
+    if (u == v)
+        return u;
+    for (int j = K - 1; j >= 0; --j) {
+        if (up[u][j] != up[v][j]) {
+            u = up[u][j];
+            v = |@\blank{④}@|;
+        }
+    }
+    return |@\blank{⑤}@|;
+}
 int main() {
     ios::sync_with_stdio(0);
     cin.tie(0);
-    cin >> n >> m;
-    for (int i = 1; i <= m; ++i)
-        cin >> d[i];
-    int mx = 0;
-    for (int i = 1; i <= n; ++i) {
-        cin >> a[i];
-        mx = max(mx, a[i]);
+    cin >> n >> q;
+    for (int i = 1, u, v; i < n; ++i) {
+        cin >> u >> v;
+        add(u, v);
+        add(v, u);
     }
-    for (int x = 1; x <= mx; ++x) {
-        ++tim;
-        for (int j = 1; j <= m; ++j) {
-            if (|@\blank{①}@|)
-                vis[|@\blank{②}@|] = tim;
-        }
-        int g = 0;
-        while (|@\blank{③}@|)
-            ++g;
-        sg[x] = |@\blank{④}@|;
+    dfs(1, 0);
+    for (int i = 1, u, v; i <= q; ++i) {
+        cin >> u >> v;
+        cout << lca(u, v) << '\\n';
     }
-    int xr = 0;
-    for (int i = 1; i <= n; ++i)
-        xr ^= |@\blank{⑤}@|;
-    cout << (xr ? "Win" : "Lose");
 }
 \end{lstlisting}\end{codebox}
 
 \q{39.} ①处应填（\qquad）\\
-\opt{A. \texttt{x >= d[j]}}\opt{B. \texttt{x > d[j]}}\opt{C. \texttt{x <= d[j]}}\opt{D. \texttt{x - d[j] < 0}}
+\opt{A. \texttt{up[u][j-1]}}\opt{B. \texttt{up[u][j]}}\opt{C. \texttt{u}}\opt{D. \texttt{p}}
 \q{40.} ②处应填（\qquad）\\
-\opt{A. \texttt{sg[x-d[j]]}}\opt{B. \texttt{sg[x+d[j]]}}\opt{C. \texttt{x-d[j]}}\opt{D. \texttt{d[j]}}
+\opt{A. \texttt{swap(u,v)}}\opt{B. \texttt{swap(dep[u],dep[v])}}\opt{C. \texttt{u=v}}\opt{D. \texttt{v=up[v][0]}}
 \q{41.} ③处应填（\qquad）\\
-\opt{A. \texttt{vis[g] == tim}}\opt{B. \texttt{vis[g] != tim}}\opt{C. \texttt{g < m}}\opt{D. \texttt{sg[g] == tim}}
+\opt{A. \texttt{up[u][j]}}\opt{B. \texttt{up[v][j]}}\opt{C. \texttt{up[u][j-1]}}\opt{D. \texttt{u-j}}
 \q{42.} ④处应填（\qquad）\\
-\optw{A. \texttt{g}}{B. \texttt{g+1}}\optw{C. \texttt{tim}}{D. \texttt{vis[g]}}
+\opt{A. \texttt{up[u][j]}}\opt{B. \texttt{up[v][j]}}\opt{C. \texttt{up[v][j-1]}}\opt{D. \texttt{v}}
 \q{43.} ⑤处应填（\qquad）\\
-\opt{A. \texttt{sg[a[i]]}}\opt{B. \texttt{a[i]}}\opt{C. \texttt{d[i]}}\opt{D. \texttt{sg[i]}}
+\opt{A. \texttt{u}}\opt{B. \texttt{v}}\opt{C. \texttt{up[u][0]}}\opt{D. \texttt{up[u][1]}}
 
 \end{document}
