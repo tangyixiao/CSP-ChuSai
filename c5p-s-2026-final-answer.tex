@@ -1,0 +1,158 @@
+% !TEX program = xelatex
+% c5p-s-2026-final-answer.tex
+% 2026 €€£ 超专业级别硬件能力认证第一轮（C5P-S1）提高级 C++语言试题·参考答案与解析
+\documentclass[a4paper]{ctexart}
+
+\usepackage{fontspec}
+\usepackage{geometry}
+\geometry{top=2.7cm, left=1.9cm, right=1.9cm, bottom=2.9cm}
+\setmainfont{Consolas}
+\setCJKmainfont[BoldFont=SimHei]{SimSun}
+\usepackage{tikz}
+\usepackage{eso-pic}
+\newcommand{\waterword}{%
+  \makebox[0pt][c]{%
+    \tikz[baseline]{%
+      \node[inner sep=0pt, rotate=-35, text=black, opacity=0.085,
+        font=\fontsize{54}{70}\selectfont] {折工};%
+    }%
+  }%
+}
+\AddToShipoutPictureFG{%
+  \put(\LenToUnit{-0.3cm},\LenToUnit{1.2cm}){\waterword}%
+  \put(\LenToUnit{5.0cm},\LenToUnit{0.0cm}){\waterword}%
+  \put(\LenToUnit{10.3cm},\LenToUnit{1.4cm}){\waterword}%
+  \put(\LenToUnit{15.6cm},\LenToUnit{0.2cm}){\waterword}%
+  \put(\LenToUnit{2.2cm},\LenToUnit{6.2cm}){\waterword}%
+  \put(\LenToUnit{7.5cm},\LenToUnit{4.8cm}){\waterword}%
+  \put(\LenToUnit{12.8cm},\LenToUnit{6.3cm}){\waterword}%
+  \put(\LenToUnit{18.1cm},\LenToUnit{4.9cm}){\waterword}%
+  \put(\LenToUnit{-0.3cm},\LenToUnit{10.0cm}){\waterword}%
+  \put(\LenToUnit{5.0cm},\LenToUnit{11.5cm}){\waterword}%
+  \put(\LenToUnit{10.3cm},\LenToUnit{10.1cm}){\waterword}%
+  \put(\LenToUnit{15.6cm},\LenToUnit{11.6cm}){\waterword}%
+  \put(\LenToUnit{2.2cm},\LenToUnit{16.5cm}){\waterword}%
+  \put(\LenToUnit{7.5cm},\LenToUnit{15.1cm}){\waterword}%
+  \put(\LenToUnit{12.8cm},\LenToUnit{16.6cm}){\waterword}%
+  \put(\LenToUnit{18.1cm},\LenToUnit{15.2cm}){\waterword}%
+}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{amsmath}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{xcolor}
+\DeclareMathSizes{10.53937}{10.95}{7.5}{5.5}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{3pt}
+\linespread{1.25}
+
+\newcommand{\ans}[2]{\noindent\textbf{#1} \quad 答案：#2\par}
+\newcommand{\expn}[1]{\hspace*{1.5em}解析：#1\par}
+\newcommand{\bigtitle}[1]{\begin{center}\dengxian\large #1\end{center}}
+\newcommand{\overview}[1]{\par\smallskip\noindent\textbf{程序总析：}#1\par\smallskip}
+\newCJKfontfamily{\dengxian}{DengXian}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot[C]{\xeCJKsetup{CJKecglue={\hskip0pt}}{\songti 折工 C5P-S 2026 参考答案与解析}\\[2pt]{\songti 第\thepage 页，共\pageref{LastPage}页}}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+
+\begin{document}
+
+\begin{center}
+{\dengxian
+{\fontsize{15.95}{1}\selectfont 2026 €€£超专业级别硬件能力认证第一轮}\\[1em]
+{\fontsize{14.05}{1}\selectfont （C5P-S1）提高级 C++语言试题 \textbf{参考答案与解析}}\\[1em]
+{\fontsize{12}{1}\selectfont 认证时间：2026年9月18日14:30\textasciitilde16:30}
+}
+\end{center}
+
+\vspace{6pt}
+\noindent\textbf{考生注意事项：}
+\begin{itemize}
+  \item 试题纸共有 15 页，答题纸共有 1 页，满分 100 分。请在答题纸上作答，写在试题纸上的一律无效。
+  \item 不得使用任何电子设备（如计算器、手机、电子词典等）或查阅任何书籍资料。
+\end{itemize}
+
+\noindent\textbf{说明：}本文件对应自制模拟卷，不代表任何官方机构。题面、代码、解析和考点矩阵按本套 42 题版本同步。
+
+\section*{分值与题号}
+\begin{center}
+\begin{tabular}{c c c c}
+\toprule
+部分 & 题号 & 题量与计分 & 小计\\
+\midrule
+单项选择 & 1--15 & $15\times2$ 分 & 30 分\\
+阅读程序（1）KMP & 16--20 & $3\times1.5+1\times3+1\times4$ 分 & 11.5 分\\
+阅读程序（2）状态压缩 DP & 21--26 & $2\times1.5+1\times2+3\times3$ 分 & 14 分\\
+阅读程序（3）线段树 & 27--32 & $3\times1.5+2\times3+1\times4$ 分 & 14.5 分\\
+完善程序 & 33--42 & $10\times3$ 分 & 30 分\\
+\midrule
+\multicolumn{3}{r}{总分} & 100 分\\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section*{一、单项选择题（1--15）}
+\ans{1.}{B}\expn{\texttt{cat} 用于连接并显示文件内容。}
+\ans{2.}{C}\expn{含 $m$ 个叶子的二叉树共有 $2m-1$ 个结点，指针域总数为 $4m-2$；非空指针为 $2m-2$，空指针域为 $2m$。}
+\ans{3.}{B}\expn{完全二叉树高度为 $O(\log n)$，叶子数为 $O(n)$，逐个向根访问的总量为 $O(n\log n)$。}
+\ans{4.}{D}\expn{这是长度为 10 的合法括号序列计数，答案为卡特兰数 $C_5=42$。}
+\ans{5.}{A}\expn{只有在 B 为空时把 A 整体转移到 B，才能保证最早入队元素位于 B 栈顶。}
+\ans{6.}{C}\expn{令 $y_i=x_i-(i-1)$，问题转化为从 7 个位置中选 4 个，答案为 $\binom74=35$。}
+\ans{7.}{C}\expn{\texttt{set} 按键有序且不重复，基于平衡树时插入、删除、查找均为 $O(\log n)$。}
+\ans{8.}{C}\expn{拓扑序要求每条有向边的起点排在终点之前；有环图不存在拓扑序。}
+\ans{9.}{A}\expn{\texttt{next} 数组记录模式串失配后可以回退到的位置。}
+\ans{10.}{A}\expn{朴素 Dijkstra 每轮线性寻找最小未确定顶点，总复杂度为 $O(n^2)$。}
+\ans{11.}{D}\expn{模质数 $p$ 下，$1/k+1/(p-k)\equiv0$。括号内缺少 $1$，因此为 $-1$；指数 $p$ 为奇数，结果仍为 $p-1=20260912$。}
+\ans{12.}{C}\expn{$1/(i(i+1))=1/i-1/(i+1)$，求和后为 $1-1/(p-1)\equiv2\pmod p$。}
+\ans{13.}{B}\expn{枚举 9 条边中删除 2 条，保留至少一条从 1 到 8 的路径，可行方案共有 15 种。}
+\ans{14.}{B}\expn{用容斥计算：$200-100-66-28+33+14+9-4=58$。}
+\ans{15.}{A}\expn{按题面 C++ 递归函数展开可得 $A(3,3)=61$。对固定的第二参数有 $A(3,n)=2^{n+3}-3$，故 $A(3,10^{18})\equiv2^3-3=5\pmod {101}$，因为费马小定理给出 $2^{100}\equiv1\pmod {101}$。}
+
+\section*{二、阅读程序（16--32）}
+
+\subsection*{（1）KMP 前缀函数}
+\overview{程序先求每个前缀的最长真前后缀长度，再通过失配树统计前缀出现次数和深度。}
+\ans{16.}{A（正确）}\expn{循环使用标准前缀函数递推，\texttt{pi[i]} 正是 \texttt{s[0..i]} 的最长真前后缀公共长度。}
+\ans{17.}{A（正确）}\expn{先统计每个位置的 \texttt{pi}，再按长度从大到小向父前缀累加，最后加上前缀自身出现的一次。}
+\ans{18.}{A（正确）}\expn{块注释从 \texttt{/\char42} 开始，到下一行的 \texttt{\char42/} 结束；\texttt{len *= 4} 被注释掉，实际返回 $3-(1+2)=0$。}
+\ans{19.}{C}\expn{输入 \texttt{aaaaaa} 时输出为 \texttt{4 6 21}。}
+\ans{20.}{B}\expn{逐步计算前缀函数和统计数组，得到输出 \texttt{2 3 32}。}
+
+\subsection*{（2）状态压缩 DP}
+\overview{每一行用无相邻 1 的位掩码表示选取位置，转移要求相邻两行掩码不相交。}
+\ans{21.}{A（正确）}\expn{程序枚举所有合法行状态，并统计任意两行之间不共边的选取方案数。}
+\ans{22.}{A（正确）}\expn{程序只判断上下相邻行的位掩码是否相交，对角线相邻不构成冲突。}
+\ans{23.}{A（正确）}\expn{无相邻 1 的 10 位掩码数量为 $F_{12}=144$。}
+\ans{24.}{B}\expn{预处理状态为 $O(2^m)$，每行枚举状态对，复杂度为 $O(nV^2+2^m)$。}
+\ans{25.}{C}\expn{两行三列全可选时，按行状态转移统计得到 17。}
+\ans{26.}{C}\expn{四行四列全可选时，统计得到 1234。}
+
+\subsection*{（3）区间仿射更新线段树}
+\overview{结点维护区间和、乘法懒标记和加法懒标记；更新 $x\mapsto kx+b$ 时，区间和与两个标记同步合成。}
+\ans{27.}{A（正确）}\expn{先做 $k_1x+b_1$ 再做 $k_2x+b_2$，结果为 $k_1k_2x+b_1k_2+b_2$。}
+\ans{28.}{B（错误）}\expn{仿射变换一般不交换，例如先乘后加与先加后乘的结果不同。}
+\ans{29.}{A（正确）}\expn{建树为 $O(n)$，每次更新或查询为 $O(\log n)$，总量可写成 $O(n+q\log n)$，也属于 $O((n+q)\log n)$。}
+\ans{30.}{C}\expn{更新后数组为 \texttt{1 5 7 9}，总和为 22。}
+\ans{31.}{C}\expn{两次更新后数组为 \texttt{3 5 11 13 8 8}，区间 $[2,5]$ 的和为 35。}
+\ans{32.}{C（4 分）}\expn{依次更新后区间 $[2,6]$ 的和为 103。}
+
+\section*{三、完善程序（33--42）}
+\subsection*{（1）三色序列}
+\ans{33.}{B}\expn{新字符须与上一个字符不同，且该颜色仍有剩余，故选 B。}
+\ans{34.}{B}\expn{要取该颜色尚未使用的下一个位置，应为 \texttt{pos[c][used[c]+1]}。}
+\ans{35.}{A}\expn{把原位置为 \texttt{x} 的字符移到当前构造串末尾，基础位移量为 \texttt{x-len-1}。}
+\ans{36.}{B}\expn{已经使用但位于 \texttt{x} 之后的字符会增加交换量，增加量为 \texttt{max(0,used[t]-pre[t][x])}。}
+\ans{37.}{C}\expn{当前状态代价为 \texttt{val}，加入该字符的增量为 \texttt{w}，所以新值为 \texttt{val+w}。}
+
+\subsection*{（2）盒子}
+\ans{38.}{A}\expn{$n$ 个盒子和 $k$ 个物品需要建立 $n-k$ 条嵌套关系，因此需要保留最小的 $n-k$ 个相邻间隙。}
+\ans{39.}{B}\expn{当选取的间隙数超过 \texttt{need} 时，应移出 \texttt{lo} 中最大的间隙。}
+\ans{40.}{B}\expn{若 \texttt{lo} 最大值不大于 \texttt{hi} 最小值，当前划分已经满足最小化条件。}
+\ans{41.}{B}\expn{用 \texttt{hi} 的最小值替换 \texttt{lo} 的最大值，答案增加 \texttt{vy-vx}。}
+\ans{42.}{C}\expn{删除中间盒子后，左右相邻盒子的新间隙为 \texttt{r-l}。}
+
+\end{document}
