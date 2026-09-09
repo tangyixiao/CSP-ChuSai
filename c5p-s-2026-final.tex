@@ -204,9 +204,9 @@ long long A(int m, long long n) {
     return A(m - 1, A(m, n - 1));
 }
 \end{lstlisting}\end{codebox}
-则 \(A(2,3)\) 的值为（\qquad）\\
-\opt{A. 5}\opt{B. 7}
-\opt{C. 9}\opt{D. 13}
+则二元组 \(\bigl(A(3,3),\,A(3,10^{18})\bmod 101\bigr)\) 的值为（\qquad）\\
+\opt{A. \texttt{(61, 5)}}\opt{B. \texttt{(61, 8)}}
+\opt{C. \texttt{(31, 5)}}\opt{D. \texttt{(31, 8)}}
 
 \clearpage
 \bigtitle{二、阅读程序（程序输入不超过数组或字符串定义的范围；判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
