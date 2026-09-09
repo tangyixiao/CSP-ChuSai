@@ -236,7 +236,7 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{16.} 对 \(0\le i<n\)，\texttt{pi[i]} 等于 \texttt{s[0..i]} 的最长真前缀与后缀的公共长度。（\qquad）\\
+\q{16.} 当输入字符串为 \texttt{ababa} 时，程序计算得到 \texttt{pi[4]=3}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{17.} 若把累加长度循环的初始化语句 \texttt{len = n} 改为 \texttt{len = pi[n-1]}，则对任意输入，程序输出都恰好减少 \texttt{n}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
@@ -249,8 +249,8 @@ int main() {
 \q{20.}（4 分）若输入字符串长度为 $n$，且字符比较、数组访问均视为 $O(1)$，则程序的最坏时间复杂度和空间复杂度分别为（\qquad）\\
 \opt{A. 时间 $O(n^2)$，空间 $O(n)$}
 \opt{B. 时间 $O(n)$，空间 $O(n)$}
-\opt{C. 时间 $O(n\log n)$，空间 $O(\log n)$}
-\opt{D. 时间 $O(n^2)$，空间 $O(1)$}
+\opt{C. 时间 $O(n\log n)$，空间 $O(n)$}
+\opt{D. 时间 $O(n)$，空间 $O(1)$}
 
 \noindent（2）给定一个有 \texttt{n} 行、\texttt{m} 列的棋盘，字符 \texttt{\#} 表示不能放置，
 其余位置可以放置。要求同一行相邻位置、相邻两行同一列的位置不能同时放置，程序求合法方案数。
@@ -296,9 +296,9 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{21.} 表达式 \texttt{(s \& (s << 1)) == 0} 的作用是筛掉同一行中相邻列同时被选中的状态。（\qquad）\\
+\q{21.} 当 \texttt{m=3} 时，经过第一个双重循环后，\texttt{st.size()} 的值为 5。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{22.} 处理第 \(i\) 行时，若 \texttt{s} 表示当前行状态、\texttt{t} 表示上一行状态，则条件 \texttt{if (s \& t) continue} 保证相邻两行的同列位置不会同时被选中。（\qquad）\\
+\q{22.} 在某次转移中，若当前状态 \texttt{s=101}、上一行状态 \texttt{t=001}，则程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前状态。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{23.}（2 分）若删去每轮开始时的 \texttt{memset(f[cur], 0, sizeof(f[cur]))}，则程序对所有输入的输出仍不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
@@ -308,11 +308,11 @@ int main() {
 \opt{A. \(O(nV)\)}\opt{B. \(O(nV^2+2^m)\)}\opt{C. \(O(n2^{2m})\)}\opt{D. \(O(n^2V)\)}
 \q{25.} 输入为 \texttt{n=2,m=3}，两行均为 \texttt{...} 时，程序输出为（\qquad）\\
 \opt{A. 15}\opt{B. 16}\opt{C. 17}\opt{D. 18}
-\q{26.} 在处理第 \(i\) 行之前，若 \texttt{s} \(\in\) \texttt{st}，则 \texttt{f[pre][s]} 表示（\qquad）\\
-\opt{A. 前 \(i\) 行中最后一行状态为 \texttt{s} 的合法方案数}
-\opt{B. 前 \(i-1\) 行中最后一行状态为 \texttt{s} 的合法方案数}
-\opt{C. 长度为 \texttt{m} 的合法行状态总数}
-\opt{D. 第 \(i\) 行所有可选位置的数量}
+\q{26.} 若删去主循环中的两条语句 \texttt{pre \^= mask;} 和 \texttt{cur \^= mask;}，则程序的输出将（\qquad）\\
+\opt{A. 只有输入的第一行会受到影响，后续结果不变}
+\opt{B. 对所有输入均为 0}
+\opt{C. 仅当棋盘中有不能放置的位置时才会改变}
+\opt{D. 与原程序完全相同}
 
 \noindent（3）给定一个长度为 \texttt{n} 的数组，操作 1 \texttt{l r k b} 把区间内每个数变为
 \(kx+b\)，操作 2 \texttt{l r} 输出区间和。所有区间下标均合法。
@@ -378,26 +378,26 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{27.} 同一线段树结点 \texttt{p} 先后执行 \texttt{apply(p,l,r,2,1)}、\texttt{apply(p,l,r,3,4)} 后，其懒标记表示的变换为 \(x\mapsto 6x+7\)。（\qquad）\\
+\q{27.} 在执行一次 \texttt{upd} 时，如果当前结点区间完全包含在更新区间内，程序会调用一次 \texttt{apply} 后直接返回，不再访问该结点的子结点。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{28.} 主函数依次执行两条更新：对区间 \([2,4]\) 先执行 \(x\leftarrow 2x+1\)，再执行 \(x\leftarrow x+3\)。若只交换这两次 \texttt{upd(...)} 调用的先后顺序，最终数组一定不变。（\qquad）\\
+\q{28.} 若把 \texttt{push} 末尾的 \texttt{tr[p].add} 重置语句删去，则程序对所有输入的输出仍然不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{29.} 程序的时间复杂度为 \(O((n+q)\log n)\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{30.} 函数 \texttt{apply(p,l,r,k,b)} 执行后，结点 \texttt{p} 中记录的信息应当表示（\qquad）\\
-\opt{A. 只把区间左端点变为 \texttt{k*l+b}}
-\opt{B. 把区间内每个数都变为 \texttt{k*x+b}，并同步更新区间和及待下传信息}
-\opt{C. 只修改两个子结点的区间和，不修改当前结点}
-\opt{D. 把区间内每个数都加上 \texttt{k+b}，不再保留乘法信息}
-\q{31.} 若把 \texttt{upd} 中递归前的 \texttt{push(p,l,r)} 删除，则下列说法正确的是（\qquad）\\
-\opt{A. 只有叶结点上的操作会出错}
-\opt{B. 某些部分覆盖更新后再查询时，结果可能出错}
-\opt{C. 所有操作的输出都不变，只是速度变慢}
-\opt{D. 程序会在第一次更新时立刻停止}
+\q{30.} 设当前结点 \texttt{p} 表示区间 \([l,r]\)，执行 \texttt{apply(p,l,r,k,b)} 后，\texttt{tr[p].sum} 的新值为（\qquad）\\
+\opt{A. \texttt{(tr[p].sum*k+b) \% P}}
+\opt{B. \texttt{(tr[p].sum*k+(r-l+1)*b) \% P}}
+\opt{C. \texttt{((tr[p].sum+b)*k) \% P}}
+\opt{D. \texttt{((r-l+1)*(tr[p].sum*k+b)) \% P}}
+\q{31.} 关于函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
+\opt{A. 交换向左、向右子结点调用 \texttt{apply} 的先后顺序}
+\opt{B. 在调用两个子结点的 \texttt{apply} 前，先把 \texttt{tr[p].add} 置为 0}
+\opt{C. 把两个 \texttt{apply} 调用中的参数 \texttt{b} 都改为 0}
+\opt{D. 删除右子结点的 \texttt{apply} 调用，但保留左子结点的调用}
 \q{32.}（4 分）初始数组为 \texttt{2 1 3 5 4 6}，依次执行 \texttt{1 2 6 2 1}、\texttt{1 1 4 3 2}、\texttt{1 3 5 1 4}、\texttt{2 2 6}，最后一次操作输出为（\qquad）\\
-\opt{A. 97}\opt{B. 101}\opt{C. 103}\opt{D. 107}
+\opt{A. 99}\opt{B. 103}\opt{C. 105}\opt{D. 107}
 \clearpage
 \bigtitle{三、完善程序（单选题，每小题 3 分，共计 30 分）}
 
