@@ -117,35 +117,35 @@
 \subsection*{（1）KMP 前缀函数}
 \overview{程序先求每个前缀的最长真前后缀长度，再通过失配树统计前缀出现次数和深度。}
 \ans{16.}{A（正确）}\expn{循环使用标准前缀函数递推，\texttt{pi[i]} 正是 \texttt{s[0..i]} 的最长真前后缀公共长度。}
-\ans{17.}{A（正确）}\expn{先统计每个位置的 \texttt{pi}，再按长度从大到小向父前缀累加，最后加上前缀自身出现的一次。}
-\ans{18.}{A（正确）}\expn{块注释从 \texttt{/\char42} 开始，到下一行的 \texttt{\char42/} 结束；\texttt{len *= 4} 被注释掉，实际返回 $3-(1+2)=0$。}
+\ans{17.}{A（正确）}\expn{循环从 \texttt{i=1} 递增到 \texttt{n-1}，每次把当前位置的最长真前后缀长度写入 \texttt{pi[i]}，循环结束时所有 \texttt{pi[i]} 均已求出。}
+\ans{18.}{A（正确）}\expn{输入 \texttt{ababa} 时 \texttt{pi=[0,0,1,2,3]}。第一次统计后长度为 3 的前缀出现 1 次；向父前缀累加不改变 \texttt{occ[3]}；最后加上前缀自身出现的 1 次，因此 \texttt{occ[3]=2}。}
 \ans{19.}{C}\expn{输入 \texttt{aaaaaa} 时输出为 \texttt{4 6 21}。}
 \ans{20.}{B}\expn{逐步计算前缀函数和统计数组，得到输出 \texttt{2 3 32}。}
 
 \subsection*{（2）状态压缩 DP}
 \overview{每一行用无相邻 1 的位掩码表示选取位置，转移要求相邻两行掩码不相交。}
 \ans{21.}{A（正确）}\expn{程序枚举所有合法行状态，并统计任意两行之间不共边的选取方案数。}
-\ans{22.}{A（正确）}\expn{程序只判断上下相邻行的位掩码是否相交，对角线相邻不构成冲突。}
-\ans{23.}{A（正确）}\expn{无相邻 1 的 10 位掩码数量为 $F_{12}=144$。}
+\ans{22.}{A（正确）}\expn{题干已明确 \texttt{s} 和 \texttt{t} 分别表示相邻两行状态。第 293 行只判断 \texttt{s\&t}，因此只禁止相邻两行的同一列同时选中；对角线相邻的列不会使该按位与结果非零。}
+\ans{23.}{A（正确）}\expn{设进入本轮时 \texttt{pre=i\&1}，则 \texttt{cur=pre XOR 1}；\texttt{mask} 为 1，随后两次异或交换后，\texttt{pre} 与 \texttt{cur} 互换，故 \texttt{pre=(i+1)\&1}、\texttt{cur=i\&1}，分别对应上一行和当前行。}
 \ans{24.}{B}\expn{预处理状态为 $O(2^m)$，每行枚举状态对，复杂度为 $O(nV^2+2^m)$。}
 \ans{25.}{C}\expn{两行三列全可选时，按行状态转移统计得到 17。}
-\ans{26.}{C}\expn{四行四列全可选时，统计得到 1234。}
+\ans{26.}{B}\expn{在处理第 \(i\) 行前，\texttt{pre} 保存的是前一行的滚动数组，因此 \texttt{f[pre][s]} 表示前 \(i-1\) 行中最后一行状态为 \texttt{s} 的合法方案数。}
 
 \subsection*{（3）区间仿射更新线段树}
 \overview{结点维护区间和、乘法懒标记和加法懒标记；更新 $x\mapsto kx+b$ 时，区间和与两个标记同步合成。}
-\ans{27.}{A（正确）}\expn{先做 $k_1x+b_1$ 再做 $k_2x+b_2$，结果为 $k_1k_2x+b_1k_2+b_2$。}
-\ans{28.}{B（错误）}\expn{仿射变换一般不交换，例如先乘后加与先加后乘的结果不同。}
+\ans{27.}{A（正确）}\expn{第一次变换得到 $2x+1$，第二次变换得到 $3(2x+1)+4=6x+7$；代码第 20 行按 \texttt{旧add*k+b} 更新加法标记。}
+\ans{28.}{B（错误）}\expn{先执行两次更新得到 $x\mapsto 2x+4$；交换顺序后得到 $x\mapsto 2(x+3)+1=2x+7$。两者不同，因此最终数组不一定相同。}
 \ans{29.}{A（正确）}\expn{建树为 $O(n)$，每次更新或查询为 $O(\log n)$，总量可写成 $O(n+q\log n)$，也属于 $O((n+q)\log n)$。}
-\ans{30.}{C}\expn{更新后数组为 \texttt{1 5 7 9}，总和为 22。}
-\ans{31.}{C}\expn{两次更新后数组为 \texttt{3 5 11 13 8 8}，区间 $[2,5]$ 的和为 35。}
+\ans{30.}{A}\expn{当前结点未被更新区间完全覆盖时，递归会访问子结点；先执行 \texttt{push}，才能把当前结点尚未下传的乘法、加法标记应用到两个子结点，保证子区间信息正确。}
+\ans{31.}{A}\expn{\texttt{tr[p].sum} 已经在 \texttt{apply} 时包含当前结点区间的全部更新。查询区间完全覆盖当前结点时不需要访问子结点，所以可以直接返回而不下传标记。}
 \ans{32.}{C（4 分）}\expn{依次更新后区间 $[2,6]$ 的和为 103。}
 
 \section*{三、完善程序（33--42）}
 \subsection*{（1）三色序列}
-\ans{33.}{B}\expn{新字符须与上一个字符不同，且该颜色仍有剩余，故选 B。}
-\ans{34.}{B}\expn{要取该颜色尚未使用的下一个位置，应为 \texttt{pos[c][used[c]+1]}。}
-\ans{35.}{A}\expn{把原位置为 \texttt{x} 的字符移到当前构造串末尾，基础位移量为 \texttt{x-len-1}。}
-\ans{36.}{B}\expn{已经使用但位于 \texttt{x} 之后的字符会增加交换量，增加量为 \texttt{max(0,used[t]-pre[t][x])}。}
+\ans{33.}{B}\expn{扫描第 \(i\) 个原字符时，前缀计数应从位置 \(i-1\) 复制到位置 \(i\)，因此填 \texttt{pre[t][i-1]}。}
+\ans{34.}{C}\expn{\texttt{f} 记录的是交换次数，初始状态尚未构造任何字符，代价应为 0。}
+\ans{35.}{A}\expn{前 \texttt{len} 个位置已经构造，其中使用了 \texttt{r} 个 R 和 \texttt{g} 个 G，所以 Y 的使用数为 \texttt{len-r-g}。}
+\ans{36.}{C}\expn{新字符须不同于上一字符且该颜色有剩余，故跳过 \texttt{c==last || used[c]==cnt[c]}。}
 \ans{37.}{C}\expn{当前状态代价为 \texttt{val}，加入该字符的增量为 \texttt{w}，所以新值为 \texttt{val+w}。}
 
 \subsection*{（2）盒子}

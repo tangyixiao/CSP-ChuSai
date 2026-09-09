@@ -219,13 +219,6 @@ const int N = 2e5 + 5;
 int n, pi[N], occ[N], dep[N];
 string s;
 
-int prefixProbe() {
-    int len = 3, border = 1;
-    border += 2; /* extend border
-    len *= 4; update prefix table */
-    return len - border;
-}
-
 int main() {
     cin >> s;
     n = s.size();
@@ -252,9 +245,9 @@ int main() {
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{16.} 对 \(0\le i<n\)，\texttt{pi[i]} 等于 \texttt{s[0..i]} 的最长真前缀与后缀的公共长度。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 第 18 行循环结束后，\texttt{occ[k]} 等于长度为 \texttt{k} 的前缀在 \texttt{s} 中出现的次数。（\qquad）\\
+\q{17.} 执行求解 \texttt{pi} 的循环 \texttt{for (int i = 1; i < n; ++i)} 结束后，\texttt{pi[0]} 到 \texttt{pi[n-1]} 已经全部求出。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{18.} 调用 \texttt{prefixProbe()} 时，返回值为 \texttt{0}。（\qquad）\\
+\q{18.} 输入字符串为 \texttt{ababa}。执行统计 \texttt{occ} 的三段循环后，\texttt{occ[3]} 等于 2。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
@@ -308,9 +301,9 @@ int main() {
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{21.} 程序输出从所有可选位置中选取若干位置，使任意两个被选位置不共边的方案数对 \texttt{P} 取模后的结果。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{22.} 两个只在对角线上相邻的位置可以同时被选取。（\qquad）\\
+\q{22.} 处理第 \(i\) 行时，令 \texttt{s} 表示第 \(i\) 行的选取状态、\texttt{t} 表示第 \(i-1\) 行的选取状态。若第 \(i\) 行第 \(j\) 列与第 \(i-1\) 行第 \(j+1\) 列同时被选中，程序不会因这两个对角线相邻位置而跳过该状态转移。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{23.}（2 分）当 \texttt{m=10} 时，\texttt{st.size()} 等于 144。（\qquad）\\
+\q{23.}（2 分）处理第 \(i\) 行时，执行 \texttt{pre=i\&1}、\texttt{cur=pre XOR 1} 及后面的两次下标交换后，\texttt{pre} 指向第 \(i-1\) 行结果所在的滚动数组，\texttt{cur} 指向第 \(i\) 行要写入的滚动数组。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
@@ -318,8 +311,11 @@ int main() {
 \opt{A. \(O(nV)\)}\opt{B. \(O(nV^2+2^m)\)}\opt{C. \(O(n2^{2m})\)}\opt{D. \(O(n^2V)\)}
 \q{25.} 输入为 \texttt{n=2,m=3}，两行均为 \texttt{...} 时，程序输出为（\qquad）\\
 \opt{A. 15}\opt{B. 16}\opt{C. 17}\opt{D. 18}
-\q{26.} 输入为 \texttt{n=4,m=4}，四行均为 \texttt{....} 时，程序输出为（\qquad）\\
-\opt{A. 1134}\opt{B. 1198}\opt{C. 1234}\opt{D. 1296}
+\q{26.} 在处理第 \(i\) 行之前，若 \texttt{s} \(\in\) \texttt{st}，则 \texttt{f[pre][s]} 表示（\qquad）\\
+\opt{A. 前 \(i\) 行中最后一行状态为 \texttt{s} 的合法方案数}
+\opt{B. 前 \(i-1\) 行中最后一行状态为 \texttt{s} 的合法方案数}
+\opt{C. 长度为 \texttt{m} 的合法行状态总数}
+\opt{D. 第 \(i\) 行所有可选位置的数量}
 
 \noindent（3）
 \begin{codebox}\begin{lstlisting}
@@ -384,18 +380,24 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{27.} 对同一结点先执行变换 \(x\mapsto k_1x+b_1\)，再执行 \(x\mapsto k_2x+b_2\)，其懒标记表示的合成变换为 \(x\mapsto k_1k_2x+b_1k_2+b_2\)。（\qquad）\\
+\q{27.} 同一线段树结点 \texttt{p} 先后执行 \texttt{apply(p,l,r,2,1)}、\texttt{apply(p,l,r,3,4)} 后，其懒标记表示的变换为 \(x\mapsto 6x+7\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{28.} 两次操作区间完全相同时，交换这两次操作的先后顺序一定不会改变最终数组。（\qquad）\\
+\q{28.} 假设主函数代码第 55 行依次执行两条更新：对区间 \([2,4]\) 先执行 \(x\leftarrow 2x+1\)，再执行 \(x\leftarrow x+3\)。若只交换这两次 \texttt{upd(...)} 调用的先后顺序，最终数组一定不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{29.} 程序的时间复杂度为 \(O((n+q)\log n)\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{30.} 初始数组为 \texttt{1 2 3 4}，执行 \texttt{1 2 4 2 1} 后再询问 \texttt{2 1 4}，输出为（\qquad）\\
-\opt{A. 20}\opt{B. 21}\opt{C. 22}\opt{D. 23}
-\q{31.} 初始数组为 \texttt{1 2 3 4 5}，依次执行 \texttt{1 1 4 2 1}、\texttt{1 3 5 1 3}、\texttt{2 2 5}，最后一次操作输出为（\qquad）\\
-\opt{A. 32}\opt{B. 33}\opt{C. 35}\opt{D. 37}
+\q{30.} 当 \texttt{upd} 函数执行到代码第 32 行，且当前结点区间 \([l,r]\) 未被更新区间 \([ql,qr]\) 完全包含时，\texttt{push(p,l,r)} 的作用是（\qquad）\\
+\opt{A. 将当前结点的懒标记表示的更新下传给两个子结点，再递归处理可能相交的子区间}
+\opt{B. 将两个子结点的区间和直接赋给当前结点，并清空子结点}
+\opt{C. 将更新区间扩大为当前结点区间，使当前结点可以直接调用 \texttt{apply}}
+\opt{D. 只在查询操作中统计当前结点的区间和，不改变任何懒标记}
+\q{31.} 当 \texttt{qry} 函数执行到代码第 39 行且 \texttt{ql <= l \&\& r <= qr} 成立时，程序直接返回 \texttt{tr[p].sum}，不执行第 40 行的 \texttt{push(p,l,r)}。这样做的原因是（\qquad）\\
+\opt{A. 当前结点的区间和已经包含其待下传更新，且查询不需要访问该结点的子结点}
+\opt{B. 查询操作不需要考虑任何懒标记，子结点中的值一定比当前结点准确}
+\opt{C. 只有叶结点才允许返回 \texttt{tr[p].sum}，所以此处必然不会继续递归}
+\opt{D. \texttt{push} 会改变查询区间，因此完全包含时必须跳过所有区间更新}
 \q{32.}（4 分）初始数组为 \texttt{2 1 3 5 4 6}，依次执行 \texttt{1 2 6 2 1}、\texttt{1 1 4 3 2}、\texttt{1 3 5 1 4}、\texttt{2 2 6}，最后一次操作输出为（\qquad）\\
 \opt{A. 97}\opt{B. 101}\opt{C. 103}\opt{D. 107}
 \clearpage
@@ -418,29 +420,29 @@ int main() {
         else if (s[i-1] == 'G') c = 1;
         else c = 2;
         for (int t = 0; t < 3; ++t)
-            pre[t][i] = pre[t][i-1];
+            pre[t][i] = |@\blank{①}@|;
         pos[c][++cnt[c]] = i;
         ++pre[c][i];
     }
     memset(f, 0x3f, sizeof(f));
-    f[0][0][0][3] = 0;
+    f[0][0][0][3] = |@\blank{②}@|;
     for (int len = 0; len < n; ++len) {
         int cur = len & 1, nxt = cur ^ 1;
         memset(f[nxt], 0x3f, sizeof(f[nxt]));
         for (int r = 0; r <= cnt[0]; ++r)
         for (int g = 0; g <= cnt[1]; ++g) {
-            int y = len - r - g;
+            int y = |@\blank{③}@|;
             if (y < 0 || y > cnt[2]) continue;
             int used[3] = {r, g, y};
             for (int last = 0; last < 4; ++last) {
                 int val = f[cur][r][g][last];
                 if (val >= INF) continue;
                 for (int c = 0; c < 3; ++c) {
-                    if (|@\blank{①}@|) continue;
-                    int x = |@\blank{②}@|;
-                    int w = |@\blank{③}@|;
+                    if (|@\blank{④}@|) continue;
+                    int x = pos[c][used[c]+1];
+                    int w = x-len-1;
                     for (int t = 0; t < 3; ++t)
-                        w += |@\blank{④}@|;
+                        w += max(0,used[t]-pre[t][x]);
                     int nr = r, ng = g;
                     if (c == 0) ++nr;
                     if (c == 1) ++ng;
@@ -461,20 +463,22 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \q{33.} ①处应填（\qquad）\\
-\optw{A. \texttt{c==last \&\& used[c]==cnt[c]}}{B. \texttt{c==last || used[c]==cnt[c]}}
-\optw{C. \texttt{c!=last || used[c]==cnt[c]}}{D. \texttt{c!=last \&\& used[c]<cnt[c]}}
+\optw{A. \texttt{pre[t][i]}}{B. \texttt{pre[t][i-1]}}
+\optw{C. \texttt{pre[t][i+1]}}{D. \texttt{pre[i][t]}}
 \q{34.} ②处应填（\qquad）\\
-\optw{A. \texttt{pos[c][used[c]]}}{B. \texttt{pos[c][used[c]+1]}}
-\optw{C. \texttt{pos[c][cnt[c]-used[c]]}}{D. \texttt{pre[c][used[c]+1]}}
+\optw{A. \texttt{INF}}{B. \texttt{-1}}
+\optw{C. \texttt{0}}{D. \texttt{1}}
 \q{35.} ③处应填（\qquad）\\
-\optw{A. \texttt{x-len-1}}{B. \texttt{x-len}}
-\optw{C. \texttt{len+1-x}}{D. \texttt{x-1}}
+\optw{A. \texttt{len-r-g}}{B. \texttt{r+g-len}}
+\optw{C. \texttt{n-r-g}}{D. \texttt{len-r+g}}
 \q{36.} ④处应填（\qquad）\\
-\optw{A. \texttt{max(0,pre[t][x]-used[t])}}{B. \texttt{max(0,used[t]-pre[t][x])}}
-\optw{C. \texttt{min(used[t],pre[t][x])}}{D. \texttt{used[t]-pre[t][x-1]}}
+\optw{A. \texttt{c!=last || used[c]==cnt[c]}}{B. \texttt{c==last \&\& used[c]==cnt[c]}}
+\optw{C. \texttt{c==last || used[c]==cnt[c]}}{D. \texttt{c!=last \&\& used[c]<cnt[c]}}
+\begin{samepage}
 \q{37.} ⑤处应填（\qquad）\\
-\optw{A. \texttt{w}}{B. \texttt{val+x}}
+\optw{A. \texttt{val}}{B. \texttt{w}}
 \optw{C. \texttt{val+w}}{D. \texttt{val+len-w}}
+\end{samepage}
 
 \noindent（2）（盒子）有 \texttt{n} 个体积互不相同的盒子和 \texttt{k} 个物品。每个盒子中恰放一个物品或一个体积更小的盒子；把体积为 \(x\) 的盒子放入体积为 \(y\) 的盒子需要 \(y-x\) 单位缓冲材料。所有盒子均须使用。先求所需缓冲材料的最小总量；随后有 \texttt{q} 次删除，每次永久删除一个指定盒子并再次求答案。保证始终至少剩下 \texttt{k} 个盒子。\texttt{1 <= n <= 2*10\string^5}。
 
