@@ -204,19 +204,20 @@ long long A(int m, long long n) {
     return A(m - 1, A(m, n - 1));
 }
 \end{lstlisting}\end{codebox}
-则二元组 \(\bigl(A(3,3),\,A(3,10^{18})\bmod 101\bigr)\) 的值为（\qquad）\\
-\opt{A. \texttt{(61, 5)}}\opt{B. \texttt{(61, 8)}}
-\opt{C. \texttt{(31, 5)}}\opt{D. \texttt{(31, 8)}}
+则 \(A(2,3)\) 的值为（\qquad）\\
+\opt{A. 5}\opt{B. 7}
+\opt{C. 9}\opt{D. 13}
 
 \clearpage
 \bigtitle{二、阅读程序（程序输入不超过数组或字符串定义的范围；判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
 
-\noindent（1）
+\noindent（1）给定一个非空字符串，程序先求出每个前缀的最长真前缀与后缀公共长度，
+再把整个字符串以及它的各级相同前后缀的长度相加并输出。输入字符串只含小写英文字母。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 2e5 + 5;
-int n, pi[N], occ[N], dep[N];
+int n, pi[N];
 string s;
 
 int main() {
@@ -228,35 +229,31 @@ int main() {
         if (s[i] == s[j]) ++j;
         pi[i] = j;
     }
-    for (int i = 0; i < n; ++i) ++occ[pi[i]];
-    for (int i = n - 1; i > 0; --i)
-        occ[pi[i - 1]] += occ[i];
-    for (int i = 0; i <= n; ++i) ++occ[i];
-    long long A = 0, B = 0;
-    for (int i = 1; i <= n; ++i) {
-        dep[i] = dep[pi[i - 1]] + 1;
-        A += occ[i];
-        B += dep[i];
-    }
-    cout << occ[n / 2] << ' ' << dep[n] << ' ' << A << '\n';
+    int ans = 0;
+    for (int len = n; len > 0; len = pi[len - 1]) ans += len;
+    cout << ans << '\n';
 }
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{16.} 对 \(0\le i<n\)，\texttt{pi[i]} 等于 \texttt{s[0..i]} 的最长真前缀与后缀的公共长度。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 执行求解 \texttt{pi} 的循环 \texttt{for (int i = 1; i < n; ++i)} 结束后，\texttt{pi[0]} 到 \texttt{pi[n-1]} 已经全部求出。（\qquad）\\
+\q{17.} 若把累加长度循环的初始化语句 \texttt{len = n} 改为 \texttt{len = pi[n-1]}，则对任意输入，程序输出都恰好减少 \texttt{n}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{18.} 输入字符串为 \texttt{ababa}。执行统计 \texttt{occ} 的三段循环后，\texttt{occ[3]} 等于 2。（\qquad）\\
+\q{18.} 若把求解 \texttt{pi} 的循环中的 \texttt{while} 改成 \texttt{if}，则对所有输入，程序输出仍然不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{19.} 输入 \texttt{aaaaaa} 时，程序输出为（\qquad）\\
-\opt{A. \texttt{3 6 21}}\opt{B. \texttt{4 5 21}}\opt{C. \texttt{4 6 21}}\opt{D. \texttt{4 6 15}}
-\q{20.}（4 分）输入 \texttt{abacababacabab} 时，程序输出为（\qquad）\\
-\opt{A. \texttt{1 3 30}}\opt{B. \texttt{2 3 32}}\opt{C. \texttt{2 4 32}}\opt{D. \texttt{3 3 34}}
+\q{19.} 输入 \texttt{abacababacabab} 时，程序输出为（\qquad）\\
+\opt{A. 16}\opt{B. 20}\opt{C. 24}\opt{D. 28}
+\q{20.}（4 分）若输入字符串长度为 $n$，且字符比较、数组访问均视为 $O(1)$，则程序的最坏时间复杂度和空间复杂度分别为（\qquad）\\
+\opt{A. 时间 $O(n^2)$，空间 $O(n)$}
+\opt{B. 时间 $O(n)$，空间 $O(n)$}
+\opt{C. 时间 $O(n\log n)$，空间 $O(\log n)$}
+\opt{D. 时间 $O(n^2)$，空间 $O(1)$}
 
-\noindent（2）
+\noindent（2）给定一个有 \texttt{n} 行、\texttt{m} 列的棋盘，字符 \texttt{\#} 表示不能放置，
+其余位置可以放置。要求同一行相邻位置、相邻两行同一列的位置不能同时放置，程序求合法方案数。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -299,11 +296,11 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{21.} 程序输出从所有可选位置中选取若干位置，使任意两个被选位置不共边的方案数对 \texttt{P} 取模后的结果。（\qquad）\\
+\q{21.} 表达式 \texttt{(s \& (s << 1)) == 0} 的作用是筛掉同一行中相邻列同时被选中的状态。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{22.} 处理第 \(i\) 行时，令 \texttt{s} 表示第 \(i\) 行的选取状态、\texttt{t} 表示第 \(i-1\) 行的选取状态。若第 \(i\) 行第 \(j\) 列与第 \(i-1\) 行第 \(j+1\) 列同时被选中，程序不会因这两个对角线相邻位置而跳过该状态转移。（\qquad）\\
+\q{22.} 处理第 \(i\) 行时，若 \texttt{s} 表示当前行状态、\texttt{t} 表示上一行状态，则条件 \texttt{if (s \& t) continue} 保证相邻两行的同列位置不会同时被选中。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{23.}（2 分）处理第 \(i\) 行时，执行 \texttt{pre=i\&1}、\texttt{cur=pre XOR 1} 及后面的两次下标交换后，\texttt{pre} 指向第 \(i-1\) 行结果所在的滚动数组，\texttt{cur} 指向第 \(i\) 行要写入的滚动数组。（\qquad）\\
+\q{23.}（2 分）若删去每轮开始时的 \texttt{memset(f[cur], 0, sizeof(f[cur]))}，则程序对所有输入的输出仍不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
@@ -317,7 +314,8 @@ int main() {
 \opt{C. 长度为 \texttt{m} 的合法行状态总数}
 \opt{D. 第 \(i\) 行所有可选位置的数量}
 
-\noindent（3）
+\noindent（3）给定一个长度为 \texttt{n} 的数组，操作 1 \texttt{l r k b} 把区间内每个数变为
+\(kx+b\)，操作 2 \texttt{l r} 输出区间和。所有区间下标均合法。
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -382,22 +380,22 @@ int main() {
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{27.} 同一线段树结点 \texttt{p} 先后执行 \texttt{apply(p,l,r,2,1)}、\texttt{apply(p,l,r,3,4)} 后，其懒标记表示的变换为 \(x\mapsto 6x+7\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{28.} 假设主函数代码第 55 行依次执行两条更新：对区间 \([2,4]\) 先执行 \(x\leftarrow 2x+1\)，再执行 \(x\leftarrow x+3\)。若只交换这两次 \texttt{upd(...)} 调用的先后顺序，最终数组一定不变。（\qquad）\\
+\q{28.} 主函数依次执行两条更新：对区间 \([2,4]\) 先执行 \(x\leftarrow 2x+1\)，再执行 \(x\leftarrow x+3\)。若只交换这两次 \texttt{upd(...)} 调用的先后顺序，最终数组一定不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{29.} 程序的时间复杂度为 \(O((n+q)\log n)\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{30.} 当 \texttt{upd} 函数执行到代码第 32 行，且当前结点区间 \([l,r]\) 未被更新区间 \([ql,qr]\) 完全包含时，\texttt{push(p,l,r)} 的作用是（\qquad）\\
-\opt{A. 将当前结点的懒标记表示的更新下传给两个子结点，再递归处理可能相交的子区间}
-\opt{B. 将两个子结点的区间和直接赋给当前结点，并清空子结点}
-\opt{C. 将更新区间扩大为当前结点区间，使当前结点可以直接调用 \texttt{apply}}
-\opt{D. 只在查询操作中统计当前结点的区间和，不改变任何懒标记}
-\q{31.} 当 \texttt{qry} 函数执行到代码第 39 行且 \texttt{ql <= l \&\& r <= qr} 成立时，程序直接返回 \texttt{tr[p].sum}，不执行第 40 行的 \texttt{push(p,l,r)}。这样做的原因是（\qquad）\\
-\opt{A. 当前结点的区间和已经包含其待下传更新，且查询不需要访问该结点的子结点}
-\opt{B. 查询操作不需要考虑任何懒标记，子结点中的值一定比当前结点准确}
-\opt{C. 只有叶结点才允许返回 \texttt{tr[p].sum}，所以此处必然不会继续递归}
-\opt{D. \texttt{push} 会改变查询区间，因此完全包含时必须跳过所有区间更新}
+\q{30.} 函数 \texttt{apply(p,l,r,k,b)} 执行后，结点 \texttt{p} 中记录的信息应当表示（\qquad）\\
+\opt{A. 只把区间左端点变为 \texttt{k*l+b}}
+\opt{B. 把区间内每个数都变为 \texttt{k*x+b}，并同步更新区间和及待下传信息}
+\opt{C. 只修改两个子结点的区间和，不修改当前结点}
+\opt{D. 把区间内每个数都加上 \texttt{k+b}，不再保留乘法信息}
+\q{31.} 若把 \texttt{upd} 中递归前的 \texttt{push(p,l,r)} 删除，则下列说法正确的是（\qquad）\\
+\opt{A. 只有叶结点上的操作会出错}
+\opt{B. 某些部分覆盖更新后再查询时，结果可能出错}
+\opt{C. 所有操作的输出都不变，只是速度变慢}
+\opt{D. 程序会在第一次更新时立刻停止}
 \q{32.}（4 分）初始数组为 \texttt{2 1 3 5 4 6}，依次执行 \texttt{1 2 6 2 1}、\texttt{1 1 4 3 2}、\texttt{1 3 5 1 4}、\texttt{2 2 6}，最后一次操作输出为（\qquad）\\
 \opt{A. 97}\opt{B. 101}\opt{C. 103}\opt{D. 107}
 \clearpage
