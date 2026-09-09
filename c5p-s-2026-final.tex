@@ -461,21 +461,21 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \q{33.} ①处应填（\qquad）\\
-\optw{A. \texttt{pre[t][i]}}{B. \texttt{pre[t][i-1]}}
-\optw{C. \texttt{pre[t][i+1]}}{D. \texttt{pre[i][t]}}
+\optw{A. \texttt{pre[t][i-1]}}{B. \texttt{pre[t][i] + 1}}
+\optw{C. \texttt{pre[t][i-1] + (t == c)}}{D. \texttt{pre[c][i-1]}}
 \q{34.} ②处应填（\qquad）\\
-\optw{A. \texttt{INF}}{B. \texttt{-1}}
-\optw{C. \texttt{0}}{D. \texttt{1}}
+\optw{A. \texttt{INF}}{B. \texttt{0}}
+\optw{C. \texttt{1}}{D. \texttt{len}}
 \q{35.} ③处应填（\qquad）\\
 \optw{A. \texttt{len-r-g}}{B. \texttt{r+g-len}}
-\optw{C. \texttt{n-r-g}}{D. \texttt{len-r+g}}
+\optw{C. \texttt{n-r-g}}{D. \texttt{cnt[2]-r-g}}
 \q{36.} ④处应填（\qquad）\\
-\optw{A. \texttt{c!=last || used[c]==cnt[c]}}{B. \texttt{c==last \&\& used[c]==cnt[c]}}
-\optw{C. \texttt{c==last || used[c]==cnt[c]}}{D. \texttt{c!=last \&\& used[c]<cnt[c]}}
+\optw{A. \texttt{c == last || used[c] == cnt[c]}}{B. \texttt{c != last \&\& used[c] < cnt[c]}}
+\optw{C. \texttt{c == last \&\& used[c] == cnt[c]}}{D. \texttt{c != last || used[c] < cnt[c]}}
 \begin{samepage}
 \q{37.} ⑤处应填（\qquad）\\
 \optw{A. \texttt{val}}{B. \texttt{w}}
-\optw{C. \texttt{val+w}}{D. \texttt{val+len-w}}
+\optw{C. \texttt{val + w}}{D. \texttt{val + len - w}}
 \end{samepage}
 
 \noindent（2）（盒子）有 \texttt{n} 个体积互不相同的盒子和 \texttt{k} 个物品。每个盒子中恰放一个物品或一个体积更小的盒子；把体积为 \(x\) 的盒子放入体积为 \(y\) 的盒子需要 \(y-x\) 单位缓冲材料。所有盒子均须使用。先求所需缓冲材料的最小总量；随后有 \texttt{q} 次删除，每次永久删除一个指定盒子并再次求答案。保证始终至少剩下 \texttt{k} 个盒子。\texttt{1 <= n <= 2*10\string^5}。
@@ -492,7 +492,7 @@ multiset<ll> lo, hi;
 
 void fix() {
     while ((int)lo.size() > need) {
-        auto it = |@\blank{②}@|;
+        auto it = |@\blank{①}@|;
         ans -= *it; hi.insert(*it); lo.erase(it);
     }
     while ((int)lo.size() < need) {
@@ -501,9 +501,9 @@ void fix() {
     }
     while (!lo.empty() && !hi.empty()) {
         auto x = prev(lo.end()), y = hi.begin();
-        if (|@\blank{③}@|) break;
+        if (|@\blank{②}@|) break;
         ll vx = *x, vy = *y;
-        ans += |@\blank{④}@|;
+        ans += |@\blank{③}@|;
         lo.erase(x); hi.erase(y);
         lo.insert(vy); hi.insert(vx);
     }
@@ -525,7 +525,7 @@ int main() {
         for (; y != box.end(); ++x, ++y)
             add_gap(*y - *x);
     }
-    need = |@\blank{①}@|;
+    need = |@\blank{④}@|;
     fix(); cout << ans << '\n';
     cin >> q;
     while (q--) {
@@ -546,19 +546,19 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \q{38.} ①处应填（\qquad）\\
-\optw{A. \texttt{n-k}}{B. \texttt{k-1}}
-\optw{C. \texttt{n-k+1}}{D. \texttt{n-1}}
-\q{39.} ②处应填（\qquad）\\
 \optw{A. \texttt{lo.begin()}}{B. \texttt{prev(lo.end())}}
 \optw{C. \texttt{hi.begin()}}{D. \texttt{prev(hi.end())}}
+\q{39.} ②处应填（\qquad）\\
+\optw{A. \texttt{*x < *y}}{B. \texttt{*x <= *y}}
+\optw{C. \texttt{*x > *y}}{D. \texttt{*x >= *y}}
 \q{40.} ③处应填（\qquad）\\
-\optw{A. \texttt{*x<*y}}{B. \texttt{*x<=*y}}
-\optw{C. \texttt{*x>*y}}{D. \texttt{*x>=*y}}
+\optw{A. \texttt{vx - vy}}{B. \texttt{vy - vx}}
+\optw{C. \texttt{vx + vy}}{D. \texttt{-vx}}
 \q{41.} ④处应填（\qquad）\\
-\optw{A. \texttt{vx-vy}}{B. \texttt{vy-vx}}
-\optw{C. \texttt{vx+vy}}{D. \texttt{-vx}}
+\optw{A. \texttt{n - k}}{B. \texttt{k - 1}}
+\optw{C. \texttt{n - 1}}{D. \texttt{k}}
 \q{42.} ⑤处应填（\qquad）\\
-\optw{A. \texttt{v-l}}{B. \texttt{r-v}}
-\optw{C. \texttt{r-l}}{D. \texttt{r+l-v}}
+\optw{A. \texttt{v - l}}{B. \texttt{r - v}}
+\optw{C. \texttt{r - l}}{D. \texttt{r + l - v}}
 
 \end{document}

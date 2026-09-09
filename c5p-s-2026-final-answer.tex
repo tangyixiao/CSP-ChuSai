@@ -142,17 +142,17 @@
 
 \section*{三、完善程序（33--42）}
 \subsection*{（1）三色序列}
-\ans{33.}{B}\expn{扫描第 \(i\) 个原字符时，前缀计数应从位置 \(i-1\) 复制到位置 \(i\)，因此填 \texttt{pre[t][i-1]}。}
-\ans{34.}{C}\expn{\texttt{f} 记录的是交换次数，初始状态尚未构造任何字符，代价应为 0。}
+\ans{33.}{C}\expn{先把前一个位置的计数复制过来；如果当前字符属于颜色 \texttt{t}，再多计数一次，因此填 \texttt{pre[t][i-1] + (t == c)}。}
+\ans{34.}{B}\expn{\texttt{f} 记录的是交换次数，初始状态尚未构造任何字符，代价应为 0。}
 \ans{35.}{A}\expn{前 \texttt{len} 个位置已经构造，其中使用了 \texttt{r} 个 R 和 \texttt{g} 个 G，所以 Y 的使用数为 \texttt{len-r-g}。}
-\ans{36.}{C}\expn{新字符须不同于上一字符且该颜色有剩余，故跳过 \texttt{c==last || used[c]==cnt[c]}。}
-\ans{37.}{C}\expn{当前状态代价为 \texttt{val}，加入该字符的增量为 \texttt{w}，所以新值为 \texttt{val+w}。}
+\ans{36.}{A}\expn{新字符不能和上一字符相同，也不能超过该颜色的总数；满足任一条件就跳过，因此填 \texttt{c == last || used[c] == cnt[c]}。}
+\ans{37.}{C}\expn{当前状态代价为 \texttt{val}，加入该字符的增量为 \texttt{w}，所以新值为 \texttt{val + w}。}
 
 \subsection*{（2）盒子}
-\ans{38.}{A}\expn{$n$ 个盒子和 $k$ 个物品需要建立 $n-k$ 条嵌套关系，因此需要保留最小的 $n-k$ 个相邻间隙。}
-\ans{39.}{B}\expn{当选取的间隙数超过 \texttt{need} 时，应移出 \texttt{lo} 中最大的间隙。}
-\ans{40.}{B}\expn{若 \texttt{lo} 最大值不大于 \texttt{hi} 最小值，当前划分已经满足最小化条件。}
-\ans{41.}{B}\expn{用 \texttt{hi} 的最小值替换 \texttt{lo} 的最大值，答案增加 \texttt{vy-vx}。}
-\ans{42.}{C}\expn{删除中间盒子后，左右相邻盒子的新间隙为 \texttt{r-l}。}
+\ans{38.}{B}\expn{\texttt{lo} 保存当前选中的较小间隙；若数量过多，应移出其中最大的一个，因此填 \texttt{prev(lo.end())}。}
+\ans{39.}{B}\expn{\texttt{x} 是 \texttt{lo} 中最大的间隙，\texttt{y} 是 \texttt{hi} 中最小的间隙。只有在 \texttt{*x <= *y} 时才不需要交换。}
+\ans{40.}{B}\expn{交换后，\texttt{lo} 中的 \texttt{vx} 被 \texttt{vy} 替换，答案变化为 \texttt{vy-vx}；代码用 \texttt{ans +=} 累加这个变化量。}
+\ans{41.}{A}\expn{\texttt{n} 个盒子最终形成 \texttt{k} 个链，每条链需要相邻盒子之间的间隙，共需保留 \texttt{n-k} 个间隙。}
+\ans{42.}{C}\expn{删除体积为 \texttt{v} 的中间盒子后，左、右盒子直接相邻，新间隙为 \texttt{r-l}。}
 
 \end{document}
