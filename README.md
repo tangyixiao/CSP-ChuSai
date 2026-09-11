@@ -29,10 +29,10 @@
 在安装 XeLaTeX、CTEX 和 TikZ 的环境中执行：
 
 ```powershell
-xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026.tex
-xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026.tex
-xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-answer.tex
-xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-answer.tex
+xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-final.tex
+xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-final.tex
+xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-final-answer.tex
+xelatex -interaction=nonstopmode -halt-on-error c5p-s-2026-final-answer.tex
 ```
 
 生成的 `.aux`、`.log`、`.out`、`.toc`、`.synctex.gz` 和 `.cph-ng` 等构建产物不会纳入版本控制。

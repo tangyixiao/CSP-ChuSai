@@ -199,8 +199,10 @@
 \q{15.} 已知如下 C++14 代码定义 Ackermann 函数：
 \begin{codebox}\begin{lstlisting}
 long long A(int m, long long n) {
-    if (m == 0) return n + 1;
-    if (n == 0) return A(m - 1, 1);
+    if (m == 0)
+        return n + 1;
+    if (n == 0)
+        return A(m - 1, 1);
     return A(m - 1, A(m, n - 1));
 }
 \end{lstlisting}\end{codebox}
@@ -211,8 +213,7 @@ long long A(int m, long long n) {
 \clearpage
 \bigtitle{二、阅读程序（程序输入不超过数组或字符串定义的范围；判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
 
-\noindent（1）给定一个非空字符串，程序先求出每个前缀的最长真前缀与后缀公共长度，
-再把整个字符串以及它的各级相同前后缀的长度相加并输出。输入字符串只含小写英文字母。
+\noindent（1）
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -225,12 +226,15 @@ int main() {
     n = s.size();
     for (int i = 1; i < n; ++i) {
         int j = pi[i - 1];
-        while (j && s[i] != s[j]) j = pi[j - 1];
-        if (s[i] == s[j]) ++j;
+        while (j && s[i] != s[j])
+            j = pi[j - 1];
+        if (s[i] == s[j])
+            ++j;
         pi[i] = j;
     }
     int ans = 0;
-    for (int len = n; len > 0; len = pi[len - 1]) ans += len;
+    for (int len = n; len > 0; len = pi[len - 1])
+        ans += len;
     cout << ans << '\n';
 }
 \end{lstlisting}\end{codebox}
@@ -252,8 +256,7 @@ int main() {
 \opt{C. 时间 $O(n\log n)$，空间 $O(n)$}
 \opt{D. 时间 $O(n)$，空间 $O(1)$}
 
-\noindent（2）给定一个有 \texttt{n} 行、\texttt{m} 列的棋盘，字符 \texttt{\#} 表示不能放置，
-其余位置可以放置。要求同一行相邻位置、相邻两行同一列的位置不能同时放置，程序求合法方案数。
+\noindent（2）
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -264,12 +267,15 @@ vector<int> st;
 int main() {
     cin >> n >> m;
     for (int i = 1; i <= n; ++i) {
-        string s; cin >> s;
+        string s;
+        cin >> s;
         for (int j = 0; j < m; ++j)
-            if (s[j] == '#') ban[i] |= 1 << j;
+            if (s[j] == '#')
+                ban[i] |= 1 << j;
     }
     for (int s = 0; s < (1 << m); ++s)
-        if ((s & (s << 1)) == 0) st.emplace_back(s);
+        if ((s & (s << 1)) == 0)
+            st.emplace_back(s);
     f[0][0] = 1;
     for (int i = 1; i <= n; ++i) {
         int pre = i & 1, cur = pre ^ 1;
@@ -277,19 +283,23 @@ int main() {
         pre ^= mask;
         cur ^= mask;
         memset(f[cur], 0, sizeof(f[cur]));
-        for (auto&& s : st) {
-            if (s & ban[i]) continue;
-            for (auto&& t : st) {
-                if (s & t) continue;
+        for (auto &&s : st) {
+            if (s & ban[i])
+                continue;
+            for (auto &&t : st) {
+                if (s & t)
+                    continue;
                 f[cur][s] += f[pre][t];
-                if (f[cur][s] >= P) f[cur][s] -= P;
+                if (f[cur][s] >= P)
+                    f[cur][s] -= P;
             }
         }
     }
     int ans = 0;
-    for (auto&& s : st) {
+    for (auto &&s : st) {
         ans += f[n & 1][s];
-        if (ans >= P) ans -= P;
+        if (ans >= P)
+            ans -= P;
     }
     cout << ans << '\n';
 }
@@ -314,8 +324,7 @@ int main() {
 \opt{C. 仅当棋盘中有不能放置的位置时才会改变}
 \opt{D. 与原程序完全相同}
 
-\noindent（3）给定一个长度为 \texttt{n} 的数组，操作 1 \texttt{l r k b} 把区间内每个数变为
-\(kx+b\)，操作 2 \texttt{l r} 输出区间和。所有区间下标均合法。
+\noindent（3）
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
 using namespace std;
@@ -324,13 +333,19 @@ const ll P = 1000000007;
 const int N = 2e5 + 5;
 int n, q;
 ll a[N];
-struct Node { ll sum, mul, add; } tr[N << 2];
+struct Node {
+    ll sum, mul, add;
+} tr[N << 2];
 
 void build(int p, int l, int r) {
     tr[p].mul = 1;
-    if (l == r) { tr[p].sum = a[l] % P; return; }
+    if (l == r) {
+        tr[p].sum = a[l] % P;
+        return;
+    }
     int m = (l + r) >> 1;
-    build(p << 1, l, m); build(p << 1 | 1, m + 1, r);
+    build(p << 1, l, m);
+    build(p << 1 | 1, m + 1, r);
     tr[p].sum = (tr[p << 1].sum + tr[p << 1 | 1].sum) % P;
 }
 void apply(int p, int l, int r, ll k, ll b) {
@@ -339,7 +354,8 @@ void apply(int p, int l, int r, ll k, ll b) {
     tr[p].add = (tr[p].add * k + b) % P;
 }
 void push(int p, int l, int r) {
-    if (l == r) return;
+    if (l == r)
+        return;
     int m = (l + r) >> 1;
     apply(p << 1, l, m, tr[p].mul, tr[p].add);
     apply(p << 1 | 1, m + 1, r, tr[p].mul, tr[p].add);
@@ -347,32 +363,44 @@ void push(int p, int l, int r) {
     std::exchange(tr[p].add, 0);
 }
 void upd(int p, int l, int r, int ql, int qr, ll k, ll b) {
-    if (ql <= l && r <= qr) { apply(p, l, r, k, b); return; }
+    if (ql <= l && r <= qr) {
+        apply(p, l, r, k, b);
+        return;
+    }
     push(p, l, r);
     int m = (l + r) >> 1;
-    if (ql <= m) upd(p << 1, l, m, ql, qr, k, b);
-    if (qr > m) upd(p << 1 | 1, m + 1, r, ql, qr, k, b);
+    if (ql <= m)
+        upd(p << 1, l, m, ql, qr, k, b);
+    if (qr > m)
+        upd(p << 1 | 1, m + 1, r, ql, qr, k, b);
     tr[p].sum = (tr[p << 1].sum + tr[p << 1 | 1].sum) % P;
 }
 ll qry(int p, int l, int r, int ql, int qr) {
-    if (ql <= l && r <= qr) return tr[p].sum;
+    if (ql <= l && r <= qr)
+        return tr[p].sum;
     push(p, l, r);
     int m = (l + r) >> 1;
     ll s = 0;
-    if (ql <= m) s = (s + qry(p << 1, l, m, ql, qr)) % P;
-    if (qr > m) s = (s + qry(p << 1 | 1, m + 1, r, ql, qr)) % P;
+    if (ql <= m)
+        s = (s + qry(p << 1, l, m, ql, qr)) % P;
+    if (qr > m)
+        s = (s + qry(p << 1 | 1, m + 1, r, ql, qr)) % P;
     return s;
 }
 int main() {
     cin >> n >> q;
-    for (int i = 1; i <= n; ++i) cin >> a[i];
+    for (int i = 1; i <= n; ++i)
+        cin >> a[i];
     build(1, 1, n);
     while (q--) {
-        int op, l, r; cin >> op >> l >> r;
+        int op, l, r;
+        cin >> op >> l >> r;
         if (!(op ^ 1)) {
-            ll k, b; cin >> k >> b;
+            ll k, b;
+            cin >> k >> b;
             upd(1, 1, n, l, r, k, b);
-        } else cout << qry(1, 1, n, l, r) << '\n';
+        } else
+            cout << qry(1, 1, n, l, r) << '\n';
     }
 }
 \end{lstlisting}\end{codebox}
@@ -401,7 +429,7 @@ int main() {
 \clearpage
 \bigtitle{三、完善程序（单选题，每小题 3 分，共计 30 分）}
 
-\noindent（1）（三色序列）给定一个长度为 \texttt{n}、只含字符 \texttt{R,G,Y} 的字符串。每次可以交换两个相邻字符。求使相邻字符均不同所需的最少交换次数；若无法做到，输出 \texttt{-1}。\texttt{1 <= n <= 400}。
+\noindent（1）（序列）给定一个长度为 \texttt{n}、只含字符 \texttt{R,G,Y} 的字符串。每次可以交换两个相邻字符。求使相邻字符均不同所需的最少交换次数；若无法做到，输出 \texttt{-1}。\texttt{1 <= n <= 400}。
 
 \begin{codebox}\begin{lstlisting}
 #include <bits/stdc++.h>
@@ -414,9 +442,12 @@ int main() {
     cin >> n >> s;
     for (int i = 1; i <= n; ++i) {
         int c;
-        if (s[i-1] == 'R') c = 0;
-        else if (s[i-1] == 'G') c = 1;
-        else c = 2;
+        if (s[i - 1] == 'R')
+            c = 0;
+        else if (s[i - 1] == 'G')
+            c = 1;
+        else
+            c = 2;
         for (int t = 0; t < 3; ++t)
             pre[t][i] = |@\blank{①}@|;
         pos[c][++cnt[c]] = i;
@@ -428,28 +459,33 @@ int main() {
         int cur = len & 1, nxt = cur ^ 1;
         memset(f[nxt], 0x3f, sizeof(f[nxt]));
         for (int r = 0; r <= cnt[0]; ++r)
-        for (int g = 0; g <= cnt[1]; ++g) {
-            int y = |@\blank{③}@|;
-            if (y < 0 || y > cnt[2]) continue;
-            int used[3] = {r, g, y};
-            for (int last = 0; last < 4; ++last) {
-                int val = f[cur][r][g][last];
-                if (val >= INF) continue;
-                for (int c = 0; c < 3; ++c) {
-                    if (|@\blank{④}@|) continue;
-                    int x = pos[c][used[c]+1];
-                    int w = x-len-1;
-                    for (int t = 0; t < 3; ++t)
-                        w += max(0,used[t]-pre[t][x]);
-                    int nr = r, ng = g;
-                    if (c == 0) ++nr;
-                    if (c == 1) ++ng;
-                    int nv = |@\blank{⑤}@|;
-                    f[nxt][nr][ng][c] =
-                        min(f[nxt][nr][ng][c], nv);
+            for (int g = 0; g <= cnt[1]; ++g) {
+                int y = |@\blank{③}@|;
+                if (y < 0 || y > cnt[2])
+                    continue;
+                int used[3] = {r, g, y};
+                for (int last = 0; last < 4; ++last) {
+                    int val = f[cur][r][g][last];
+                    if (val >= INF)
+                        continue;
+                    for (int c = 0; c < 3; ++c) {
+                        if (|@\blank{④}@|)
+                            continue;
+                        int x = pos[c][used[c] + 1];
+                        int w = x - len - 1;
+                        for (int t = 0; t < 3; ++t)
+                            w += max(0, used[t] - pre[t][x]);
+                        int nr = r, ng = g;
+                        if (c == 0)
+                            ++nr;
+                        if (c == 1)
+                            ++ng;
+                        int nv = |@\blank{⑤}@|;
+                        f[nxt][nr][ng][c] =
+                            min(f[nxt][nr][ng][c], nv);
+                    }
                 }
             }
-        }
     }
     int ans = INF, z = n & 1;
     for (int c = 0; c < 3; ++c) {
@@ -493,26 +529,39 @@ multiset<ll> lo, hi;
 void fix() {
     while ((int)lo.size() > need) {
         auto it = |@\blank{①}@|;
-        ans -= *it; hi.insert(*it); lo.erase(it);
+        ans -= *it;
+        hi.insert(*it);
+        lo.erase(it);
     }
     while ((int)lo.size() < need) {
         auto it = hi.begin();
-        ans += *it; lo.insert(*it); hi.erase(it);
+        ans += *it;
+        lo.insert(*it);
+        hi.erase(it);
     }
     while (!lo.empty() && !hi.empty()) {
         auto x = prev(lo.end()), y = hi.begin();
-        if (|@\blank{②}@|) break;
+        if (|@\blank{②}@|)
+            break;
         ll vx = *x, vy = *y;
         ans += |@\blank{③}@|;
-        lo.erase(x); hi.erase(y);
-        lo.insert(vy); hi.insert(vx);
+        lo.erase(x);
+        hi.erase(y);
+        lo.insert(vy);
+        hi.insert(vx);
     }
 }
-void add_gap(ll x) { lo.insert(x); ans += x; }
+void add_gap(ll x) {
+    lo.insert(x);
+    ans += x;
+}
 void del_gap(ll x) {
     auto it = lo.find(x);
-    if (it != lo.end()) { ans -= x; lo.erase(it); }
-    else hi.erase(hi.find(x));
+    if (it != lo.end()) {
+        ans -= x;
+        lo.erase(it);
+    } else
+        hi.erase(hi.find(x));
 }
 int main() {
     cin >> n >> k;
@@ -526,21 +575,31 @@ int main() {
             add_gap(*y - *x);
     }
     need = |@\blank{④}@|;
-    fix(); cout << ans << '\n';
+    fix();
+    cout << ans << '\n';
     cin >> q;
     while (q--) {
-        int d; cin >> d;
+        int d;
+        cin >> d;
         ll v = c[d], l = 0, r = 0;
         auto it = box.find(v);
         auto rt = next(it);
         bool hl = it != box.begin();
         bool hr = rt != box.end();
-        if(hl){ l=*prev(it); del_gap(v-l); }
-        if(hr){ r=*rt; del_gap(r-v); }
+        if (hl) {
+            l = *prev(it);
+            del_gap(v - l);
+        }
+        if (hr) {
+            r = *rt;
+            del_gap(r - v);
+        }
         box.erase(it);
         --need;
-        if (hl && hr) add_gap(|@\blank{⑤}@|);
-        fix(); cout << ans << '\n';
+        if (hl && hr)
+            add_gap(|@\blank{⑤}@|);
+        fix();
+        cout << ans << '\n';
     }
 }
 \end{lstlisting}\end{codebox}
