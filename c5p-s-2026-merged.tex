@@ -87,6 +87,9 @@
   basicstyle=\ttfamily\fontsize{12}{14.4}\selectfont,
   numberstyle=\ttfamily\fontsize{12}{14.4}\selectfont\makebox[0.92cm][r],
   numbers=left,
+  firstnumber=1,
+  stepnumber=1,
+  numberfirstline=true,
   numbersep=0.08cm,
   frame=none,
   framesep=6pt,
@@ -152,35 +155,37 @@
 \opt{A. \texttt{cp}}\opt{B. \texttt{cat}}\opt{C. \texttt{ping}}\opt{D. \texttt{touch}}
 \q{2.} 已知某用二叉链表存储的哈夫曼树共有 \texttt{m} 个叶子结点，则该哈夫曼树中总共有多少个空指针域（\qquad）\\
 \opt{A. \texttt{m}}\opt{B. \texttt{m+1}}\opt{C. \texttt{2m}}\opt{D. \texttt{2m+1}}
-\q{3.} 对于一棵包含 \texttt{n} 个结点的完全二叉树，对每个叶子结点向上访问直到根结点，统计路径上经过的结点数之和。总时间复杂度为（\qquad）\\
-\opt{A. \texttt{O(n)}}\opt{B. \texttt{O(n log n)}}\opt{C. \texttt{O(n\^{}2)}}\opt{D. \texttt{O(n\^{}2 log n)}}
+\q{3.} 对于一棵高度为 \texttt{h} 的完全 5 叉树，对每个叶子结点向上访问直到根结点，统计路径上经过的结点数之和。总时间复杂度为（\qquad）\\
+\opt{A. \(\Theta(5^h)\)}\opt{B. \(\Theta(h5^h)\)}\opt{C. \(\Theta(5h)\)}\opt{D. \(\Theta(h^2)\)}
 \q{4.} 小 h 从原点 \texttt{(0,0)} 出发，每一步向右或向上走，到达点 \texttt{(5,5)}，且始终满足 \texttt{x >= y}。满足条件的路径有多少条（\qquad）\\
 \opt{A. 252}\opt{B. 90}\opt{C. 132}\opt{D. 42}
 \q{5.} 用两个栈模拟一个队列，入队时元素统一压入栈 A。正确的出队操作是（\qquad）\\
 \opt{A. B 为空时将 A 全部转移到 B，再从 B 弹出；B 非空时直接从 B 弹出}
 \opt{B. 无论 B 是否为空，都先将 A 全部转移到 B，再从 B 弹出}
 \opt{C. 直接删除 A 的栈底元素}\opt{D. 直接从 A 弹出栈顶元素}
-\q{6.} 从集合 \texttt{\{1,2,3,4,5,6,7,8,9,10\}} 中选出 4 个不同的数，要求任意两个被选数都不相邻。不同的选法共有（\qquad）\\
-\opt{A. 15}\opt{B. 20}\opt{C. 35}\opt{D. 70}
-\q{7.} 在 C++ 中，关于 \texttt{std::set<int>} 与 \texttt{std::map<int, int>} 的说法，正确的是（\qquad）\\
-\opt{A. \texttt{set} 中的元素可以重复}\opt{B. \texttt{map} 按插入顺序存储键值对}
-\opt{C. \texttt{set} 自动有序，插入、删除、查找复杂度均为 \texttt{O(log n)}}\opt{D. \texttt{map} 的键可以重复}
+\q{6.} 从集合 \texttt{\{1,2,3,\ldots,20\}} 中选出 6 个不同的数，要求任意两个被选数都不相邻。不同的选法共有（\qquad）\\
+\opt{A. 3003}\opt{B. 3876}\opt{C. 5005}\opt{D. 8008}
+\q{7.} 关于 C++ 标准库容器，下列说法正确的是（\qquad）\\
+\opt{A. \texttt{vector} 在头部插入或删除元素的复杂度为 \texttt{O(1)}}
+\opt{B. \texttt{deque} 支持 \texttt{O(1)} 随机访问，且在两端插入、删除元素的复杂度为 \texttt{O(1)}}
+\opt{C. \texttt{set} 允许存储多个键值相同的元素}
+\opt{D. \texttt{priority\_queue::top()} 会返回并删除堆顶元素}
 \q{8.} 关于有向无环图的拓扑排序，下列说法正确的是（\qquad）\\
 \opt{A. 任何有向无环图的拓扑排序都唯一}\opt{B. 含有环的有向图也可以进行拓扑排序}
 \opt{C. 若有边 \texttt{u -> v}，则任一拓扑序中 \texttt{u} 在 \texttt{v} 之前}\opt{D. 拓扑排序就是深度优先遍历序列}
-\q{9.} KMP 算法中，\texttt{next} 数组的主要作用是（\qquad）\\
-\opt{A. 记录模式串失配后应回溯到的位置}\opt{B. 记录主串每个字符出现的次数}
-\opt{C. 记录主串的后缀数组}\opt{D. 与模式串无关地跳过主串位置}
-\q{10.} 对一个 \texttt{n} 个顶点、\texttt{m} 条边的带权有向图使用不带堆优化的 Dijkstra 算法，时间复杂度为（\qquad）\\
-\opt{A. \texttt{O(n\^{}2)}}\opt{B. \texttt{O(m log n)}}\opt{C. \texttt{O((m+n) log n)}}\opt{D. \texttt{O(mn)}}
+\q{9.} 对文本串 \texttt{T=abababababa} 查找模式串 \texttt{P=ababa}，采用记录每个前缀最长相等真前后缀长度的字符串匹配方法，允许匹配重叠。若下标从 0 开始，所有匹配起始位置之和为（\qquad）\\
+\opt{A. 8}\opt{B. 10}\opt{C. 12}\opt{D. 14}
+\q{10.} 关于最短路算法（包含最坏情况），下列说法正确的是（\qquad）\\
+\opt{A. 对没有负环的图，SPFA 的最坏时间复杂度为 \texttt{O(n+m)}}
+\opt{B. 边权非负时，使用邻接表和二叉堆的 Dijkstra 算法复杂度为 \texttt{O((n+m) log n)}}
+\opt{C. Bellman--Ford 算法不能判断从源点可达的负环}
+\opt{D. Floyd--Warshall 算法的时间复杂度为 \texttt{O(n\string^2)}}
 \q{11.} 已知 20260913 是质数，表达式 \texttt{(1/2 + 1/3 + ... + 1/20260912)\^{}20260913 mod 20260913} 的值为（\qquad）\\
 \opt{A. 0}\opt{B. 1}\opt{C. \texttt{2\^{}20260913 mod 20260913}}\opt{D. 20260912}
-\q{12.} 设 \(p=20260913\) 为质数。在模 \(p\) 意义下，
-\[
-\sum_{i=1}^{p-2}\frac{1}{i(i+1)}
-\]
-等于（\qquad）\\
-\opt{A. 0}\opt{B. 1}\opt{C. 2}\opt{D. \(p-2\)}
+\clearpage
+\q{12.} 设 \(T(1)=1\)，当 \(n>1\) 时，\(T(n)=7T\left(\left\lfloor\frac{n}{3}\right\rfloor\right)+5n\log_2 n+3n\)。使用主定理可得 \(T(n)\) 的渐进复杂度为（\qquad）\\
+\opt{A. \(\Theta(n\log n)\)}\opt{B. \(\Theta(n^{\log_3 7})\)}
+\opt{C. \(\Theta(n^{\log_3 7}\log n)\)}\opt{D. \(\Theta(n^2)\)}
 
 \q{13.} 对下图恰好删去两条不同的边，使得仍存在从 1 到 8 的有向路径。删边方案共有（\qquad）种
 \begin{center}
@@ -196,6 +201,7 @@
 
 \q{14.} 1 到 200 之间，不能被 2、3、7 中任何一个整除的整数共有（\qquad）个\\
 \opt{A. 57}\opt{B. 58}\opt{C. 59}\opt{D. 60}
+\begin{minipage}{\linewidth}
 \q{15.} 已知如下 C++14 代码定义 Ackermann 函数：
 \begin{codebox}\begin{lstlisting}
 long long A(int m, long long n) {
@@ -209,8 +215,8 @@ long long A(int m, long long n) {
 则二元组 \(\bigl(A(3,3),\,A(3,10^{18})\bmod 101\bigr)\) 的值为（\qquad）\\
 \opt{A. \texttt{(61, 5)}}\opt{B. \texttt{(61, 8)}}
 \opt{C. \texttt{(31, 5)}}\opt{D. \texttt{(31, 8)}}
+\end{minipage}
 
-\clearpage
 \bigtitle{二、阅读程序（程序输入不超过数组或字符串定义的范围；判断题正确填√，错误填×；除特殊说明外，判断题 1.5 分，选择题 3 分，共计 40 分）}
 
 \noindent（1）
@@ -242,10 +248,13 @@ int main() {
 \noindent\wdot\hspace{0.5em}判断题\\
 \q{16.} 当输入字符串为 \texttt{ababa} 时，程序计算得到 \texttt{pi[4]=3}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{17.} 若把累加长度循环的初始化语句 \texttt{len = n} 改为 \texttt{len = pi[n-1]}，对任意输入，程序输出都恰好减少 \texttt{n}。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
-\q{18.} 若把求解 \texttt{pi} 的循环中的 \texttt{while} 改成 \texttt{if}，对所有输入，程序输出仍然不变。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
+\begin{minipage}{\linewidth}
+\q{17.} 输入字符串为 \texttt{ababa}，程序执行第 19--20 行的累加循环后，输出为（\qquad）\\
+\opt{A. 7}\opt{B. 8}\opt{C. 9}\opt{D. 10}
+\end{minipage}
+\q{18.} 输入字符串为 \texttt{bbba}。第 12 行的 \texttt{while} 保持不变时程序输出为 \texttt{X}；只将第 12 行的 \texttt{while} 改为 \texttt{if} 时程序输出为 \texttt{Y}。二元组 \texttt{(X,Y)} 为（\qquad）\\
+\opt{A. \texttt{(4,5)}}\opt{B. \texttt{(5,4)}}
+\opt{C. \texttt{(4,4)}}\opt{D. \texttt{(5,5)}}
 
 \noindent\wdot\hspace{0.5em}单选题\\
 \q{19.} 输入 \texttt{abacababacabab} 时，程序输出为（\qquad）\\
@@ -253,8 +262,8 @@ int main() {
 \q{20.}（4 分）若输入字符串长度为 $n$，且字符比较、数组访问均视为 $O(1)$，则程序的最坏时间复杂度和空间复杂度分别为（\qquad）\\
 \opt{A. 时间 $O(n^2)$，空间 $O(n)$}
 \opt{B. 时间 $O(n)$，空间 $O(n)$}
-\opt{C. 时间 $O(n\log n)$，空间 $O(n)$}
-\opt{D. 时间 $O(n)$，空间 $O(1)$}
+\opt{C. 时间 $O(n\log n)$，空间 $O(1)$}
+\opt{D. 时间 $O(n^2)$，空间 $O(1)$}
 
 \noindent（2）
 \begin{codebox}\begin{lstlisting}
@@ -282,10 +291,10 @@ int main() {
         int mask = pre ^ cur;
         pre ^= mask;
         cur ^= mask;
+
         memset(f[cur], 0, sizeof(f[cur]));
         for (auto &&s : st) {
-            if (s & ban[i])
-                continue;
+            if (s & ban[i]) continue;
             for (auto &&t : st) {
                 if (s & t)
                     continue;
@@ -306,23 +315,24 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{21.} 当 \texttt{m=3} 时，经过第一个双重循环后，\texttt{st.size()} 的值为 5。（\qquad）\\
+\q{21.} 当 \texttt{m=3} 时，经过第 16--18 行的状态枚举后，\texttt{st.size()} 的值为 5。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{22.} 在某次转移中，若当前状态 \texttt{s=101}、上一行状态 \texttt{t=001}，则程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前状态。（\qquad）\\
+\begin{minipage}{\linewidth}
+\q{22.} 在第 30--31 行的某次转移中，若当前状态 \texttt{s=101}、上一行状态 \texttt{t=001}，则程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前状态。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{23.}（2 分）若删去每轮开始时的 \texttt{memset(f[cur], 0, sizeof(f[cur]))}，程序对所有输入的输出仍不变。（\qquad）\\
-\opt{A. 正确}\opt{B. 错误}
+\end{minipage}
+\q{23.}（2 分）输入为 \texttt{n=3,m=2}，三行均为 \texttt{..}。保留第 26 行与删除第 26 行后，程序输出的二元组（保留，删除）为（\qquad）\\
+\opt{A. \texttt{(17,23)}}\opt{B. \texttt{(23,17)}}
+\opt{C. \texttt{(17,17)}}\opt{D. \texttt{(23,23)}}
 
 \noindent\wdot\hspace{0.5em}单选题\\
 \q{24.} 记 \(V=\texttt{st.size()}\)，则程序的时间复杂度为（\qquad）\\
 \opt{A. \(O(nV)\)}\opt{B. \(O(nV^2+2^m)\)}\opt{C. \(O(n2^{2m})\)}\opt{D. \(O(n^2V)\)}
 \q{25.} 输入为 \texttt{n=2,m=3}，两行均为 \texttt{...} 时，程序输出为（\qquad）\\
 \opt{A. 15}\opt{B. 16}\opt{C. 17}\opt{D. 18}
-\q{26.} 若删去主循环中的两条语句 \texttt{pre \^= mask;} 和 \texttt{cur \^= mask;}，程序的输出将（\qquad）\\
-\opt{A. 只有第一行输入的 \texttt{n,m} 会影响输出，棋盘各行的内容不会影响输出}
-\opt{B. 输出为 0}
-\opt{C. 仅当棋盘中有不能放置的位置时才会改变}
-\opt{D. 与原程序完全相同}
+\q{26.} 输入为 \texttt{n=3,m=2}，三行均为 \texttt{..}。保留第 23--24 行与删除这两行后，程序输出的二元组（保留，删除）为（\qquad）\\
+\opt{A. \texttt{(17,0)}}\opt{B. \texttt{(0,17)}}
+\opt{C. \texttt{(17,17)}}\opt{D. \texttt{(0,0)}}
 
 \noindent（3）
 \begin{codebox}\begin{lstlisting}
@@ -406,20 +416,22 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{27.} 在执行一次 \texttt{upd} 时，如果当前结点区间完全包含在更新区间内，程序会调用一次 \texttt{apply} 后直接返回，不再访问该结点的子结点。（\qquad）\\
+\begin{minipage}{\linewidth}
+\q{27.} 在执行一次 \texttt{upd} 时，如果当前结点区间完全包含在更新区间内，程序会执行第 38--40 行：调用一次 \texttt{apply} 后直接返回，不再访问该结点的子结点。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
-\q{28.} 若把 \texttt{push} 末尾的 \texttt{tr[p].add} 重置语句删去，则程序对所有输入的输出仍然不变。（\qquad）\\
+\end{minipage}
+\q{28.} 若把第 34--35 行中 \texttt{push} 末尾的 \texttt{tr[p].add} 重置语句删去，程序对所有输入的输出仍然不变。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \q{29.} 程序的时间复杂度为 \(O((n+q)\log n)\)。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{30.} 设当前结点 \texttt{p} 表示区间 \([l,r]\)，执行 \texttt{apply(p,l,r,k,b)} 后，\texttt{tr[p].sum} 的新值为（\qquad）\\
+\q{30.} 设当前结点 \texttt{p} 表示区间 \([l,r]\)，执行第 24 行的 \texttt{apply(p,l,r,k,b)} 后，\texttt{tr[p].sum} 的新值为（\qquad）\\
 \opt{A. \texttt{(tr[p].sum*k+b) \% P}}
 \opt{B. \texttt{(tr[p].sum*k+(r-l+1)*b) \% P}}
 \opt{C. \texttt{((tr[p].sum+b)*k) \% P}}
 \opt{D. \texttt{((r-l+1)*(tr[p].sum*k+b)) \% P}}
-\q{31.} 关于函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
+\q{31.} 关于第 32--35 行的函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
 \opt{A. 交换左、右子结点调用 \texttt{apply} 的先后顺序}
 \opt{B. 在调用两个子结点的 \texttt{apply} 前，先把 \texttt{tr[p].add} 置为 0}
 \opt{C. 把两个 \texttt{apply} 调用中的参数 \texttt{b} 都改为 0}
@@ -474,7 +486,7 @@ int main() {
                         int x = pos[c][used[c] + 1];
                         int w = x - len - 1;
                         for (int t = 0; t < 3; ++t)
-                            w += max(0, used[t] - pre[t][x]);
+                            w += max(0,used[t]-pre[t][x]);
                         int nr = r, ng = g;
                         if (c == 0)
                             ++nr;
@@ -496,20 +508,20 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 
-\q{33.} ①处应填（\qquad）\\
+\q{33.} 第18行①处应填（\qquad）\\
 \optw{A. \texttt{pre[t][i-1]}}{B. \texttt{pre[t][i] + 1}}
 \optw{C. \texttt{pre[t][i-1] + (t == c)}}{D. \texttt{pre[c][i-1]}}
-\q{34.} ②处应填（\qquad）\\
+\q{34.} 第23行②处应填（\qquad）\\
 \optw{A. \texttt{INF}}{B. \texttt{0}}
 \optw{C. \texttt{1}}{D. \texttt{len}}
-\q{35.} ③处应填（\qquad）\\
+\q{35.} 第29行③处应填（\qquad）\\
 \optw{A. \texttt{len-r-g}}{B. \texttt{r+g-len}}
 \optw{C. \texttt{n-r-g}}{D. \texttt{cnt[2]-r-g}}
-\q{36.} ④处应填（\qquad）\\
+\q{36.} 第38行④处应填（\qquad）\\
 \optw{A. \texttt{c == last || used[c] == cnt[c]}}{B. \texttt{c != last \&\& used[c] < cnt[c]}}
 \optw{C. \texttt{c == last \&\& used[c] == cnt[c]}}{D. \texttt{c != last || used[c] < cnt[c]}}
 \begin{samepage}
-\q{37.} ⑤处应填（\qquad）\\
+\q{37.} 第49行⑤处应填（\qquad）\\
 \optw{A. \texttt{val}}{B. \texttt{w}}
 \optw{C. \texttt{val + w}}{D. \texttt{val + len - w}}
 \end{samepage}
@@ -604,19 +616,19 @@ int main() {
 }
 \end{lstlisting}\end{codebox}
 
-\q{38.} ①处应填（\qquad）\\
+\q{38.} 第12行①处应填（\qquad）\\
 \optw{A. \texttt{lo.begin()}}{B. \texttt{prev(lo.end())}}
 \optw{C. \texttt{hi.begin()}}{D. \texttt{prev(hi.end())}}
-\q{39.} ②处应填（\qquad）\\
+\q{39.} 第26行②处应填（\qquad）\\
 \optw{A. \texttt{*x < *y}}{B. \texttt{*x <= *y}}
 \optw{C. \texttt{*x > *y}}{D. \texttt{*x >= *y}}
-\q{40.} ③处应填（\qquad）\\
+\q{40.} 第28行③处应填（\qquad）\\
 \optw{A. \texttt{vx - vy}}{B. \texttt{vy - vx}}
 \optw{C. \texttt{vx + vy}}{D. \texttt{-vx}}
-\q{41.} ④处应填（\qquad）\\
+\q{41.} 第58行④处应填（\qquad）\\
 \optw{A. \texttt{n - k}}{B. \texttt{k - 1}}
 \optw{C. \texttt{n - 1}}{D. \texttt{k}}
-\q{42.} ⑤处应填（\qquad）\\
+\q{42.} 第81行⑤处应填（\qquad）\\
 \optw{A. \texttt{v - l}}{B. \texttt{r - v}}
 \optw{C. \texttt{r - l}}{D. \texttt{r + l - v}}
 
