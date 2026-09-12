@@ -4,7 +4,7 @@
 
 **Goal:** 在保留原题考察内容和题面风格的前提下，将阅读程序（1）改为中等复杂度、无明显算法命名提示的指针实现，并同步答案、图表、行号、矩阵和 PDF。
 
-**Architecture:** 使用动态 `char* text` 保存原字符串，使用动态 `int* jump` 保存回退信息；`getChar`、`goBack`、`findNext` 三个辅助函数分别负责指针取值、读取历史回退值和完成一次位置调整。主函数保留原来的逐位置处理与沿回退链累加结构，因此语义、复杂度和题目答案不变。
+**Architecture:** 使用动态 `char* data` 保存原字符串，使用动态 `int* mark` 保存回退信息；`readAt`、`fetch`、`settle` 三个辅助函数分别负责指针取值、读取历史回退值和完成一次位置调整。主函数保留原来的逐位置处理与沿回退链累加结构，因此语义、复杂度和题目答案不变。
 
 **Tech Stack:** C++14 code listing, XeLaTeX, TikZ, Poppler (`pdftotext`, `pdftoppm`, `pdfinfo`), GitHub Actions.
 
@@ -28,63 +28,58 @@
 **Interfaces:**
 - Produces the question code listing and Q16--20 references used by the answer document.
 
-- [ ] **Step 1: Replace the code listing with the approved moderate-complexity implementation**
+- [x] **Step 1: Replace the code listing with the approved moderate-complexity implementation**
 
 Use these exact identifiers and operations:
 
 ```cpp
 const int N = 2e5 + 5;
-char *text;
-int *jump;
-int length;
+char *data;
+int *mark;
+int size;
 
-char getChar(int pos) {
-    return *(text + pos);
+char readAt(int pos) {
+    return *(data + pos);
 }
 
-int goBack(int len) {
-    if (len == 0) {
-        return 0;
-    }
-    return *(jump + len - 1);
+int fetch(int len) {
+    return len == 0 ? 0 : *(mark + len - 1);
 }
 
-int findNext(int pos, int candidate) {
-    while (candidate != 0 &&
-           getChar(pos) != getChar(candidate)) {
-        candidate = goBack(candidate);
+int settle(int pos, int candidate) {
+    while (candidate && readAt(pos) != readAt(candidate)) {
+        candidate = fetch(candidate);
     }
-    if (getChar(pos) == getChar(candidate)) {
-        ++candidate;
-    }
-    return candidate;
+    return candidate + (readAt(pos) == readAt(candidate));
 }
 
 int main() {
-    text = new char[N]{};
-    jump = new int[N]{};
-    cin >> text;
-    length = strlen(text);
-    for (int i = 1; i < length; ++i) {
-        int candidate = goBack(i);
-        *(jump + i) = findNext(i, candidate);
+    data = new char[N]{};
+    mark = new int[N]{};
+    cin >> data;
+    size = strlen(data);
+
+    for (int i = 1; i < size; ++i) {
+        *(mark + i) = settle(i, fetch(i));
     }
+
     int answer = 0;
-    for (int len = length; len > 0; len = goBack(len)) {
+    for (int len = size; len > 0; len = fetch(len)) {
         answer += len;
     }
+
     cout << answer << '\\n';
-    delete[] jump;
-    delete[] text;
+    delete[] mark;
+    delete[] data;
     return 0;
 }
 ```
 
-- [ ] **Step 2: Recount the listing lines from the generated source**
+- [x] **Step 2: Recount the listing lines from the generated source**
 
-Use the actual listing line numbers to update Q16--20. Q16 should refer to the new `jump` entry at index 4, Q17 to the final accumulation loop, Q18 to the `while` in `findNext`, and Q19--20 to the new output and complexity behavior. Do not carry over the previous `pi` wording or old line numbers.
+Use the actual listing line numbers to update Q16--20. Q16 should refer to the new `mark` entry at index 4, Q17 to lines 34--35 of the final accumulation loop, Q18 to line 17 in `settle`, and Q19--20 to the new output and complexity behavior. Do not carry over the previous `pi` wording or old line numbers.
 
-- [ ] **Step 3: Run a source-level terminology audit**
+- [x] **Step 3: Run a source-level terminology audit**
 
 Run:
 
@@ -104,15 +99,15 @@ Expected: no matches attributable to the reading program (1) code or its questio
 - Consumes the final line numbers and identifiers from Task 1.
 - Produces answer explanations and matrix terminology consistent with the new listing.
 
-- [ ] **Step 1: Replace answer references and identifiers**
+- [x] **Step 1: Replace answer references and identifiers**
 
-Use `jump`, `goBack`, and the actual generated line numbers in Q16--20 explanations. Explain the same prefix-function behavior in prose, but do not reintroduce `pi` in the code-facing explanation or diagram.
+Use `mark`, `fetch`, and the actual generated line numbers in Q16--20 explanations. Explain the same boundary-record behavior in prose, but do not reintroduce `pi` in the code-facing explanation or diagram.
 
-- [ ] **Step 2: Rename the answer diagram labels**
+- [x] **Step 2: Rename the answer diagram labels**
 
-Use neutral labels such as “长度回退链” and `jump`-free length transitions. Preserve the existing chart style and size.
+Use neutral labels such as “长度回退链” and `mark`-free length transitions. Preserve the existing chart style and size.
 
-- [ ] **Step 3: Verify answer and matrix consistency**
+- [x] **Step 3: Verify answer and matrix consistency**
 
 Run:
 
@@ -133,20 +128,20 @@ Expected: no forbidden algorithm hints in the revised reading-program section, n
 - Consumes the synchronized TeX and matrix files from Tasks 1--2.
 - Produces the final PDFs for the pull request.
 
-- [ ] **Step 1: Compile both documents twice with XeLaTeX**
+- [x] **Step 1: Compile both documents twice with XeLaTeX**
 
 ```powershell
-xelatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory='D:\\Study\\信奥\\CSP\\tmp\\detail_answer_build' 'c5p-s-2026-merged.tex'
-xelatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory='D:\\Study\\信奥\\CSP\\tmp\\detail_answer_build' 'c5p-s-2026-merged.tex'
-xelatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory='D:\\Study\\信奥\\CSP\\tmp\\detail_answer_build' 'c5p-s-2026-merged-answer.tex'
-xelatex -interaction=nonstopmode -halt-on-error -file-line-error -output-directory='D:\\Study\\信奥\\CSP\\tmp\\detail_answer_build' 'c5p-s-2026-merged-answer.tex'
+xelatex -interaction=nonstopmode -halt-on-error -file-line-error -jobname=c5p-s-2026-merged 'D:\\Study\\信奥\\CSP\\c5p-s-2026-merged.tex'
+xelatex -interaction=nonstopmode -halt-on-error -file-line-error -jobname=c5p-s-2026-merged 'D:\\Study\\信奥\\CSP\\c5p-s-2026-merged.tex'
+xelatex -interaction=nonstopmode -halt-on-error -file-line-error -jobname=c5p-s-2026-merged-answer 'D:\\Study\\信奥\\CSP\\c5p-s-2026-merged-answer.tex'
+xelatex -interaction=nonstopmode -halt-on-error -file-line-error -jobname=c5p-s-2026-merged-answer 'D:\\Study\\信奥\\CSP\\c5p-s-2026-merged-answer.tex'
 ```
 
-- [ ] **Step 2: Scan logs and extracted text**
+- [x] **Step 2: Scan logs and extracted text**
 
-Check that the question PDF has 16 pages, the answer PDF has 6 pages, and logs contain no LaTeX errors, undefined references, overfull boxes, underfull boxes, emergency stops, or missing characters. Confirm the extracted question text contains the new `jump` wording and the updated line references.
+Check that the question PDF has 17 pages, the answer PDF has 6 pages, and logs contain no LaTeX errors, undefined references, overfull boxes, underfull boxes, emergency stops, or missing characters. Confirm the extracted question text contains the neutral pointer implementation and the updated line references.
 
-- [ ] **Step 3: Render and inspect representative pages**
+- [x] **Step 3: Render and inspect representative pages**
 
 Render both PDFs with `pdftoppm`. Inspect the reading-program code page, the page containing Q16--20, the answer page containing the new diagram and Q16--20, the line-segment-tree page, and the title/scoring page.
 
