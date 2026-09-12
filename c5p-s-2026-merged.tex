@@ -139,7 +139,8 @@
 {\dengxian
 {\xeCJKsetup{CJKecglue={\hskip 0.419em}}\fontsize{15.95}{1}\selectfont 2026 €€£超专业级别硬件能力认证第一轮} \\[1.5em]
     {\xeCJKsetup{CJKecglue={\hskip 0.419em}}\fontsize{15.95}{1}\selectfont （C5P-S1） 提高级 C++\hspace{0pt}语言试题} \\[1.5em]
-{\xeCJKsetup{CJKecglue={\hskip 0.344em}}\fontsize{14.05}{1}\selectfont 认证时间：2026年9月18日14:30\textasciitilde16:30}
+{\xeCJKsetup{CJKecglue={\hskip 0.344em}}\fontsize{14.05}{1}\selectfont 认证时间：2026年9月18日14:30\textasciitilde16:30}\\[1em]
+{\fontsize{12}{1}\selectfont 编者：唐一潇、季灵、裘泽燑}
 }
 \end{center}
 
@@ -318,7 +319,7 @@ int main() {
 \q{21.} 当 \texttt{m=3} 时，经过第 16--18 行的状态枚举后，\texttt{st.size()} 的值为 5。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \begin{minipage}{\linewidth}
-\q{22.} 在第 30--31 行的某次转移中，若当前状态 \texttt{s=101}、上一行状态 \texttt{t=001}，则程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前状态。（\qquad）\\
+\q{22.} 若某次枚举中 \texttt{s=101}、\texttt{t=001}，程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前结果。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \end{minipage}
 \q{23.}（2 分）输入为 \texttt{n=3,m=2}，三行均为 \texttt{..}。保留第 26 行与删除第 26 行后，程序输出的二元组（保留，删除）为（\qquad）\\
@@ -426,12 +427,12 @@ int main() {
 \opt{A. 正确}\opt{B. 错误}
 
 \noindent\wdot\hspace{0.5em}单选题\\
-\q{30.} 设当前结点 \texttt{p} 表示区间 \([l,r]\)，执行第 24 行的 \texttt{apply(p,l,r,k,b)} 后，\texttt{tr[p].sum} 的新值为（\qquad）\\
+\q{30.} 设当前结点 \texttt{p} 表示区间 \([l,r]\)，执行第 39 行调用的 \texttt{apply(p,l,r,k,b)} 后，\texttt{tr[p].sum} 的新值为（\qquad）\\
 \opt{A. \texttt{(tr[p].sum*k+b) \% P}}
 \opt{B. \texttt{(tr[p].sum*k+(r-l+1)*b) \% P}}
 \opt{C. \texttt{((tr[p].sum+b)*k) \% P}}
 \opt{D. \texttt{((r-l+1)*(tr[p].sum*k+b)) \% P}}
-\q{31.} 关于第 32--35 行的函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
+\q{31.} 关于第 28--36 行的函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
 \opt{A. 交换左、右子结点调用 \texttt{apply} 的先后顺序}
 \opt{B. 在调用两个子结点的 \texttt{apply} 前，先把 \texttt{tr[p].add} 置为 0}
 \opt{C. 把两个 \texttt{apply} 调用中的参数 \texttt{b} 都改为 0}
