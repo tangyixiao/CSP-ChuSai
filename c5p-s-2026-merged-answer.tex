@@ -9,6 +9,7 @@
 \setmainfont{Consolas}
 \setCJKmainfont[BoldFont=SimHei]{SimSun}
 \usepackage{tikz}
+\usetikzlibrary{arrows.meta,positioning}
 \usepackage{eso-pic}
 \newcommand{\waterword}{%
   \makebox[0pt][c]{%
@@ -53,6 +54,83 @@
 \newcommand{\overview}[1]{\par\smallskip\noindent\textbf{程序总析：}#1\par\smallskip}
 \newCJKfontfamily{\dengxian}{DengXian}
 
+% ---------------- 阅读程序配套图表 ----------------
+\newcommand{\kmpchart}{%
+\begin{center}
+\begin{tikzpicture}[
+  prebox/.style={draw=blue!55!black, fill=blue!5, rounded corners=2pt,
+    minimum width=1.35cm, minimum height=0.52cm, font=\scriptsize},
+  chain/.style={draw=orange!70!black, fill=orange!8, rounded corners=2pt,
+    minimum width=1.05cm, minimum height=0.48cm, font=\small},
+  flow/.style={-{Latex[length=2mm]}, thick, draw=black!65}
+]
+\node[anchor=west, font=\small\bfseries] at (0,1.08) {前缀函数示例：\texttt{ababa}};
+\node[prebox] (p1) at (0.70,0.35) {\texttt{a}\;|\;\(\pi=0\)};
+\node[prebox] (p2) at (2.25,0.35) {\texttt{ab}\;|\;\(\pi=0\)};
+\node[prebox] (p3) at (3.80,0.35) {\texttt{aba}\;|\;\(\pi=1\)};
+\node[prebox] (p4) at (5.35,0.35) {\texttt{abab}\;|\;\(\pi=2\)};
+\node[prebox] (p5) at (6.90,0.35) {\texttt{ababa}\;|\;\(\pi=3\)};
+\draw[flow] (p1) -- (p2);
+\draw[flow] (p2) -- (p3);
+\draw[flow] (p3) -- (p4);
+\draw[flow] (p4) -- (p5);
+\node[anchor=west, font=\small] at (0,-0.35) {回退链：};
+\node[chain] (c5) at (1.25,-0.35) {长度 5};
+\node[chain] (c3) at (3.00,-0.35) {长度 3};
+\node[chain] (c1) at (4.75,-0.35) {长度 1};
+\node[chain] (c0) at (6.50,-0.35) {长度 0};
+\draw[flow] (c5) -- node[above, font=\scriptsize] {\(\pi[4]\)} (c3);
+\draw[flow] (c3) -- node[above, font=\scriptsize] {\(\pi[2]\)} (c1);
+\draw[flow] (c1) -- node[above, font=\scriptsize] {\(\pi[0]\)} (c0);
+\end{tikzpicture}
+\end{center}
+}
+
+\newcommand{\dpchart}{%
+\begin{center}
+\begin{tikzpicture}[
+  mask/.style={draw=green!45!black, fill=green!7, rounded corners=2pt,
+    minimum width=1.0cm, minimum height=0.48cm, font=\small},
+  flow/.style={-{Latex[length=2mm]}, thick, draw=black!60},
+  rulebox/.style={draw=purple!55!black, fill=purple!6, rounded corners=3pt,
+    align=left, inner sep=5pt, font=\small}
+]
+\node[anchor=west, font=\small\bfseries] at (0,0.85) {单行可用掩码};
+\node[mask] (m0) at (0,0.15) {\texttt{000}};
+\node[mask] (m1) at (1.18,0.15) {\texttt{001}};
+\node[mask] (m2) at (2.36,0.15) {\texttt{010}};
+\node[mask] (m3) at (3.54,0.15) {\texttt{100}};
+\node[mask] (m4) at (4.72,0.15) {\texttt{101}};
+\node[rulebox] (rule) at (9.00,0.15) {\textbf{相邻两行的兼容条件}\\[2pt]
+  \(s \mathbin{\&} t = 0\)：保留\qquad
+  \(s \mathbin{\&} t \ne 0\)：跳过};
+\draw[flow] (m4.east) -- (rule.west);
+\node[anchor=west, font=\scriptsize, text=black!65] at (0,-0.45)
+  {同一行先排除相邻的 1；相邻行再检查同一列是否同时取 1。};
+\end{tikzpicture}
+\end{center}
+}
+
+\newcommand{\segchart}{%
+\begin{center}
+\begin{tikzpicture}[
+  seg/.style={draw=red!55!black, fill=red!5, rounded corners=3pt,
+    minimum width=2.8cm, minimum height=0.68cm, align=center, font=\small},
+  flow/.style={-{Latex[length=2mm]}, thick, draw=black!65},
+  note/.style={draw=orange!65!black, fill=orange!7, rounded corners=3pt,
+    align=center, inner sep=4pt, font=\small}
+]
+\node[seg] (root) at (3.20,1.10) {父结点\quad 区间总和\\懒标记 \((\mathit{mul},\mathit{add})\)};
+\node[seg] (left) at (1.25,-0.05) {左子结点\\区间总和};
+\node[seg] (right) at (5.15,-0.05) {右子结点\\区间总和};
+\draw[flow] (root.south west) -- node[above left, font=\scriptsize] {\texttt{apply(k,b)}} (left.north);
+\draw[flow] (root.south east) -- node[above right, font=\scriptsize] {\texttt{apply(k,b)}} (right.north);
+\node[note] (reset) at (3.20,-1.30) {下传完成后清除父结点标记\\\((\mathit{mul},\mathit{add})\gets(1,0)\)};
+\draw[flow] (root.south) -- (reset.north);
+\end{tikzpicture}
+\end{center}
+}
+
 \pagestyle{fancy}
 \fancyhf{}
 \fancyfoot[C]{\xeCJKsetup{CJKecglue={\hskip0pt}}{\songti 折工 C5P-S 2026 参考答案与解析}\\[2pt]{\songti 第\thepage 页，共\pageref{LastPage}页}}
@@ -65,7 +143,8 @@
 {\dengxian
 {\fontsize{15.95}{1}\selectfont 2026 €€£超专业级别硬件能力认证第一轮}\\[1em]
 {\fontsize{14.05}{1}\selectfont （C5P-S1）提高级 C++语言试题 \textbf{参考答案与解析}}\\[1em]
-{\fontsize{12}{1}\selectfont 认证时间：2026年9月18日14:30\textasciitilde16:30}
+{\fontsize{12}{1}\selectfont 认证时间：2026年9月18日14:30\textasciitilde16:30}\\[1em]
+{\fontsize{12}{1}\selectfont 编者：唐一潇、季灵、裘泽燑}
 }
 \end{center}
 
@@ -116,6 +195,7 @@
 
 \subsection*{（1）KMP 前缀函数}
 \overview{程序先求每个前缀的最长真前后缀长度，再沿着前缀函数回退，累加整个字符串及各级相同前后缀的长度。}
+\kmpchart
 \ans{16.}{A（正确）}\expn{程序第 10--16 行计算前缀函数。输入为 \texttt{ababa} 时，各位置的前缀函数值为 \texttt{0,0,1,2,3}，所以第 16 行得到 \texttt{pi[4]=3}。}
 \ans{17.}{C}\expn{输入 \texttt{ababa} 时，前缀函数回退链为长度 $5\to3\to1$，第 19--20 行累加得到 $5+3+1=9$。}
 \ans{18.}{A}\expn{输入 \texttt{bbba} 时，按第 12 行的 \texttt{while} 计算得到输出 4；改为只回退一次的 \texttt{if} 后，第 12 行得到错误的前缀函数，输出为 5，因此二元组为 \texttt{(4,5)}。}
@@ -124,6 +204,7 @@
 
 \subsection*{（2）状态压缩 DP}
 \overview{每一行用无相邻 1 的位掩码表示选取位置，转移要求相邻两行掩码不相交。}
+\dpchart
 \ans{21.}{A（正确）}\expn{第 16--18 行保留没有相邻 1 的状态；三列中合法状态为 \texttt{000,001,010,100,101}，共 5 个。}
 \ans{22.}{A（正确）}\expn{第 30--31 行判断两行是否冲突。\texttt{101\&001=001} 非零，所以执行第 31 行的 \texttt{continue}，不会执行后面的转移累加。}
 \ans{23.}{A}\expn{输入为三行两列的全空棋盘时，保留第 26 行的输出为 17；删除第 26 行后，上一轮滚动数组中的数会残留，输出变为 23。}
@@ -133,10 +214,11 @@
 
 \subsection*{（3）区间仿射更新线段树}
 \overview{每个结点保存所代表区间的总和。一次完整覆盖的更新可以先记在当前结点，之后访问子区间时再传给两个子结点。}
+\segchart
 \ans{27.}{A（正确）}\expn{第 38--40 行是 \texttt{upd} 的完整覆盖分支：第 39 行调用一次 \texttt{apply}，第 40 行立即返回，不再访问子结点。}
 \ans{28.}{B（错误）}\expn{第 32、33 行下传懒标记，第 34、35 行分别重置 \texttt{mul} 和 \texttt{add}。删除第 35 行会使旧的加法标记重复下传，导致结果错误。}
 \ans{29.}{A（正确）}\expn{程序第 12--22 行建树为 $O(n)$，第 37--49 行的每次更新和第 50--61 行的每次查询均为 $O(\log n)$，总量可写成 $O(n+q\log n)$，也属于 $O((n+q)\log n)$。}
-\ans{30.}{B}\expn{第 24 行更新区间总和。区间中共有 \texttt{r-l+1} 个数，每个数先乘 \texttt{k} 再加 \texttt{b}，所以总和变为 \texttt{tr[p].sum*k+(r-l+1)*b}，最后取模。}
+\ans{30.}{B}\expn{程序第 39 行调用 \texttt{apply} 更新区间总和。区间中共有 \texttt{r-l+1} 个数，每个数先乘 \texttt{k} 再加 \texttt{b}，所以总和变为 \texttt{tr[p].sum*k+(r-l+1)*b}，最后取模。}
 \ans{31.}{A}\expn{第 32、33 行分别对左右子结点调用 \texttt{apply}。交换调用顺序只改变访问顺序，不改变结果；其余修改会丢失或重复应用更新。}
 \ans{32.}{B（4 分）}\expn{三次更新后的数组为 \texttt{8 11 27 39 13 13}，因此区间 $[2,6]$ 的和为 $11+27+39+13+13=103$。}
 
