@@ -225,35 +225,40 @@ long long A(int m, long long n) {
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 2e5 + 5;
-int n, pi[N];
-string s;
+int n;
+char *s;
+int *pi;
 
 int main() {
+    s = new char[N]{};
+    pi = new int[N]{};
     cin >> s;
-    n = s.size();
+    n = strlen(s);
     for (int i = 1; i < n; ++i) {
-        int j = pi[i - 1];
-        while (j && s[i] != s[j])
-            j = pi[j - 1];
-        if (s[i] == s[j])
+        int j = *(pi + i - 1);
+        while (j && *(s + i) != *(s + j))
+            j = *(pi + j - 1);
+        if (*(s + i) == *(s + j))
             ++j;
-        pi[i] = j;
+        *(pi + i) = j;
     }
     int ans = 0;
-    for (int len = n; len > 0; len = pi[len - 1])
+    for (int len = n; len > 0; len = *(pi + len - 1))
         ans += len;
     cout << ans << '\n';
+    delete[] pi;
+    delete[] s;
 }
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{16.} 当输入字符串为 \texttt{ababa} 时，程序计算得到 \texttt{pi[4]=3}。（\qquad）\\
+\q{16.} 当输入字符串为 \texttt{ababa} 时，程序计算得到 \texttt{*(pi+4)=3}。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \begin{minipage}{\linewidth}
-\q{17.} 输入字符串为 \texttt{ababa}，程序执行第 19--20 行的累加循环后，输出为（\qquad）\\
+\q{17.} 输入字符串为 \texttt{ababa}，程序执行第 22--23 行的累加循环后，输出为（\qquad）\\
 \opt{A. 7}\opt{B. 8}\opt{C. 9}\opt{D. 10}
 \end{minipage}
-\q{18.} 输入字符串为 \texttt{bbba}。第 12 行的 \texttt{while} 保持不变时程序输出为 \texttt{X}；只将第 12 行的 \texttt{while} 改为 \texttt{if} 时程序输出为 \texttt{Y}。二元组 \texttt{(X,Y)} 为（\qquad）\\
+\q{18.} 输入字符串为 \texttt{bbba}。第 15 行的 \texttt{while} 保持不变时程序输出为 \texttt{X}；只将第 15 行的 \texttt{while} 改为 \texttt{if} 时程序输出为 \texttt{Y}。二元组 \texttt{(X,Y)} 为（\qquad）\\
 \opt{A. \texttt{(4,5)}}\opt{B. \texttt{(5,4)}}
 \opt{C. \texttt{(4,4)}}\opt{D. \texttt{(5,5)}}
 
@@ -316,7 +321,7 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \noindent\wdot\hspace{0.5em}判断题\\
-\q{21.} 当 \texttt{m=3} 时，经过第 16--18 行的状态枚举后，\texttt{st.size()} 的值为 5。（\qquad）\\
+\q{21.} 当 \texttt{m=3} 时，经过第 16--18 行的枚举后，\texttt{st.size()} 的值为 5。（\qquad）\\
 \opt{A. 正确}\opt{B. 错误}
 \begin{minipage}{\linewidth}
 \q{22.} 若某次枚举中 \texttt{s=101}、\texttt{t=001}，程序会执行 \texttt{continue}，不会把 \texttt{f[pre][t]} 加入当前结果。（\qquad）\\
@@ -432,8 +437,8 @@ int main() {
 \opt{B. \texttt{(tr[p].sum*k+(r-l+1)*b) \% P}}
 \opt{C. \texttt{((tr[p].sum+b)*k) \% P}}
 \opt{D. \texttt{((r-l+1)*(tr[p].sum*k+b)) \% P}}
-\q{31.} 关于第 28--36 行的函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
-\opt{A. 交换左、右子结点调用 \texttt{apply} 的先后顺序}
+\q{31.} 关于 \texttt{push} 函数中第 34--35 行的懒标记重置语句，下列修改中不会改变程序输出的是（\qquad）\\
+\opt{A. 交换给左右子结点传递懒标记的先后顺序}
 \opt{B. 在调用两个子结点的 \texttt{apply} 前，先把 \texttt{tr[p].add} 置为 0}
 \opt{C. 把两个 \texttt{apply} 调用中的参数 \texttt{b} 都改为 0}
 \opt{D. 删除右子结点的 \texttt{apply} 调用，但保留左子结点的调用}
