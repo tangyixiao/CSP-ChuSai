@@ -55,7 +55,7 @@
 \newCJKfontfamily{\dengxian}{DengXian}
 
 % ---------------- 阅读程序配套图表 ----------------
-\newcommand{\kmpchart}{%
+\newcommand{\textchart}{%
 \begin{center}
 \begin{tikzpicture}[
   prebox/.style={draw=blue!55!black, fill=blue!5, rounded corners=2pt,
@@ -64,12 +64,12 @@
     minimum width=1.05cm, minimum height=0.48cm, font=\small},
   flow/.style={-{Latex[length=2mm]}, thick, draw=black!65}
 ]
-\node[anchor=west, font=\small\bfseries] at (0,1.08) {前缀函数示例：\texttt{ababa}};
-\node[prebox] (p1) at (0.70,0.35) {\texttt{a}\;|\;\(\pi=0\)};
-\node[prebox] (p2) at (2.25,0.35) {\texttt{ab}\;|\;\(\pi=0\)};
-\node[prebox] (p3) at (3.80,0.35) {\texttt{aba}\;|\;\(\pi=1\)};
-\node[prebox] (p4) at (5.35,0.35) {\texttt{abab}\;|\;\(\pi=2\)};
-\node[prebox] (p5) at (6.90,0.35) {\texttt{ababa}\;|\;\(\pi=3\)};
+\node[anchor=west, font=\small\bfseries] at (0,1.08) {字符串片段示例：\texttt{ababa}};
+\node[prebox] (p1) at (0.70,0.35) {\texttt{a}\;|\;记录 0};
+\node[prebox] (p2) at (2.25,0.35) {\texttt{ab}\;|\;记录 0};
+\node[prebox] (p3) at (3.80,0.35) {\texttt{aba}\;|\;记录 1};
+\node[prebox] (p4) at (5.35,0.35) {\texttt{abab}\;|\;记录 2};
+\node[prebox] (p5) at (6.90,0.35) {\texttt{ababa}\;|\;记录 3};
 \draw[flow] (p1) -- (p2);
 \draw[flow] (p2) -- (p3);
 \draw[flow] (p3) -- (p4);
@@ -79,9 +79,9 @@
 \node[chain] (c3) at (3.00,-0.35) {长度 3};
 \node[chain] (c1) at (4.75,-0.35) {长度 1};
 \node[chain] (c0) at (6.50,-0.35) {长度 0};
-\draw[flow] (c5) -- node[above, font=\scriptsize] {\(\texttt{*(pi+4)}\)} (c3);
-\draw[flow] (c3) -- node[above, font=\scriptsize] {\(\texttt{*(pi+2)}\)} (c1);
-\draw[flow] (c1) -- node[above, font=\scriptsize] {\(\texttt{*(pi+0)}\)} (c0);
+\draw[flow] (c5) -- (c3);
+\draw[flow] (c3) -- (c1);
+\draw[flow] (c1) -- (c0);
 \end{tikzpicture}
 \end{center}
 }
@@ -151,7 +151,7 @@
 \vspace{6pt}
 \noindent\textbf{考生注意事项：}
 \begin{itemize}
-  \item 试题纸共有 16 页，答题纸共有 1 页，满分 100 分。请在答题纸上作答，写在试题纸上的一律无效。
+  \item 试题纸共有 17 页，答题纸共有 1 页，满分 100 分。请在答题纸上作答，写在试题纸上的一律无效。
   \item 不得使用任何电子设备（如计算器、手机、电子词典等）或查阅任何书籍资料。
 \end{itemize}
 
@@ -164,7 +164,7 @@
 部分 & 题号 & 题量与计分 & 小计\\
 \midrule
 单项选择 & 1--15 & $15\times2$ 分 & 30 分\\
-阅读程序（1）KMP & 16--20 & $3\times1.5+1\times3+1\times4$ 分 & 11.5 分\\
+阅读程序（1）字符串边界处理 & 16--20 & $3\times1.5+1\times3+1\times4$ 分 & 11.5 分\\
 阅读程序（2）状态压缩 DP & 21--26 & $2\times1.5+1\times2+3\times3$ 分 & 14 分\\
 阅读程序（3）区间乘加线段树 & 27--32 & $3\times1.5+2\times3+1\times4$ 分 & 14.5 分\\
 完善程序 & 33--42 & $10\times3$ 分 & 30 分\\
@@ -193,14 +193,14 @@
 
 \section*{二、阅读程序（16--32）}
 
-\subsection*{（1）KMP 前缀函数}
-\overview{程序先求每个前缀的最长真前后缀长度，再沿着前缀函数回退，累加整个字符串及各级相同前后缀的长度。}
-\kmpchart
-\ans{16.}{A（正确）}\expn{改为指针后，\texttt{pi} 仍保存同一组前缀函数值，只是通过 \texttt{*(pi+i)} 访问；处理 \texttt{ababa} 时各项仍为 \texttt{0,0,1,2,3}。最后一个字符 \texttt{a} 与长度为 2 的候选前缀后继匹配，所以 \texttt{*(pi+4)=3}，判断正确。}
-\ans{17.}{C}\expn{第 22 行第一次取 \texttt{len=5}，第 23 行累加 5；随后令 \texttt{len=*(pi+4)=3}，再累加 3；接着令 \texttt{len=*(pi+2)=1}，累加 1；最后 \texttt{*(pi+0)=0}，循环结束。因此输出为 $5+3+1=9$，选 C。}
-\ans{18.}{A}\expn{输入 \texttt{bbba} 时，处理最后一个 \texttt{a}，初始 \texttt{j=*(pi+2)=2}。第 15 行的 \texttt{while} 会连续回退到 1、再回退到 0，最终写入 \texttt{*(pi+3)=0}，累加循环只得到 4。若改成 \texttt{if}，只回退一次到 1，随后比较仍失败却停下，写入 \texttt{*(pi+3)=1}，回退链为 $4\to1\to0$，输出 5，所以二元组为 \texttt{(4,5)}。}
-\ans{19.}{C}\expn{该串长度为 14，前缀函数回退得到的边界长度依次为 14、8、2、0；其中长度 8 和长度 2 分别对应相同的前缀与后缀。第 22--23 行把非零长度相加，得到 $14+8+2=24$，因此选 C。}
-\ans{20.}{B}\expn{第 13--19 行通过指针访问字符和前缀函数数组；每次成功比较会使 \texttt{j} 增加，而 \texttt{while} 回退会使 \texttt{j} 严格减小，从摊还角度看总次数为 $O(n)$。第 22--23 行的回退链长度总和也不超过 $n$，所以时间复杂度为 $O(n)$；动态申请的字符缓冲区和整数数组占用 $O(n)$ 空间，末尾用 \texttt{delete[]} 释放，选 B。}
+\subsection*{（1）字符串边界处理}
+\overview{程序逐个处理字符串位置，为每个位置记录一个可继续比较的长度；遇到不匹配时沿已记录的长度逐级回退，最后把完整长度和各级相同首尾片段的长度相加。}
+\textchart
+\ans{16.}{A（正确）}\expn{程序改用指针后，\texttt{mark} 仍记录每个位置对应的长度。处理 \texttt{ababa} 时记录值依次为 \texttt{0,0,1,2,3}；最后一个字符 \texttt{a} 与长度为 2 的候选片段后继匹配，所以 \texttt{*(mark+4)=3}，判断正确。}
+\ans{17.}{C}\expn{第 34 行第一次取 \texttt{len=5}，第 35 行累加 5；随后令 \texttt{len=fetch(5)=3}，再累加 3；接着令 \texttt{len=fetch(3)=1}，累加 1；最后 \texttt{fetch(1)=0}，循环结束。因此输出为 $5+3+1=9$，选 C。}
+\ans{18.}{A}\expn{输入 \texttt{bbba} 时，处理最后一个 \texttt{a}，初始候选长度为 \texttt{fetch(3)=2}。第 17 行的 \texttt{while} 会连续回退到 1、再回退到 0，最终写入 \texttt{*(mark+3)=0}，累加循环只得到 4。若改成 \texttt{if}，只回退一次到 1，随后比较仍失败却停下，写入 \texttt{*(mark+3)=1}，回退链为 $4\to1\to0$，输出 5，所以二元组为 \texttt{(4,5)}。}
+\ans{19.}{C}\expn{该串长度为 14，逐级回退得到的长度依次为 14、8、2、0；其中长度 8 和长度 2 分别对应相同的首段与尾段。第 34--35 行把非零长度相加，得到 $14+8+2=24$，因此选 C。}
+\ans{20.}{B}\expn{第 16--21 行通过辅助函数和指针访问完成逐位置处理；每次匹配成功会使候选长度增加，而第 17--19 行的回退会使它严格减小，因此所有增加和回退的总次数为 $O(n)$。第 34--35 行沿记录的长度逐级回退，总次数也不超过 $n$，所以时间复杂度为 $O(n)$；动态申请的字符缓冲区和整数数组占用 $O(n)$ 空间，末尾用 \texttt{delete[]} 释放，选 B。}
 
 \subsection*{（2）状态压缩 DP}
 \overview{每一行用无相邻 1 的位掩码表示选取位置，转移要求相邻两行掩码不相交。}
