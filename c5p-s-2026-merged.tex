@@ -432,8 +432,8 @@ int main() {
 \opt{B. \texttt{(tr[p].sum*k+(r-l+1)*b) \% P}}
 \opt{C. \texttt{((tr[p].sum+b)*k) \% P}}
 \opt{D. \texttt{((r-l+1)*(tr[p].sum*k+b)) \% P}}
-\q{31.} 关于第 28--36 行的函数 \texttt{push}，下列修改中不会改变程序输出的是（\qquad）\\
-\opt{A. 交换左、右子结点调用 \texttt{apply} 的先后顺序}
+\q{31.} 关于 \texttt{push} 函数中第 34--35 行的懒标记重置语句，下列修改中不会改变程序输出的是（\qquad）\\
+\opt{A. 交换给左右子结点传递懒标记的先后顺序}
 \opt{B. 在调用两个子结点的 \texttt{apply} 前，先把 \texttt{tr[p].add} 置为 0}
 \opt{C. 把两个 \texttt{apply} 调用中的参数 \texttt{b} 都改为 0}
 \opt{D. 删除右子结点的 \texttt{apply} 调用，但保留左子结点的调用}
