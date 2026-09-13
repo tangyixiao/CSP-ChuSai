@@ -224,7 +224,7 @@
 
 \section*{三、完善程序（33--42）}
 \subsection*{（1）三色序列}
-\ans{33.}{C}\expn{\texttt{seen[t][i]} 表示前 $i$ 个字符中颜色 \texttt{t} 的出现次数。处理位置 $i$ 时，应先继承前 $i-1$ 个字符的计数；若当前位置颜色 \texttt{c} 恰好等于 \texttt{t}，再增加 1，所以填 \texttt{seen[t][i-1] + (t == c)}。}
+\ans{33.}{C}\expn{\texttt{got[t][i]} 表示前 $i$ 个字符中颜色 \texttt{t} 的出现次数。处理位置 $i$ 时，应先继承前 $i-1$ 个字符的计数；若当前位置颜色 \texttt{c} 恰好等于 \texttt{t}，再增加 1，所以填 \texttt{got[t][i-1] + (t == c)}。}
 \ans{34.}{B}\expn{记录 \texttt{f[0][0][0][3]} 表示还没有放置任何字符，\texttt{last=3} 只作为“没有上一个颜色”的特殊标记。此时没有发生相邻交换，最小代价应为 0；\texttt{INF} 表示不可达，不能作为初始值。}
 \ans{35.}{A}\expn{循环处理前 \texttt{len} 个位置，若其中使用了 \texttt{r} 个 R 和 \texttt{g} 个 G，剩余位置只能由 Y 填充。因此已使用的 Y 数量为 \texttt{y=len-r-g}；若超出 $0$ 到 \texttt{cnt[2]} 的范围，这种情况立即被跳过。}
 \ans{36.}{A}\expn{加入颜色 \texttt{c} 前必须同时满足两个条件：它不能与上一个颜色 \texttt{last} 相同，并且该颜色仍有剩余数量。代码在条件为真时执行 \texttt{continue}，所以“相同”或“已用完”任一情况都要跳过，填 \texttt{c == last || used[c] == cnt[c]}。}

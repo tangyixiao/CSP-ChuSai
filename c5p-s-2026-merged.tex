@@ -470,7 +470,7 @@ int main() {
 #include <bits/stdc++.h>
 using namespace std;
 const int N = 405, INF = 1e9;
-int n, cnt[3], pos[3][N], seen[3][N];
+int n, cnt[3], pos[3][N], got[3][N];
 int f[2][N][N][4];
 string s;
 int main() {
@@ -484,9 +484,9 @@ int main() {
         else
             c = 2;
         for (int t = 0; t < 3; ++t)
-            seen[t][i] = |@\blank{①}@|;
+            got[t][i] = |@\blank{①}@|;
         pos[c][++cnt[c]] = i;
-        ++seen[c][i];
+        ++got[c][i];
     }
     memset(f, 0x3f, sizeof(f));
     f[0][0][0][3] = |@\blank{②}@|;
@@ -509,7 +509,7 @@ int main() {
                         int x = pos[c][used[c] + 1];
                         int w = x - len - 1;
                         for (int t = 0; t < 3; ++t)
-                            w += max(0,used[t]-seen[t][x]);
+                            w += max(0,used[t]-got[t][x]);
                         int nr = r, ng = g;
                         if (c == 0)
                             ++nr;
@@ -532,8 +532,8 @@ int main() {
 \end{lstlisting}\end{codebox}
 
 \q{33.} 第18行①处应填（\qquad）\\
-\optw{A. \texttt{seen[t][i-1]}}{B. \texttt{seen[t][i] + 1}}
-\optw{C. \texttt{seen[t][i-1] + (t == c)}}{D. \texttt{seen[c][i-1]}}
+\optw{A. \texttt{got[t][i-1]}}{B. \texttt{got[t][i] + 1}}
+\optw{C. \texttt{got[t][i-1] + (t == c)}}{D. \texttt{got[c][i-1]}}
 \q{34.} 第23行②处应填（\qquad）\\
 \optw{A. \texttt{INF}}{B. \texttt{0}}
 \optw{C. \texttt{1}}{D. \texttt{len}}
