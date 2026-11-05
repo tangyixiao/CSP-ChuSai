@@ -2,25 +2,46 @@
   "repo": "tangyixiao/CSP-ChuSai",
   "sourceBranch": "main",
   "sourceCommit": "918ac921930070bdbafa9e33b625a8ff1e01138a",
+  "designVersion": 3,
+  "direction": {
+    "visualConcept": "靛墨、暖白卷纸与黄色书签的自制初赛备考桌：真实试卷首页与参考解析首页一前一后斜放，43 小题只作为来源明确的卷面结构，不再做软件式介绍页。事实边界：自制模拟卷和参考解析，不是官方试题、考纲或机构背书，不承诺提分。",
+    "layout": "editorial",
+    "palette": {
+      "light": {
+        "bg": "#E5E0D1",
+        "surface": "#FAF4E4",
+        "ink": "#30344A",
+        "muted": "#616273",
+        "accent": "#4d5685"
+      },
+      "dark": {
+        "bg": "#20202B",
+        "surface": "#313143",
+        "ink": "#EEE9DD",
+        "muted": "#aaa9c1",
+        "accent": "#babde4"
+      }
+    },
+    "threeConcept": "Three.js 制作一叠有真实页厚的试卷活页，题面与解析使用实际渲染贴图，黄色书签夹在中间；不生成新的试题和答卷。",
+    "distinctiveInteraction": "用户切换“先看题面 / 查看参考解析”来前移两份真实文档；解析默认需主动展开，下载入口指向各自 PDF，不现场评分。"
+  },
   "media": [
     {
       "src": "assets/media/product-1.webp",
       "alt": "self-authored exam first page",
       "url": "https://github.com/tangyixiao/CSP-ChuSai/blob/918ac921930070bdbafa9e33b625a8ff1e01138a/c5p-s-2026.pdf",
-      "width": 1132,
-      "height": 1600
+      "path": "c5p-s-2026.pdf"
     },
     {
       "src": "assets/media/product-2.webp",
       "alt": "self-authored answers first page",
       "url": "https://github.com/tangyixiao/CSP-ChuSai/blob/918ac921930070bdbafa9e33b625a8ff1e01138a/c5p-s-2026-answer.pdf",
-      "width": 1132,
-      "height": 1600
+      "path": "c5p-s-2026-answer.pdf"
     }
   ],
   "skills": [
     "baoyu-design",
     "design-taste-frontend"
   ],
-  "design": "content-first source/product/photography; no rejected template or faux 3D"
+  "flagshipModel": null
 }
