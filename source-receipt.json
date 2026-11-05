@@ -1,0 +1,26 @@
+{
+  "repo": "tangyixiao/CSP-ChuSai",
+  "sourceBranch": "main",
+  "sourceCommit": "918ac921930070bdbafa9e33b625a8ff1e01138a",
+  "media": [
+    {
+      "src": "assets/media/product-1.webp",
+      "alt": "self-authored exam first page",
+      "url": "https://github.com/tangyixiao/CSP-ChuSai/blob/918ac921930070bdbafa9e33b625a8ff1e01138a/c5p-s-2026.pdf",
+      "width": 1132,
+      "height": 1600
+    },
+    {
+      "src": "assets/media/product-2.webp",
+      "alt": "self-authored answers first page",
+      "url": "https://github.com/tangyixiao/CSP-ChuSai/blob/918ac921930070bdbafa9e33b625a8ff1e01138a/c5p-s-2026-answer.pdf",
+      "width": 1132,
+      "height": 1600
+    }
+  ],
+  "skills": [
+    "baoyu-design",
+    "design-taste-frontend"
+  ],
+  "design": "content-first source/product/photography; no rejected template or faux 3D"
+}
