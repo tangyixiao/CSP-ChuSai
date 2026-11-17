@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "description": "Work through an independent CSP-S mock with 43 questions worth 100 points across multiple choice, program reading and code completion."
+  },
+  "pages": {
+    "home": {
+      "title": "Try a full preliminary-round mock paper · {project}"
+    },
+    "features": {
+      "title": "Features · {project}",
+      "description": "Work through an independent CSP-S mock with 43 questions worth 100 points across multiple choice, program reading and code completion."
+    },
+    "download": {
+      "title": "Get started · {project}",
+      "description": "Open the question PDF and record your answers and the steps you could not justify."
+    },
+    "community": {
+      "title": "Community · {project}",
+      "description": "Find usage guidance, follow discussions and review changes to this project."
+    }
+  },
+  "nav": {
+    "home": "Home",
+    "features": "Features",
+    "download": "Get started",
+    "community": "Community"
+  },
+  "ui": {
+    "skip_link": "Skip to main content",
+    "navigation": "Main navigation",
+    "open_navigation": "Open navigation",
+    "close_navigation": "Close navigation",
+    "language": "Choose language",
+    "theme": "Choose theme",
+    "light": "Light",
+    "dark": "Dark",
+    "system": "System",
+    "platforms": "Supported platforms",
+    "github": "GitHub",
+    "view_image": "View full illustration",
+    "feature_more": "Explore features",
+    "download": "Open the mock paper",
+    "release_notes": "Source repository",
+    "documentation": "Documentation",
+    "source": "Source repository",
+    "illustration": "First steps",
+    "license": "Rights for mock papers and third-party materials"
+  },
+  "hero": {
+    "title": [
+      "Try a full preliminary-round mock paper"
+    ],
+    "description": [
+      "Work through an independent CSP-S mock with 43 questions worth 100 points across multiple choice, program reading and code completion."
+    ],
+    "primary_action": "Open the mock paper",
+    "secondary_action": "Explore features"
+  },
+  "preview": {
+    "caption": "First steps",
+    "tabs": [
+      {
+        "label": "Get started",
+        "icon": "book"
+      }
+    ],
+    "items": [
+      {
+        "title": "Sit the paper",
+        "description": "Open the question PDF and record your answers and the steps you could not justify.",
+        "icon": "book"
+      },
+      {
+        "title": "Review by topic",
+        "description": "Open the worked answers and consult the topic matrix to revisit the skills behind each error.",
+        "icon": "link"
+      }
+    ]
+  },
+  "features": {
+    "title": "Project features",
+    "groups": [
+      {
+        "title": "Trace the program",
+        "description": "Follow merge sort, a monotonic stack and a tree-diameter routine with the intermediate variables in view.",
+        "detail": "",
+        "icon": "layers"
+      },
+      {
+        "title": "Complete the code",
+        "description": "Fill in missing pieces of a k-th sum algorithm and Kruskal’s minimum spanning tree, then check the reasoning.",
+        "detail": "",
+        "icon": "book"
+      }
+    ]
+  },
+  "getting_started": {
+    "title": "Get started · {project}",
+    "steps": [
+      {
+        "title": "Sit the paper",
+        "description": "Open the question PDF and record your answers and the steps you could not justify.",
+        "icon": "book"
+      },
+      {
+        "title": "Review by topic",
+        "description": "Open the worked answers and consult the topic matrix to revisit the skills behind each error.",
+        "icon": "link"
+      }
+    ]
+  },
+  "community": {
+    "title": "Community · {project}",
+    "description": "Find usage guidance, follow discussions and review changes to this project.",
+    "links": [
+      {
+        "label": "Help and feedback",
+        "description": "Browse existing reports or describe a reproducible problem.",
+        "icon": "book"
+      },
+      {
+        "label": "Join the discussion",
+        "description": "Read existing topics or share questions and ideas.",
+        "icon": "link"
+      },
+      {
+        "label": "Review changes",
+        "description": "Review open pull requests or prepare a contribution.",
+        "icon": "code"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "{copyright}"
+  }
+}
