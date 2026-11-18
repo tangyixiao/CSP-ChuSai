@@ -1,0 +1,136 @@
+{
+  "meta": {
+    "description": "这份自制 CSP-S 模拟卷将 43 个小题分为单项选择、阅读程序和完善程序，共 100 分，附逐题解析。"
+  },
+  "pages": {
+    "home": {
+      "title": "用一张模拟卷检验初赛基础 · {project}"
+    },
+    "features": {
+      "title": "项目特点 · {project}",
+      "description": "这份自制 CSP-S 模拟卷将 43 个小题分为单项选择、阅读程序和完善程序，共 100 分，附逐题解析。"
+    },
+    "download": {
+      "title": "开始使用 · {project}",
+      "description": "打开题面 PDF，单独记录每道题的答案和拿不准的步骤。"
+    },
+    "community": {
+      "title": "参与项目 · {project}",
+      "description": "从这里找到使用说明、已有讨论和项目变更。"
+    }
+  },
+  "nav": {
+    "home": "首页",
+    "features": "项目特点",
+    "download": "开始使用",
+    "community": "参与项目"
+  },
+  "ui": {
+    "skip_link": "跳转到主要内容",
+    "navigation": "主导航",
+    "open_navigation": "打开导航",
+    "close_navigation": "关闭导航",
+    "language": "选择语言",
+    "theme": "选择主题",
+    "light": "浅色",
+    "dark": "深色",
+    "system": "跟随系统",
+    "platforms": "支持的平台",
+    "github": "GitHub",
+    "view_image": "查看完整演示图",
+    "feature_more": "查看详情",
+    "download": "打开模拟卷",
+    "release_notes": "仓库源代码",
+    "documentation": "使用文档",
+    "source": "仓库源代码",
+    "illustration": "使用路径",
+    "license": "模拟卷与引用资料的权利说明"
+  },
+  "hero": {
+    "title": [
+      "用一张模拟卷检验初赛基础"
+    ],
+    "description": [
+      "这份自制 CSP-S 模拟卷将 43 个小题分为单项选择、阅读程序和完善程序，共 100 分，附逐题解析。"
+    ],
+    "primary_action": "打开模拟卷",
+    "secondary_action": "查看详情"
+  },
+  "preview": {
+    "caption": "使用路径",
+    "tabs": [
+      {
+        "label": "开始使用",
+        "icon": "book"
+      }
+    ],
+    "items": [
+      {
+        "title": "先做题面",
+        "description": "打开题面 PDF，单独记录每道题的答案和拿不准的步骤。",
+        "icon": "book"
+      },
+      {
+        "title": "用错题定位考点",
+        "description": "打开答案 PDF，再按考点矩阵回看分值、知识点与难度。",
+        "icon": "link"
+      }
+    ]
+  },
+  "features": {
+    "title": "项目特点",
+    "groups": [
+      {
+        "title": "阅读程序",
+        "description": "跟踪归并排序、单调栈与树的直径，记录关键变量在样例中的变化。",
+        "detail": "",
+        "icon": "layers"
+      },
+      {
+        "title": "完善程序",
+        "description": "在第 K 小和与 Kruskal 最小生成树题目中补齐代码，对照解析检查推导。",
+        "detail": "",
+        "icon": "book"
+      }
+    ]
+  },
+  "getting_started": {
+    "title": "开始使用 · {project}",
+    "steps": [
+      {
+        "title": "先做题面",
+        "description": "打开题面 PDF，单独记录每道题的答案和拿不准的步骤。",
+        "icon": "book"
+      },
+      {
+        "title": "用错题定位考点",
+        "description": "打开答案 PDF，再按考点矩阵回看分值、知识点与难度。",
+        "icon": "link"
+      }
+    ]
+  },
+  "community": {
+    "title": "参与 · {project}",
+    "description": "从这里找到使用说明、已有讨论和项目变更。",
+    "links": [
+      {
+        "label": "帮助与反馈",
+        "description": "查看已报告的问题，或描述复现步骤。",
+        "icon": "book"
+      },
+      {
+        "label": "参与讨论",
+        "description": "查看已有话题，分享使用方法或改进建议。",
+        "icon": "link"
+      },
+      {
+        "label": "查看项目变更",
+        "description": "查看已有拉取请求或准备贡献。",
+        "icon": "code"
+      }
+    ]
+  },
+  "footer": {
+    "copyright": "{copyright}"
+  }
+}
